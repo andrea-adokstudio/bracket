@@ -1,3 +1,7 @@
+"use client"
+
+import { useMemo, useState } from "react"
+
 import { cn } from "@/lib/utils"
 
 interface TeamLogoProps {
@@ -12,7 +16,16 @@ function getInitials(name: string): string {
 }
 
 export function TeamLogo({ teamId, teamName, className }: TeamLogoProps) {
-  const src = `/api/team/${teamId}/image`
+  const logoSources = useMemo(
+    () => [
+      `/api/team/${teamId}/image`,
+      `https://api.sofascore.app/api/v1/team/${teamId}/image`,
+      `https://www.sofascore.com/api/v1/team/${teamId}/image`,
+    ],
+    [teamId],
+  )
+  const [sourceIndex, setSourceIndex] = useState(0)
+  const src = logoSources[sourceIndex] ?? logoSources[0]
 
   return (
     <div
@@ -27,6 +40,9 @@ export function TeamLogo({ teamId, teamName, className }: TeamLogoProps) {
         src={src}
         alt={`Logo ${teamName}`}
         loading="lazy"
+        onError={() => {
+          setSourceIndex((prev) => (prev < logoSources.length - 1 ? prev + 1 : prev))
+        }}
         className="h-full w-full object-contain p-0.5"
       />
       <span className="sr-only">{getInitials(teamName)}</span>
