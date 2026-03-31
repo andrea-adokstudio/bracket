@@ -13,7 +13,11 @@ export async function getDashboardData(): Promise<DashboardData> {
   const isVercel = process.env.VERCEL === "1"
   if (isVercel) {
     noStore()
-    return fetchLiveDashboardData()
+    try {
+      return await fetchLiveDashboardData()
+    } catch {
+      // Fallback to bundled JSON if live upstream is temporarily unavailable.
+    }
   }
 
   const [standingsRaw, eventsRaw] = await Promise.all([

@@ -123,61 +123,69 @@ async function fetchRounds(): Promise<number[]> {
 
 async function fetchEventsByRound(rounds: number[]): Promise<GroupedEvents> {
   const grouped: GroupedEvents = { gironeA: {}, gironeB: {} }
-
-  for (const round of rounds) {
-    const payload = await fetchJson<{ events: unknown[] }>(
-      `/unique-tournament/${TOURNAMENT_ID}/season/${SEASON_ID}/events/round/${round}`,
+  const concurrency = 6
+  for (let i = 0; i < rounds.length; i += concurrency) {
+    const chunk = rounds.slice(i, i + concurrency)
+    const roundPayloads = await Promise.all(
+      chunk.map(async (round) => {
+        const payload = await fetchJson<{ events: unknown[] }>(
+          `/unique-tournament/${TOURNAMENT_ID}/season/${SEASON_ID}/events/round/${round}`,
+        )
+        return { round, payload }
+      }),
     )
 
-    const roundEvents = payload.events as Array<{
-      id: number
-      startTimestamp: number
-      status: { description: string; type: string }
-      tournament?: { groupName?: string }
-      roundInfo?: { round: number }
-      homeTeam: { id: number; name: string; slug: string; shortName?: string }
-      awayTeam: { id: number; name: string; slug: string; shortName?: string }
-      homeScore?: {
-        current?: number
-        [key: string]: number | undefined
-      }
-      awayScore?: {
-        current?: number
-        [key: string]: number | undefined
-      }
-    }>
+    for (const { round, payload } of roundPayloads) {
+      const roundEvents = payload.events as Array<{
+        id: number
+        startTimestamp: number
+        status: { description: string; type: string }
+        tournament?: { groupName?: string }
+        roundInfo?: { round: number }
+        homeTeam: { id: number; name: string; slug: string; shortName?: string }
+        awayTeam: { id: number; name: string; slug: string; shortName?: string }
+        homeScore?: {
+          current?: number
+          [key: string]: number | undefined
+        }
+        awayScore?: {
+          current?: number
+          [key: string]: number | undefined
+        }
+      }>
 
-    for (const event of roundEvents) {
-      const groupKey = extractGroupKey(event.tournament?.groupName)
-      if (!groupKey) continue
+      for (const event of roundEvents) {
+        const groupKey = extractGroupKey(event.tournament?.groupName)
+        if (!groupKey) continue
 
-      const normalized: MatchEvent = {
-        id: event.id,
-        round: event.roundInfo?.round ?? round,
-        startTimestamp: event.startTimestamp,
-        status: event.status.description,
-        statusType: event.status.type,
-        groupName: event.tournament?.groupName as "Division A" | "Division B",
-        homeTeam: {
-          id: event.homeTeam.id,
-          name: event.homeTeam.name,
-          slug: event.homeTeam.slug,
-          shortName: event.homeTeam.shortName,
-        },
-        awayTeam: {
-          id: event.awayTeam.id,
-          name: event.awayTeam.name,
-          slug: event.awayTeam.slug,
-          shortName: event.awayTeam.shortName,
-        },
-        homeScore: normalizeScore(event.homeScore),
-        awayScore: normalizeScore(event.awayScore),
-      }
+        const normalized: MatchEvent = {
+          id: event.id,
+          round: event.roundInfo?.round ?? round,
+          startTimestamp: event.startTimestamp,
+          status: event.status.description,
+          statusType: event.status.type,
+          groupName: event.tournament?.groupName as "Division A" | "Division B",
+          homeTeam: {
+            id: event.homeTeam.id,
+            name: event.homeTeam.name,
+            slug: event.homeTeam.slug,
+            shortName: event.homeTeam.shortName,
+          },
+          awayTeam: {
+            id: event.awayTeam.id,
+            name: event.awayTeam.name,
+            slug: event.awayTeam.slug,
+            shortName: event.awayTeam.shortName,
+          },
+          homeScore: normalizeScore(event.homeScore),
+          awayScore: normalizeScore(event.awayScore),
+        }
 
-      if (!grouped[groupKey][String(round)]) {
-        grouped[groupKey][String(round)] = []
+        if (!grouped[groupKey][String(round)]) {
+          grouped[groupKey][String(round)] = []
+        }
+        grouped[groupKey][String(round)].push(normalized)
       }
-      grouped[groupKey][String(round)].push(normalized)
     }
   }
 
