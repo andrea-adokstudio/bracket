@@ -159,6 +159,54 @@ function getColumns(
 ]
 }
 
+function MatchRow({
+  match,
+  variant,
+}: {
+  match: MatchEvent
+  variant: "finished" | "pending"
+}) {
+  const isFinished = variant === "finished"
+  return (
+    <li className="rounded-md bg-muted/40 px-2 py-2 sm:px-3">
+      <div className="grid grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center gap-1 sm:gap-2">
+        <div className="flex min-w-0 items-center justify-end gap-1.5 sm:gap-2">
+          <Badge variant={isFinished ? "secondary" : "outline"} className="shrink-0">
+            G{match.round}
+          </Badge>
+          <span className="hidden truncate text-right sm:inline">
+            {match.homeTeam.shortName ?? match.homeTeam.name}
+          </span>
+          <TeamLogo
+            teamId={match.homeTeam.id}
+            teamName={match.homeTeam.name}
+            className="h-7 w-7 shrink-0 sm:h-5 sm:w-5"
+          />
+        </div>
+        <div className="w-14 text-center sm:w-20">
+          {isFinished ? (
+            <span className="font-semibold">
+              {match.homeScore.current ?? 0}-{match.awayScore.current ?? 0}
+            </span>
+          ) : (
+            <span className="text-muted-foreground">vs</span>
+          )}
+        </div>
+        <div className="flex min-w-0 items-center gap-1.5 sm:gap-2">
+          <TeamLogo
+            teamId={match.awayTeam.id}
+            teamName={match.awayTeam.name}
+            className="h-7 w-7 shrink-0 sm:h-5 sm:w-5"
+          />
+          <span className="hidden truncate sm:inline">
+            {match.awayTeam.shortName ?? match.awayTeam.name}
+          </span>
+        </div>
+      </div>
+    </li>
+  )
+}
+
 export function StandingsTable({
   rows,
   eventsByRound,
@@ -326,43 +374,51 @@ export function StandingsTable({
       <Dialog open={dialogData !== null} onOpenChange={(open) => !open && setDialogData(null)}>
         <DialogContent
           showCloseButton={false}
-          className="w-[min(96vw,1240px)] min-w-[75vw] max-w-none max-h-[90vh] overflow-y-auto"
+          className="w-[96vw] sm:w-[min(90vw,1240px)] sm:min-w-[75vw] max-w-none max-h-[90vh] overflow-y-auto p-3 sm:p-4"
         >
           <DialogHeader>
             <div className="flex items-center justify-between gap-2">
-              <DialogTitle>Classifica avulsa</DialogTitle>
+              <DialogTitle className="text-sm sm:text-base">Classifica avulsa</DialogTitle>
               <Badge variant="outline">{dialogData?.points ?? 0} punti</Badge>
             </div>
           </DialogHeader>
 
           {dialogData ? (
-            <div className="space-y-5">
-              <div className="overflow-hidden rounded-lg border border-border">
+            <div className="space-y-3 sm:space-y-5">
+              <div className="overflow-x-auto overflow-hidden rounded-lg border border-border">
                 <Table>
                   <TableHeader>
                     <TableRow>
-                      <TableHead className="w-10 text-center">#</TableHead>
+                      <TableHead className="w-8 text-center sm:w-10">#</TableHead>
                       <TableHead>Squadra</TableHead>
-                      <TableHead className="text-right">Punti diretti</TableHead>
-                      <TableHead className="text-right">Diff diretta</TableHead>
+                      <TableHead className="w-12 text-right text-xs sm:w-auto sm:text-sm">
+                        <span className="sm:hidden">Pt</span>
+                        <span className="hidden sm:inline">Punti diretti</span>
+                      </TableHead>
+                      <TableHead className="w-12 text-right text-xs sm:w-auto sm:text-sm">
+                        <span className="sm:hidden">Diff</span>
+                        <span className="hidden sm:inline">Diff diretta</span>
+                      </TableHead>
                     </TableRow>
                   </TableHeader>
                   <TableBody>
                     {dialogData.orderedRows.map((item, index) => (
                       <TableRow key={item.row.team.id}>
                         <TableCell className="text-center font-medium">{index + 1}</TableCell>
-                        <TableCell>
-                          <div className="flex items-center gap-2">
+                        <TableCell className="px-1 sm:px-2">
+                          <div className="flex min-w-0 items-center gap-1.5 sm:gap-2">
                             <TeamLogo
                               teamId={item.row.team.id}
                               teamName={item.row.team.name}
-                              className="h-6 w-6"
+                              className="h-5 w-5 shrink-0 sm:h-6 sm:w-6"
                             />
-                            <span>{item.row.team.shortName ?? item.row.team.name}</span>
+                            <span className="truncate text-xs sm:text-sm">
+                              {item.row.team.shortName ?? item.row.team.name}
+                            </span>
                           </div>
                         </TableCell>
-                        <TableCell className="text-right">{item.directPoints}</TableCell>
-                        <TableCell className="text-right">
+                        <TableCell className="text-right text-xs sm:text-sm">{item.directPoints}</TableCell>
+                        <TableCell className="text-right text-xs sm:text-sm">
                           {item.directDiff > 0 ? `+${item.directDiff}` : item.directDiff}
                         </TableCell>
                       </TableRow>
@@ -371,63 +427,33 @@ export function StandingsTable({
                 </Table>
               </div>
 
-              <div className="space-y-2 rounded-lg border border-border p-3">
-                <p className="flex items-center justify-center gap-2 text-sm font-medium">
+              <div className="space-y-2 rounded-lg border border-border p-2 sm:p-3">
+                <p className="flex items-center justify-center gap-2 text-xs font-medium sm:text-sm">
                   <IconDial className="h-4 w-4 shrink-0" />
                   Risultati scontri diretti
                 </p>
                 {dialogData.directMatches.length === 0 ? (
-                  <p className="text-sm text-muted-foreground">
+                  <p className="text-center text-xs text-muted-foreground sm:text-sm">
                     Nessuna partita diretta gia conclusa tra queste squadre.
                   </p>
                 ) : (
-                  <ul className="space-y-2 text-sm">
+                  <ul className="space-y-1.5 text-xs sm:space-y-2 sm:text-sm">
                     {dialogData.directMatches.map((match) => (
-                      <li
-                        key={match.id}
-                        className="grid grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center gap-2 rounded-md bg-muted/40 px-2 py-1.5"
-                      >
-                        <div className="flex min-w-0 items-center justify-end gap-2">
-                          <Badge variant="secondary">G{match.round}</Badge>
-                          <span className="truncate text-right">{match.homeTeam.shortName ?? match.homeTeam.name}</span>
-                          <TeamLogo teamId={match.homeTeam.id} teamName={match.homeTeam.name} className="h-5 w-5" />
-                        </div>
-                        <div className="w-20 text-center font-semibold">
-                          {match.homeScore.current ?? 0}-{match.awayScore.current ?? 0}
-                        </div>
-                        <div className="flex min-w-0 items-center gap-2">
-                          <TeamLogo teamId={match.awayTeam.id} teamName={match.awayTeam.name} className="h-5 w-5" />
-                          <span className="truncate">{match.awayTeam.shortName ?? match.awayTeam.name}</span>
-                        </div>
-                      </li>
+                      <MatchRow key={match.id} match={match} variant="finished" />
                     ))}
                   </ul>
                 )}
               </div>
 
               {dialogData.pendingMatches.length > 0 ? (
-                <div className="space-y-2 rounded-lg border border-border p-3">
-                  <p className="flex items-center justify-center gap-2 text-sm font-medium">
+                <div className="space-y-2 rounded-lg border border-border p-2 sm:p-3">
+                  <p className="flex items-center justify-center gap-2 text-xs font-medium sm:text-sm">
                     <IconCalendar className="h-4 w-4 shrink-0" />
                     Partite mancanti tra queste squadre
                   </p>
-                  <ul className="space-y-2 text-sm">
+                  <ul className="space-y-1.5 text-xs sm:space-y-2 sm:text-sm">
                     {dialogData.pendingMatches.map((match) => (
-                      <li
-                        key={match.id}
-                        className="grid grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center gap-2 rounded-md bg-muted/40 px-2 py-1.5"
-                      >
-                        <div className="flex min-w-0 items-center justify-end gap-2">
-                          <Badge variant="outline">G{match.round}</Badge>
-                          <span className="truncate text-right">{match.homeTeam.shortName ?? match.homeTeam.name}</span>
-                          <TeamLogo teamId={match.homeTeam.id} teamName={match.homeTeam.name} className="h-5 w-5" />
-                        </div>
-                        <div className="w-20 text-center text-muted-foreground">vs</div>
-                        <div className="flex min-w-0 items-center gap-2">
-                          <TeamLogo teamId={match.awayTeam.id} teamName={match.awayTeam.name} className="h-5 w-5" />
-                          <span className="truncate">{match.awayTeam.shortName ?? match.awayTeam.name}</span>
-                        </div>
-                      </li>
+                      <MatchRow key={match.id} match={match} variant="pending" />
                     ))}
                   </ul>
                 </div>

@@ -12,7 +12,7 @@ function getInitials(name: string): string {
 }
 
 export function TeamLogo({ teamId, teamName, className }: TeamLogoProps) {
-  const src = `https://api.sofascore.app/api/v1/team/${teamId}/image`
+  const src = `/api/team/${teamId}/image`
 
   return (
     <div

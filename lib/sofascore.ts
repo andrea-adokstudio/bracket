@@ -2,6 +2,7 @@ import { mkdir, writeFile } from "node:fs/promises"
 import path from "node:path"
 
 import type {
+  DashboardData,
   EventsFileData,
   GroupKey,
   GroupedEvents,
@@ -181,6 +182,22 @@ async function fetchEventsByRound(rounds: number[]): Promise<GroupedEvents> {
   }
 
   return grouped
+}
+
+/** Dati live da Sofascore (per ambienti senza filesystem persistente, es. Vercel). */
+export async function fetchLiveDashboardData(): Promise<DashboardData> {
+  const standings = await fetchStandings()
+  const rounds = await fetchRounds()
+  const events = await fetchEventsByRound(rounds)
+  const updatedAt = new Date().toISOString()
+
+  return {
+    seasonLabel: SEASON_LABEL,
+    updatedAt,
+    rounds,
+    standings,
+    events,
+  }
 }
 
 export async function fetchAndSaveSofascoreData() {

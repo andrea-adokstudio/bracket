@@ -17,31 +17,11 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { computeClassificationZones, computeResolvedStandings } from "@/lib/classification"
+import { formatItalianDateParts } from "@/lib/format-italian-date"
 import type { ClassificationResult, DashboardData, GroupKey, MatchEvent, StandingRow } from "@/lib/types"
 
 interface SeasonDashboardProps {
   data: DashboardData
-}
-
-function capitalizeFirst(value: string): string {
-  return value.length > 0 ? value.charAt(0).toUpperCase() + value.slice(1) : value
-}
-
-function formatDateParts(value: string): { dateLabel: string; timeLabel: string } {
-  const date = new Date(value)
-  const dateLabel = capitalizeFirst(
-    date.toLocaleDateString("it-IT", {
-      weekday: "short",
-      day: "2-digit",
-      month: "2-digit",
-    }),
-  )
-  const timeLabel = date.toLocaleTimeString("it-IT", {
-    hour: "2-digit",
-    minute: "2-digit",
-  })
-
-  return { dateLabel, timeLabel }
 }
 
 function getClosestRound(data: DashboardData, groupKey: GroupKey, nowMs: number): number {
@@ -198,7 +178,9 @@ export function SeasonDashboard({ data }: SeasonDashboardProps) {
   const [selectedTeamId, setSelectedTeamId] = useState<number | null>(null)
   const [selectedTeamName, setSelectedTeamName] = useState("")
   const [selectedGroup, setSelectedGroup] = useState<GroupKey>("gironeA")
-  const { dateLabel: updatedDateLabel, timeLabel: updatedTimeLabel } = formatDateParts(data.updatedAt)
+  const { dateLabel: updatedDateLabel, timeLabel: updatedTimeLabel } = formatItalianDateParts(
+    data.updatedAt,
+  )
 
   useEffect(() => {
     const id = window.setInterval(() => {

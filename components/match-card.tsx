@@ -8,6 +8,7 @@ import { Accordion, AccordionContent, AccordionItem } from "@/components/ui/acco
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent } from "@/components/ui/card"
 import { Separator } from "@/components/ui/separator"
+import { formatItalianDateParts } from "@/lib/format-italian-date"
 import type { MatchEvent } from "@/lib/types"
 
 interface MatchCardProps {
@@ -30,27 +31,6 @@ const STATUS_IT: Record<string, string> = {
 
 function translateStatus(status: string): string {
   return STATUS_IT[status] ?? status
-}
-
-function capitalizeFirst(value: string): string {
-  return value.length > 0 ? value.charAt(0).toUpperCase() + value.slice(1) : value
-}
-
-function formatDateParts(timestamp: number): { dateLabel: string; timeLabel: string } {
-  const date = new Date(timestamp * 1000)
-  const dateLabel = capitalizeFirst(
-    date.toLocaleDateString("it-IT", {
-      weekday: "short",
-      day: "2-digit",
-      month: "2-digit",
-    }),
-  )
-  const timeLabel = date.toLocaleTimeString("it-IT", {
-    hour: "2-digit",
-    minute: "2-digit",
-  })
-
-  return { dateLabel, timeLabel }
 }
 
 function getPeriodLabel(key: string): string {
@@ -107,7 +87,7 @@ export function MatchCard({ event, onTeamClick }: MatchCardProps) {
   const isFinished =
     event.statusType === "finished" || event.status === "Ended" || event.status === "AET"
   const scoreKeys = getScoreKeys(event)
-  const { dateLabel, timeLabel } = formatDateParts(event.startTimestamp)
+  const { dateLabel, timeLabel } = formatItalianDateParts(event.startTimestamp * 1000)
   const [isOpen, setIsOpen] = useState(false)
 
   const homeScore = event.homeScore.current

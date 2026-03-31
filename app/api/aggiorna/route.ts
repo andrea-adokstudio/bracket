@@ -1,10 +1,13 @@
 import { NextResponse } from "next/server"
 
-import { fetchAndSaveSofascoreData } from "@/lib/sofascore"
+import { fetchAndSaveSofascoreData, fetchLiveDashboardData } from "@/lib/sofascore"
 
 export async function POST() {
   try {
-    const result = await fetchAndSaveSofascoreData()
+    const isVercel = process.env.VERCEL === "1"
+    const result = isVercel
+      ? await fetchLiveDashboardData()
+      : await fetchAndSaveSofascoreData()
     return NextResponse.json(
       {
         ok: true,

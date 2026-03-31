@@ -30,6 +30,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
+import { formatItalianDateParts } from "@/lib/format-italian-date"
 import type { MatchEvent } from "@/lib/types"
 
 interface TeamMatchesDrawerProps {
@@ -55,26 +56,6 @@ function getClosestMatchIndex(matches: MatchEvent[]): number {
   })
 
   return bestIndex
-}
-
-function capitalizeFirst(value: string): string {
-  return value.length > 0 ? value.charAt(0).toUpperCase() + value.slice(1) : value
-}
-
-function formatDateParts(timestamp: number): { dateLabel: string; timeLabel: string } {
-  const date = new Date(timestamp * 1000)
-  const dateLabel = capitalizeFirst(
-    date.toLocaleDateString("it-IT", {
-      weekday: "short",
-      day: "2-digit",
-      month: "2-digit",
-    }),
-  )
-  const timeLabel = date.toLocaleTimeString("it-IT", {
-    hour: "2-digit",
-    minute: "2-digit",
-  })
-  return { dateLabel, timeLabel }
 }
 
 export function TeamMatchesDrawer({
@@ -181,7 +162,7 @@ export function TeamMatchesDrawer({
             <Carousel setApi={setApi} opts={{ align: "start" }} className="w-full">
               <CarouselContent>
                 {sortedMatches.map((match) => {
-                  const { dateLabel, timeLabel } = formatDateParts(match.startTimestamp)
+                  const { dateLabel, timeLabel } = formatItalianDateParts(match.startTimestamp * 1000)
                   const isHome = teamId === match.homeTeam.id
                   const opponent = isHome ? match.awayTeam : match.homeTeam
                   const teamScore = isHome ? match.homeScore.current : match.awayScore.current
