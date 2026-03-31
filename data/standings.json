@@ -1,0 +1,491 @@
+{
+  "tournamentId": 27700,
+  "seasonId": 77655,
+  "seasonLabel": "25/26",
+  "updatedAt": "2026-03-31T15:53:54.133Z",
+  "standings": {
+    "gironeA": [
+      {
+        "position": 1,
+        "matches": 24,
+        "wins": 22,
+        "losses": 2,
+        "points": 44,
+        "scoresFor": 2130,
+        "scoresAgainst": 1788,
+        "scoreDiffFormatted": "+342",
+        "team": {
+          "id": 1114272,
+          "name": "New Flying Balls Ozzano",
+          "slug": "new-flying-balls-ozzano",
+          "shortName": "New Flying Balls Ozzano"
+        }
+      },
+      {
+        "position": 2,
+        "matches": 24,
+        "wins": 19,
+        "losses": 5,
+        "points": 38,
+        "scoresFor": 1903,
+        "scoresAgainst": 1654,
+        "scoreDiffFormatted": "+249",
+        "team": {
+          "id": 1114275,
+          "name": "S.C. Oderzo Basket",
+          "slug": "sc-oderzo-basket",
+          "shortName": "S.C. Oderzo Basket"
+        }
+      },
+      {
+        "position": 3,
+        "matches": 25,
+        "wins": 17,
+        "losses": 8,
+        "points": 34,
+        "scoresFor": 2072,
+        "scoresAgainst": 1939,
+        "scoreDiffFormatted": "+133",
+        "team": {
+          "id": 1114278,
+          "name": "Dinamo Gorizia",
+          "slug": "dinamo-gorizia",
+          "shortName": "Dinamo Gorizia"
+        }
+      },
+      {
+        "position": 4,
+        "matches": 24,
+        "wins": 14,
+        "losses": 10,
+        "points": 28,
+        "scoresFor": 1888,
+        "scoresAgainst": 1793,
+        "scoreDiffFormatted": "+95",
+        "team": {
+          "id": 1114271,
+          "name": "JB Stings Curtatone",
+          "slug": "jb-stings-curtatone",
+          "shortName": "JB Stings Curtatone"
+        }
+      },
+      {
+        "position": 5,
+        "matches": 24,
+        "wins": 14,
+        "losses": 10,
+        "points": 28,
+        "scoresFor": 1955,
+        "scoresAgainst": 1861,
+        "scoreDiffFormatted": "+94",
+        "team": {
+          "id": 331088,
+          "name": "Basket Monfalcone",
+          "slug": "basket-monfalcone",
+          "shortName": "Monfalcone"
+        }
+      },
+      {
+        "position": 6,
+        "matches": 24,
+        "wins": 14,
+        "losses": 10,
+        "points": 28,
+        "scoresFor": 1865,
+        "scoresAgainst": 1897,
+        "scoreDiffFormatted": "-32",
+        "team": {
+          "id": 1114268,
+          "name": "Romano Lombardo Basket",
+          "slug": "romano-lombardo-basket",
+          "shortName": "Romano Lombardo Basket"
+        }
+      },
+      {
+        "position": 7,
+        "matches": 25,
+        "wins": 13,
+        "losses": 12,
+        "points": 26,
+        "scoresFor": 1850,
+        "scoresAgainst": 1819,
+        "scoreDiffFormatted": "+31",
+        "team": {
+          "id": 1114277,
+          "name": "Sistema Basket Pordenone",
+          "slug": "sistema-basket-pordenone",
+          "shortName": "Sistema Basket Pordenone"
+        }
+      },
+      {
+        "position": 8,
+        "matches": 24,
+        "wins": 11,
+        "losses": 13,
+        "points": 22,
+        "scoresFor": 1846,
+        "scoresAgainst": 1853,
+        "scoreDiffFormatted": "-7",
+        "team": {
+          "id": 826594,
+          "name": "Bmr Basket 2000 Reggio Emilia",
+          "slug": "bmr-basket-2000-reggio-emilia"
+        }
+      },
+      {
+        "position": 9,
+        "matches": 24,
+        "wins": 11,
+        "losses": 13,
+        "points": 22,
+        "scoresFor": 1838,
+        "scoresAgainst": 1851,
+        "scoreDiffFormatted": "-13",
+        "team": {
+          "id": 264607,
+          "name": "Virtus Padova Basket",
+          "slug": "virtus-padova-basket",
+          "shortName": "Padova"
+        }
+      },
+      {
+        "position": 10,
+        "matches": 24,
+        "wins": 10,
+        "losses": 14,
+        "points": 20,
+        "scoresFor": 1720,
+        "scoresAgainst": 1745,
+        "scoreDiffFormatted": "-25",
+        "team": {
+          "id": 1114279,
+          "name": "Jadran Trieste",
+          "slug": "jadran-trieste",
+          "shortName": "Jadran Trieste"
+        }
+      },
+      {
+        "position": 11,
+        "matches": 25,
+        "wins": 9,
+        "losses": 16,
+        "points": 18,
+        "scoresFor": 1865,
+        "scoresAgainst": 1991,
+        "scoreDiffFormatted": "-126",
+        "team": {
+          "id": 1114269,
+          "name": "Basket Iseo",
+          "slug": "basket-iseo",
+          "shortName": "Basket Iseo"
+        }
+      },
+      {
+        "position": 12,
+        "matches": 24,
+        "wins": 9,
+        "losses": 15,
+        "points": 18,
+        "scoresFor": 1883,
+        "scoresAgainst": 2017,
+        "scoreDiffFormatted": "-134",
+        "team": {
+          "id": 1114276,
+          "name": "Montebelluna Basket",
+          "slug": "montebelluna-basket",
+          "shortName": "Montebelluna Basket"
+        }
+      },
+      {
+        "position": 13,
+        "matches": 24,
+        "wins": 8,
+        "losses": 16,
+        "points": 16,
+        "scoresFor": 1674,
+        "scoresAgainst": 1796,
+        "scoreDiffFormatted": "-122",
+        "team": {
+          "id": 1114270,
+          "name": "Pallacanestro Gardonese",
+          "slug": "pallacanestro-gardonese",
+          "shortName": "Pallacanestro Gardonese"
+        }
+      },
+      {
+        "position": 14,
+        "matches": 24,
+        "wins": 6,
+        "losses": 18,
+        "points": 12,
+        "scoresFor": 1773,
+        "scoresAgainst": 2025,
+        "scoreDiffFormatted": "-252",
+        "team": {
+          "id": 1114273,
+          "name": "Olimpia Castello",
+          "slug": "olimpia-castello",
+          "shortName": "Olimpia Castello"
+        }
+      },
+      {
+        "position": 15,
+        "matches": 25,
+        "wins": 5,
+        "losses": 20,
+        "points": 10,
+        "scoresFor": 1701,
+        "scoresAgainst": 1934,
+        "scoreDiffFormatted": "-233",
+        "team": {
+          "id": 1114274,
+          "name": "Playbasket Carré",
+          "slug": "playbasket-carre",
+          "shortName": "Playbasket Carré"
+        }
+      }
+    ],
+    "gironeB": [
+      {
+        "position": 1,
+        "matches": 24,
+        "wins": 20,
+        "losses": 4,
+        "points": 40,
+        "scoresFor": 1849,
+        "scoresAgainst": 1634,
+        "scoreDiffFormatted": "+215",
+        "team": {
+          "id": 328578,
+          "name": "Sangiorgese Basket",
+          "slug": "ltc-sangiorgese-basket",
+          "shortName": "Sangiorgese"
+        }
+      },
+      {
+        "position": 2,
+        "matches": 24,
+        "wins": 19,
+        "losses": 5,
+        "points": 38,
+        "scoresFor": 1867,
+        "scoresAgainst": 1609,
+        "scoreDiffFormatted": "+258",
+        "team": {
+          "id": 1114287,
+          "name": "Basket Team 95 Pizzighettone",
+          "slug": "basket-team-95-pizzighettone",
+          "shortName": "Basket Team 95 Pizzighettone"
+        }
+      },
+      {
+        "position": 3,
+        "matches": 24,
+        "wins": 17,
+        "losses": 7,
+        "points": 34,
+        "scoresFor": 1971,
+        "scoresAgainst": 1810,
+        "scoreDiffFormatted": "+161",
+        "team": {
+          "id": 1114303,
+          "name": "Pallacanestro Pavia 1933",
+          "slug": "pallacanestro-pavia-1933",
+          "shortName": "Pallacanestro Pavia 1933"
+        }
+      },
+      {
+        "position": 4,
+        "matches": 23,
+        "wins": 15,
+        "losses": 8,
+        "points": 30,
+        "scoresFor": 1839,
+        "scoresAgainst": 1757,
+        "scoreDiffFormatted": "+82",
+        "team": {
+          "id": 1114284,
+          "name": "SocialOSA Milano",
+          "slug": "social-osa-milano",
+          "shortName": "Social OSA Milano"
+        }
+      },
+      {
+        "position": 5,
+        "matches": 25,
+        "wins": 14,
+        "losses": 11,
+        "points": 28,
+        "scoresFor": 1962,
+        "scoresAgainst": 1918,
+        "scoreDiffFormatted": "+44",
+        "team": {
+          "id": 1114300,
+          "name": "Oleggio Magic Basket",
+          "slug": "oleggio-magic-basket",
+          "shortName": "Oleggio Magic Basket"
+        }
+      },
+      {
+        "position": 6,
+        "matches": 24,
+        "wins": 13,
+        "losses": 11,
+        "points": 26,
+        "scoresFor": 1839,
+        "scoresAgainst": 1724,
+        "scoreDiffFormatted": "+115",
+        "team": {
+          "id": 446074,
+          "name": "Basketball Gallarate",
+          "slug": "basketball-gallarate",
+          "shortName": "Gallarate"
+        }
+      },
+      {
+        "position": 7,
+        "matches": 24,
+        "wins": 13,
+        "losses": 11,
+        "points": 26,
+        "scoresFor": 1957,
+        "scoresAgainst": 1956,
+        "scoreDiffFormatted": "+1",
+        "team": {
+          "id": 1114299,
+          "name": "Campus Varese",
+          "slug": "campus-varese",
+          "shortName": "Campus Varese"
+        }
+      },
+      {
+        "position": 8,
+        "matches": 24,
+        "wins": 12,
+        "losses": 12,
+        "points": 24,
+        "scoresFor": 1917,
+        "scoresAgainst": 1931,
+        "scoreDiffFormatted": "-14",
+        "team": {
+          "id": 1114282,
+          "name": "U.S. Nervianese",
+          "slug": "us-nervianese",
+          "shortName": "U.S. Nervianese"
+        }
+      },
+      {
+        "position": 9,
+        "matches": 24,
+        "wins": 12,
+        "losses": 12,
+        "points": 24,
+        "scoresFor": 1857,
+        "scoresAgainst": 1900,
+        "scoreDiffFormatted": "-43",
+        "team": {
+          "id": 1114283,
+          "name": "Bocconi Team Milano",
+          "slug": "bocconi-sport-milano",
+          "shortName": "Bocconi Sport Milano"
+        }
+      },
+      {
+        "position": 10,
+        "matches": 24,
+        "wins": 9,
+        "losses": 15,
+        "points": 18,
+        "scoresFor": 1792,
+        "scoresAgainst": 1868,
+        "scoreDiffFormatted": "-76",
+        "team": {
+          "id": 1114301,
+          "name": "Basket Sette Laghi Gazzada",
+          "slug": "basket-sette-laghi-gazzada",
+          "shortName": "Basket Sette Laghi Gazzada"
+        }
+      },
+      {
+        "position": 11,
+        "matches": 25,
+        "wins": 9,
+        "losses": 16,
+        "points": 18,
+        "scoresFor": 1952,
+        "scoresAgainst": 2066,
+        "scoreDiffFormatted": "-114",
+        "team": {
+          "id": 1114302,
+          "name": "Derthona Basketball Lab",
+          "slug": "derthona-basket",
+          "shortName": "Derthona Basket"
+        }
+      },
+      {
+        "position": 12,
+        "matches": 24,
+        "wins": 9,
+        "losses": 15,
+        "points": 18,
+        "scoresFor": 1646,
+        "scoresAgainst": 1789,
+        "scoreDiffFormatted": "-143",
+        "team": {
+          "id": 1114285,
+          "name": "Blu Orobica Bergamo",
+          "slug": "blu-orobica-bergamo",
+          "shortName": "Blu Orobica Bergamo"
+        }
+      },
+      {
+        "position": 13,
+        "matches": 24,
+        "wins": 8,
+        "losses": 16,
+        "points": 16,
+        "scoresFor": 1926,
+        "scoresAgainst": 1907,
+        "scoreDiffFormatted": "+19",
+        "team": {
+          "id": 1114297,
+          "name": "MaGo Marnatese",
+          "slug": "us-marnatese",
+          "shortName": "U.S. Marnatese"
+        }
+      },
+      {
+        "position": 14,
+        "matches": 25,
+        "wins": 8,
+        "losses": 17,
+        "points": 16,
+        "scoresFor": 1949,
+        "scoresAgainst": 2038,
+        "scoreDiffFormatted": "-89",
+        "team": {
+          "id": 1114288,
+          "name": "Robur Saronno",
+          "slug": "robur-basket-saronno",
+          "shortName": "Robur Basket Saronno"
+        }
+      },
+      {
+        "position": 15,
+        "matches": 24,
+        "wins": 3,
+        "losses": 21,
+        "points": 6,
+        "scoresFor": 1467,
+        "scoresAgainst": 1883,
+        "scoreDiffFormatted": "-416",
+        "team": {
+          "id": 1114286,
+          "name": "Sansebasket Cremona",
+          "slug": "sansebasket-cremona",
+          "shortName": "Sansebasket Cremona"
+        }
+      }
+    ]
+  }
+}

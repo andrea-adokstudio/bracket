@@ -126,4 +126,11 @@
   html {
     @apply font-sans;
     }
+
+  a,
+  button,
+  [role="button"],
+  [data-clickable="true"] {
+    cursor: pointer;
+  }
 }

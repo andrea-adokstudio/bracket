@@ -1,0 +1,290 @@
+"use client"
+
+import { useEffect, useMemo, useState } from "react"
+import {
+  IconCalendar,
+  IconCircleArrowLeft,
+  IconCircleArrowRight,
+  IconDial,
+} from "nucleo-glass"
+
+import { TeamLogo } from "@/components/team-logo"
+import { Badge } from "@/components/ui/badge"
+import {
+  Carousel,
+  CarouselApi,
+  CarouselContent,
+  CarouselItem,
+} from "@/components/ui/carousel"
+import {
+  Drawer,
+  DrawerContent,
+  DrawerHeader,
+  DrawerTitle,
+} from "@/components/ui/drawer"
+import { Button } from "@/components/ui/button"
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
+import type { MatchEvent } from "@/lib/types"
+
+interface TeamMatchesDrawerProps {
+  open: boolean
+  onOpenChange: (open: boolean) => void
+  teamName: string
+  teamId: number | null
+  matches: MatchEvent[]
+}
+
+function getClosestMatchIndex(matches: MatchEvent[]): number {
+  if (matches.length === 0) return 0
+  const now = Date.now()
+  let bestIndex = 0
+  let bestDistance = Number.POSITIVE_INFINITY
+
+  matches.forEach((match, index) => {
+    const distance = Math.abs(match.startTimestamp * 1000 - now)
+    if (distance < bestDistance) {
+      bestDistance = distance
+      bestIndex = index
+    }
+  })
+
+  return bestIndex
+}
+
+function capitalizeFirst(value: string): string {
+  return value.length > 0 ? value.charAt(0).toUpperCase() + value.slice(1) : value
+}
+
+function formatDateParts(timestamp: number): { dateLabel: string; timeLabel: string } {
+  const date = new Date(timestamp * 1000)
+  const dateLabel = capitalizeFirst(
+    date.toLocaleDateString("it-IT", {
+      weekday: "short",
+      day: "2-digit",
+      month: "2-digit",
+    }),
+  )
+  const timeLabel = date.toLocaleTimeString("it-IT", {
+    hour: "2-digit",
+    minute: "2-digit",
+  })
+  return { dateLabel, timeLabel }
+}
+
+export function TeamMatchesDrawer({
+  open,
+  onOpenChange,
+  teamName,
+  teamId,
+  matches,
+}: TeamMatchesDrawerProps) {
+  const [api, setApi] = useState<CarouselApi>()
+  const [selectedIndex, setSelectedIndex] = useState(0)
+  const sortedMatches = useMemo(
+    () => [...matches].sort((a, b) => a.startTimestamp - b.startTimestamp),
+    [matches],
+  )
+
+  useEffect(() => {
+    if (!api) return
+
+    const updateSelected = () => {
+      setSelectedIndex(api.selectedScrollSnap())
+    }
+
+    updateSelected()
+    api.on("select", updateSelected)
+    api.on("reInit", updateSelected)
+
+    return () => {
+      api.off("select", updateSelected)
+      api.off("reInit", updateSelected)
+    }
+  }, [api])
+
+  useEffect(() => {
+    if (!open || !api) return
+    const targetIndex = getClosestMatchIndex(sortedMatches)
+    api.scrollTo(targetIndex, true)
+  }, [api, open, sortedMatches])
+
+  const availableRounds = useMemo(
+    () => [...new Set(sortedMatches.map((match) => match.round))].sort((a, b) => a - b),
+    [sortedMatches],
+  )
+
+  const selectedRound = sortedMatches[selectedIndex]?.round
+
+  function goToRound(round: number) {
+    const targetIndex = sortedMatches.findIndex((match) => match.round === round)
+    if (targetIndex >= 0) {
+      api?.scrollTo(targetIndex)
+    }
+  }
+
+  const currentRoundIndex = availableRounds.findIndex((round) => round === selectedRound)
+  const canGoPrevRound = currentRoundIndex > 0
+  const canGoNextRound = currentRoundIndex >= 0 && currentRoundIndex < availableRounds.length - 1
+
+  function goPrevRound() {
+    if (!canGoPrevRound) return
+    goToRound(availableRounds[currentRoundIndex - 1])
+  }
+
+  function goNextRound() {
+    if (!canGoNextRound) return
+    goToRound(availableRounds[currentRoundIndex + 1])
+  }
+
+  function translateStatus(status: string): string {
+    const map: Record<string, string> = {
+      Ended: "Finita",
+      AET: "Finita ai supplementari",
+      "Not started": "Da giocare",
+      "Non started": "Da giocare",
+    }
+
+    return map[status] ?? status
+  }
+
+  function isFinishedStatus(status: string, type: string): boolean {
+    return type === "finished" || status === "Ended" || status === "AET"
+  }
+
+  function getScoreClass(score: number | undefined, opponentScore: number | undefined, finished: boolean): string {
+    if (!finished || score == null || opponentScore == null) return "text-foreground"
+    if (score > opponentScore) return "text-foreground"
+    if (score < opponentScore) return "text-foreground/30"
+    return "text-foreground"
+  }
+
+  return (
+    <Drawer open={open} onOpenChange={onOpenChange}>
+      <DrawerContent className="mx-auto w-full max-w-3xl">
+        <DrawerTitle className="sr-only">Partite squadra {teamName}</DrawerTitle>
+        <DrawerHeader className="mb-3 pb-2">
+          <div className="flex items-center justify-center gap-2 text-center">
+            {teamId ? <TeamLogo teamId={teamId} teamName={teamName} className="h-10 w-10" /> : null}
+            <h2 className="text-lg font-semibold">{teamName}</h2>
+          </div>
+        </DrawerHeader>
+        <div className="px-4 pb-6">
+          {sortedMatches.length === 0 ? (
+            <p className="text-sm text-muted-foreground">Nessuna partita trovata.</p>
+          ) : (
+            <Carousel setApi={setApi} opts={{ align: "start" }} className="w-full">
+              <CarouselContent>
+                {sortedMatches.map((match) => {
+                  const { dateLabel, timeLabel } = formatDateParts(match.startTimestamp)
+                  const isHome = teamId === match.homeTeam.id
+                  const opponent = isHome ? match.awayTeam : match.homeTeam
+                  const teamScore = isHome ? match.homeScore.current : match.awayScore.current
+                  const oppScore = isHome ? match.awayScore.current : match.homeScore.current
+
+                  const finished = isFinishedStatus(match.status, match.statusType)
+                  const teamScoreClass = getScoreClass(teamScore, oppScore, finished)
+                  const oppScoreClass = getScoreClass(oppScore, teamScore, finished)
+
+                  return (
+                    <CarouselItem key={match.id} className="basis-full md:basis-1/2">
+                      <div className="rounded-lg border px-3 py-3 sm:px-4">
+                        <div className="mb-2 flex flex-wrap items-center justify-between gap-1.5">
+                          <Badge
+                            className={
+                              finished
+                                ? "bg-[#048C04] text-white hover:bg-[#048C04]/90"
+                                : "bg-[#B40404] text-white hover:bg-[#B40404]/90"
+                            }
+                          >
+                            {translateStatus(match.status)}
+                          </Badge>
+                          <div className="flex flex-wrap items-center gap-x-2 gap-y-0.5 text-xs text-muted-foreground">
+                            <span className="inline-flex items-center gap-1">
+                              <IconCalendar className="h-3 w-3 shrink-0" />
+                              {dateLabel}
+                            </span>
+                            <span className="inline-flex items-center gap-1">
+                              <IconDial className="h-3 w-3 shrink-0" />
+                              {timeLabel}
+                            </span>
+                          </div>
+                        </div>
+                        <div className="space-y-1">
+                          <div className="flex items-center justify-between gap-2">
+                            <div className="flex min-w-0 items-center gap-2">
+                              {teamId ? (
+                                <TeamLogo teamId={teamId} teamName={teamName} className="h-6 w-6 shrink-0" />
+                              ) : null}
+                              <span className="truncate text-sm font-semibold sm:text-base">{teamName}</span>
+                            </div>
+                            <span className={`text-lg font-bold tabular-nums ${teamScoreClass}`}>{teamScore}</span>
+                          </div>
+                          <div className="flex items-center justify-between gap-2">
+                            <div className="flex min-w-0 items-center gap-2">
+                              <TeamLogo teamId={opponent.id} teamName={opponent.name} className="h-6 w-6 shrink-0" />
+                              <span className="truncate text-sm font-semibold sm:text-base">
+                                {opponent.shortName ?? opponent.name}
+                              </span>
+                            </div>
+                            <span className={`text-lg font-bold tabular-nums ${oppScoreClass}`}>{oppScore}</span>
+                          </div>
+                        </div>
+                      </div>
+                    </CarouselItem>
+                  )
+                })}
+              </CarouselContent>
+            </Carousel>
+          )}
+          {sortedMatches.length > 0 ? (
+            <div className="mt-4">
+              <div className="flex items-center justify-center gap-3">
+                <Button
+                  type="button"
+                  variant="outline"
+                  size="icon"
+                  onClick={goPrevRound}
+                  disabled={!canGoPrevRound}
+                  aria-label="Partita precedente"
+                >
+                  <IconCircleArrowLeft className="h-4 w-4" />
+                </Button>
+                <Select
+                  value={selectedRound ? String(selectedRound) : undefined}
+                  onValueChange={(value) => goToRound(Number(value))}
+                >
+                  <SelectTrigger className="w-full sm:w-44">
+                    <SelectValue placeholder="Seleziona giornata" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {availableRounds.map((round) => (
+                      <SelectItem key={round} value={String(round)}>
+                        Giornata {round}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+                <Button
+                  type="button"
+                  variant="outline"
+                  size="icon"
+                  onClick={goNextRound}
+                  disabled={!canGoNextRound}
+                  aria-label="Partita successiva"
+                >
+                  <IconCircleArrowRight className="h-4 w-4" />
+                </Button>
+              </div>
+            </div>
+          ) : null}
+        </div>
+      </DrawerContent>
+    </Drawer>
+  )
+}

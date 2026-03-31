@@ -1,19 +1,27 @@
-import { Button } from "@/components/ui/button"
+import { SeasonDashboard } from "@/components/season-dashboard"
+import { getDashboardData } from "@/lib/data"
 
-export default function Page() {
-  return (
-    <div className="flex min-h-svh p-6">
-      <div className="flex max-w-md min-w-0 flex-col gap-4 text-sm leading-loose">
-        <div>
-          <h1 className="font-medium">Project ready!</h1>
-          <p>You may now add components and start building.</p>
-          <p>We&apos;ve already added the button component for you.</p>
-          <Button className="mt-2">Button</Button>
-        </div>
-        <div className="font-mono text-xs text-muted-foreground">
-          (Press <kbd>d</kbd> to toggle dark mode)
+export default async function Page() {
+  let data = null
+
+  try {
+    data = await getDashboardData()
+  } catch {
+    return (
+      <div className="mx-auto flex min-h-svh w-full max-w-5xl items-center justify-center px-6 py-12">
+        <div className="space-y-2 text-center">
+          <h1 className="text-2xl font-bold">Dati non disponibili</h1>
+          <p className="text-sm text-muted-foreground">
+            Esegui <code>npm run fetch-data</code> per scaricare classifica, calendario e risultati.
+          </p>
         </div>
       </div>
+    )
+  }
+
+  return (
+    <div className="mx-auto flex min-h-svh w-full max-w-6xl px-2 py-4 sm:px-4 sm:py-6">
+      <SeasonDashboard key={data.updatedAt} data={data} />
     </div>
   )
 }
