@@ -1,6 +1,6 @@
 "use client"
 
-import { useMemo, useState } from "react"
+import { useState } from "react"
 
 import { cn } from "@/lib/utils"
 
@@ -16,16 +16,20 @@ function getInitials(name: string): string {
 }
 
 export function TeamLogo({ teamId, teamName, className }: TeamLogoProps) {
-  const logoSources = useMemo(
-    () => [
-      `/api/team/${teamId}/image`,
-      `https://api.sofascore.app/api/v1/team/${teamId}/image`,
-      `https://www.sofascore.com/api/v1/team/${teamId}/image`,
-    ],
-    [teamId],
-  )
-  const [sourceIndex, setSourceIndex] = useState(0)
-  const src = logoSources[sourceIndex] ?? logoSources[0]
+  const [failed, setFailed] = useState(false)
+
+  if (failed) {
+    return (
+      <div
+        className={cn(
+          "flex items-center justify-center overflow-hidden rounded-sm border bg-muted text-xs font-semibold text-muted-foreground",
+          className,
+        )}
+      >
+        {getInitials(teamName)}
+      </div>
+    )
+  }
 
   return (
     <div
@@ -34,18 +38,16 @@ export function TeamLogo({ teamId, teamName, className }: TeamLogoProps) {
         className,
       )}
     >
-      {/* Use plain image to avoid forcing circular logos */}
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
-        src={src}
+        src={`https://api.sofascore.app/api/v1/team/${teamId}/image`}
         alt={`Logo ${teamName}`}
         loading="lazy"
-        onError={() => {
-          setSourceIndex((prev) => (prev < logoSources.length - 1 ? prev + 1 : prev))
-        }}
+        referrerPolicy="no-referrer"
+        crossOrigin="anonymous"
+        onError={() => setFailed(true)}
         className="h-full w-full object-contain p-0.5"
       />
-      <span className="sr-only">{getInitials(teamName)}</span>
     </div>
   )
 }
