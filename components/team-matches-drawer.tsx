@@ -248,6 +248,47 @@ export function TeamMatchesDrawer({
               </CarouselContent>
             </Carousel>
           )}
+          {sortedMatches.length > 0 ? (
+            <div className="mt-4">
+              <div className="flex items-center justify-center gap-3">
+                <Button
+                  type="button"
+                  variant="outline"
+                  size="icon"
+                  onClick={goPrevRound}
+                  disabled={!canGoPrevRound}
+                  aria-label="Partita precedente"
+                >
+                  <IconCircleArrowLeft className="h-4 w-4" />
+                </Button>
+                <Select
+                  value={selectedRound ? String(selectedRound) : undefined}
+                  onValueChange={(value) => goToRound(Number(value))}
+                >
+                  <SelectTrigger className="w-full sm:w-44">
+                    <SelectValue placeholder="Seleziona giornata" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {availableRounds.map((round) => (
+                      <SelectItem key={round} value={String(round)}>
+                        Giornata {round}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+                <Button
+                  type="button"
+                  variant="outline"
+                  size="icon"
+                  onClick={goNextRound}
+                  disabled={!canGoNextRound}
+                  aria-label="Partita successiva"
+                >
+                  <IconCircleArrowRight className="h-4 w-4" />
+                </Button>
+              </div>
+            </div>
+          ) : null}
         </div>
       </DrawerContent>
     </Drawer>
