@@ -43,8 +43,6 @@ jobs:
 
       - name: Commit and push if changed
         run: |
-          git pull --rebase origin "${GITHUB_REF_NAME}"
-
           if git diff --quiet -- data/standings.json data/events.json; then
             echo "No data changes detected."
             exit 0
@@ -54,5 +52,8 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
           git add data/standings.json data/events.json
+          git stash push --keep-index --include-untracked -m "workflow-temp" || true
+          git pull --rebase origin "${GITHUB_REF_NAME}"
+          git stash drop || true
           git commit -m "chore(data): update sofascore snapshots"
           git push origin HEAD:"${GITHUB_REF_NAME}"
