@@ -6,7 +6,6 @@ import { useTransition } from "react"
 
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
-import { fetchLiveDashboardDataClient } from "@/lib/sofascore-client"
 
 const links = [
   { href: "/", label: "Classifica e calendario" },
@@ -18,14 +17,7 @@ export function NavBar() {
   const [isRefreshing, startTransition] = useTransition()
   async function handleRefresh() {
     startTransition(() => {
-      void (async () => {
-        try {
-          const liveData = await fetchLiveDashboardDataClient()
-          window.dispatchEvent(new CustomEvent("dashboard-data-updated", { detail: liveData }))
-        } catch {
-          // silently ignore
-        }
-      })()
+      window.location.reload()
     })
   }
 

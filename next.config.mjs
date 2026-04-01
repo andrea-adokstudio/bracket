@@ -1,13 +1,4 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {
-  async rewrites() {
-    return [
-      {
-        source: "/sofascore-proxy/:path*",
-        destination: "https://api.sofascore.app/api/v1/:path*",
-      },
-    ]
-  },
-}
+const nextConfig = {}
 
 export default nextConfig
