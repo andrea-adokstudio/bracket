@@ -43,6 +43,8 @@ jobs:
 
       - name: Commit and push if changed
         run: |
+          git pull --rebase origin "${GITHUB_REF_NAME}"
+
           if git diff --quiet -- data/standings.json data/events.json; then
             echo "No data changes detected."
             exit 0
@@ -53,5 +55,4 @@ jobs:
 
           git add data/standings.json data/events.json
           git commit -m "chore(data): update sofascore snapshots"
-          git pull --rebase origin "${GITHUB_REF_NAME}"
           git push origin HEAD:"${GITHUB_REF_NAME}"
