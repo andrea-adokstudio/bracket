@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link"
-import { usePathname, useRouter } from "next/navigation"
+import { usePathname } from "next/navigation"
 import { useTransition } from "react"
 
 import { cn } from "@/lib/utils"
@@ -15,7 +15,6 @@ const links = [
 
 export function NavBar() {
   const pathname = usePathname()
-  const router = useRouter()
   const [isRefreshing, startTransition] = useTransition()
   async function handleRefresh() {
     startTransition(() => {
@@ -23,9 +22,6 @@ export function NavBar() {
         try {
           const liveData = await fetchLiveDashboardDataClient()
           window.dispatchEvent(new CustomEvent("dashboard-data-updated", { detail: liveData }))
-          const response = await fetch("/api/aggiorna", { method: "POST" })
-          const payload = (await response.json()) as { ok: boolean; message: string }
-          if (payload.ok) router.refresh()
         } catch {
           // silently ignore
         }

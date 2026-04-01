@@ -5,7 +5,7 @@ import type { DashboardData, GroupKey, GroupedEvents, GroupedStandings, MatchEve
 const TOURNAMENT_ID = 27700
 const SEASON_ID = 77655
 const SEASON_LABEL = "25/26"
-const API_BASE = "https://api.sofascore.app/api/v1"
+const API_BASE = "/sofascore-proxy"
 
 const GROUP_LABEL_TO_KEY: Record<string, GroupKey> = {
   "Division A": "gironeA",
