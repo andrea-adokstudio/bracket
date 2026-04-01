@@ -44,7 +44,6 @@ export function TeamLogo({ teamId, teamName, className }: TeamLogoProps) {
         alt={`Logo ${teamName}`}
         loading="lazy"
         referrerPolicy="no-referrer"
-        crossOrigin="anonymous"
         onError={() => setFailed(true)}
         className="h-full w-full object-contain p-0.5"
       />

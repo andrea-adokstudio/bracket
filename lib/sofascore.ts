@@ -29,6 +29,7 @@ async function fetchJson<T>(endpoint: string): Promise<T> {
       "user-agent": "Mozilla/5.0",
       accept: "application/json",
     },
+    cache: "no-store",
   })
 
   if (!response.ok) {
@@ -46,9 +47,9 @@ function extractGroupKey(groupName?: string): GroupKey | null {
 function normalizeScore(
   score:
     | {
-        current?: number
-        [key: string]: number | undefined
-      }
+      current?: number
+      [key: string]: number | undefined
+    }
     | undefined,
 ): MatchScore {
   const normalized: MatchScore = {
