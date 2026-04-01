@@ -2,7 +2,6 @@
 
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { useTransition } from "react"
 
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
@@ -14,12 +13,6 @@ const links = [
 
 export function NavBar() {
   const pathname = usePathname()
-  const [isRefreshing, startTransition] = useTransition()
-  async function handleRefresh() {
-    startTransition(() => {
-      window.location.reload()
-    })
-  }
 
   return (
     <nav className="sticky top-0 z-20 border-b bg-background/90 backdrop-blur">
@@ -38,15 +31,6 @@ export function NavBar() {
             </Button>
           )
         })}
-        <Button
-          type="button"
-          onClick={handleRefresh}
-          disabled={isRefreshing}
-          size="sm"
-          className="ml-auto bg-[#1d397e] text-white hover:bg-[#17306a]"
-        >
-          {isRefreshing ? "Aggiornamento..." : "Aggiorna"}
-        </Button>
       </div>
     </nav>
   )
