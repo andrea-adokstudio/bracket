@@ -16,7 +16,9 @@ import type {
 const TOURNAMENT_ID = 27700
 const SEASON_ID = 77655
 const SEASON_LABEL = "25/26"
-const API_BASE = "https://api.sofascore.app/api/v1"
+const API_BASES = ["https://api.sofascore.app/api/v1", "https://www.sofascore.com/api/v1"] as const
+const REQUEST_RETRIES = 3
+const RETRY_DELAY_MS = 1200
 
 const GROUP_LABEL_TO_KEY: Record<string, GroupKey> = {
   "Division A": "gironeA",
@@ -24,20 +26,37 @@ const GROUP_LABEL_TO_KEY: Record<string, GroupKey> = {
 }
 
 async function fetchJson<T>(endpoint: string): Promise<T> {
-  const url = `${API_BASE}${endpoint}`
-  const response = await fetch(url, { cache: "no-store" })
+  let lastError = "errore sconosciuto"
 
-  if (!response.ok) {
-    const body = await response.text().catch(() => "")
-    throw new Error(`Richiesta fallita ${endpoint}: ${response.status} ${body.slice(0, 200)}`)
+  for (const base of API_BASES) {
+    for (let attempt = 1; attempt <= REQUEST_RETRIES; attempt++) {
+      const url = `${base}${endpoint}`
+      try {
+        const response = await fetch(url, { cache: "no-store" })
+
+        if (!response.ok) {
+          const body = await response.text().catch(() => "")
+          lastError = `Richiesta fallita ${endpoint}: ${response.status} ${body.slice(0, 200)}`
+        } else {
+          const text = await response.text()
+          if (!text) {
+            lastError = `Risposta vuota ${endpoint} (base: ${base}, tentativo: ${attempt})`
+          } else {
+            return JSON.parse(text) as T
+          }
+        }
+      } catch (error) {
+        const message = error instanceof Error ? error.message : String(error)
+        lastError = `Errore rete ${endpoint} (base: ${base}, tentativo: ${attempt}): ${message}`
+      }
+
+      if (attempt < REQUEST_RETRIES) {
+        await new Promise((resolve) => setTimeout(resolve, RETRY_DELAY_MS))
+      }
+    }
   }
 
-  const text = await response.text()
-  if (!text) {
-    throw new Error(`Risposta vuota ${endpoint}`)
-  }
-
-  return JSON.parse(text) as T
+  throw new Error(lastError)
 }
 
 function extractGroupKey(groupName?: string): GroupKey | null {

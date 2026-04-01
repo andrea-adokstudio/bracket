@@ -1,13 +1,21 @@
 import { NextResponse } from "next/server"
 
-import { fetchAndSaveSofascoreData, fetchLiveDashboardData } from "@/lib/sofascore"
+import { fetchAndSaveSofascoreData } from "@/lib/sofascore"
 
 export async function POST() {
   try {
-    const isVercel = process.env.VERCEL === "1"
-    const result = isVercel
-      ? await fetchLiveDashboardData()
-      : await fetchAndSaveSofascoreData()
+    if (process.env.VERCEL === "1") {
+      return NextResponse.json(
+        {
+          ok: true,
+          message:
+            "Aggiornamento online gestito da GitHub Actions. Esegui il workflow 'Update Sofascore Data' e attendi il deploy.",
+        },
+        { status: 200 },
+      )
+    }
+
+    const result = await fetchAndSaveSofascoreData()
     return NextResponse.json(
       {
         ok: true,
