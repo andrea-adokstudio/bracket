@@ -1,9 +1,10 @@
 import { BracketView } from "@/components/bracket-view"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { buildBracketData } from "@/lib/bracket"
+import { computeResolvedStandings } from "@/lib/classification"
 import { getDashboardData } from "@/lib/data"
 
-export default async function BracketPage() {
+export default async function TabellonePage() {
   let data = null
 
   try {
@@ -21,14 +22,16 @@ export default async function BracketPage() {
     )
   }
 
-  const bracket = buildBracketData(data.standings.gironeA, data.standings.gironeB)
+  const resolvedA = computeResolvedStandings(data.standings.gironeA, data.events.gironeA)
+  const resolvedB = computeResolvedStandings(data.standings.gironeB, data.events.gironeB)
+  const bracket = buildBracketData(resolvedA, resolvedB)
 
   return (
     <div className="mx-auto flex min-h-svh w-full max-w-6xl px-2 py-4 sm:px-4 sm:py-6">
       <div className="w-full space-y-4">
         <div>
           <h1 className="text-xl font-bold tracking-tight sm:text-2xl">
-            Bracket Serie B Interregionale {data.seasonLabel}
+            Tabellone Serie B Interregionale {data.seasonLabel}
           </h1>
           <p className="text-sm text-muted-foreground">
             Incroci teorici aggiornati in base alla classifica corrente.

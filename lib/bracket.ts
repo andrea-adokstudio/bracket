@@ -28,6 +28,7 @@ function createWinnerMatch(
   label: string,
   homePlaceholder: string,
   awayPlaceholder: string,
+  options?: { star?: boolean; badgeSparkle?: boolean },
 ): BracketMatch {
   return {
     label,
@@ -35,6 +36,8 @@ function createWinnerMatch(
     awayTeam: null,
     homePlaceholder,
     awayPlaceholder,
+    ...(options?.star ? { star: true } : {}),
+    ...(options?.badgeSparkle ? { badgeSparkle: true } : {}),
   }
 }
 
@@ -61,7 +64,7 @@ export function buildBracketData(
     },
     {
       name: "Semifinale",
-      matches: [createWinnerMatch("Gara 7", "Vincente Gara 5", "Vincente Gara 6")],
+      matches: [createWinnerMatch("Gara 7", "Vincente Gara 5", "Vincente Gara 6", { star: true })],
     },
   ]
 
@@ -84,25 +87,30 @@ export function buildBracketData(
     },
     {
       name: "Semifinale",
-      matches: [createWinnerMatch("Gara 14", "Vincente Gara 12", "Vincente Gara 13")],
+      matches: [createWinnerMatch("Gara 14", "Vincente Gara 12", "Vincente Gara 13", { star: true })],
     },
   ]
 
   const finaleConference: BracketRound[] = [
     {
-      name: "Finale Conference",
-      matches: [createWinnerMatch("Gara 15", "Vincente Gara 7", "Vincente Gara 14")],
+      name: "",
+      matches: [
+        createWinnerMatch("Finale di Conference", "Vincente Gara 7", "Vincente Gara 14", {
+          badgeSparkle: true,
+        }),
+      ],
     },
   ]
 
+  /** Incroci playout: 11ª vs 14ª e 12ª vs 13ª tra girone A e B (15ª retrocessione diretta, fuori tabellone). */
   const tabelloneC: BracketMatch[] = [
-    createSeededMatch("Gara A", gironeA, 12, "A", gironeB, 15, "B"),
-    createSeededMatch("Gara B", gironeB, 13, "B", gironeA, 14, "A"),
+    createSeededMatch("11ª A vs 14ª B", gironeA, 11, "A", gironeB, 14, "B"),
+    createSeededMatch("12ª A vs 13ª B", gironeA, 12, "A", gironeB, 13, "B"),
   ]
 
   const tabelloneD: BracketMatch[] = [
-    createSeededMatch("Gara C", gironeB, 12, "B", gironeA, 15, "A"),
-    createSeededMatch("Gara D", gironeA, 13, "A", gironeB, 14, "B"),
+    createSeededMatch("11ª B vs 14ª A", gironeB, 11, "B", gironeA, 14, "A"),
+    createSeededMatch("12ª B vs 13ª A", gironeB, 12, "B", gironeA, 13, "A"),
   ]
 
   return {

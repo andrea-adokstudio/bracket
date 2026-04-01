@@ -7,8 +7,10 @@ import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 
 const links = [
-  { href: "/", label: "Classifica e calendario" },
-  { href: "/bracket", label: "Bracket" },
+  { href: "/", label: "Classifica" },
+  { href: "/calendario", label: "Calendario" },
+  { href: "/tabellone", label: "Tabellone" },
+  { href: "/simulazione", label: "Simulazione" },
 ]
 
 export function NavBar() {

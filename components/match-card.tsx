@@ -9,6 +9,7 @@ import { Badge } from "@/components/ui/badge"
 import { Card, CardContent } from "@/components/ui/card"
 import { Separator } from "@/components/ui/separator"
 import { formatItalianDateParts } from "@/lib/format-italian-date"
+import { getFinishedScoreOpacityClass } from "@/lib/score-opacity"
 import type { MatchEvent } from "@/lib/types"
 
 interface MatchCardProps {
@@ -76,13 +77,6 @@ function getScoreKeys(event: MatchEvent): string[] {
     })
 }
 
-function getScoreClass(score: number | undefined, opponentScore: number | undefined): string {
-  if (score == null || opponentScore == null) return "text-foreground"
-  if (score > opponentScore) return "text-foreground"
-  if (score < opponentScore) return "text-foreground/30"
-  return "text-foreground"
-}
-
 export function MatchCard({ event, onTeamClick }: MatchCardProps) {
   const isFinished =
     event.statusType === "finished" || event.status === "Ended" || event.status === "AET"
@@ -92,8 +86,8 @@ export function MatchCard({ event, onTeamClick }: MatchCardProps) {
 
   const homeScore = event.homeScore.current
   const awayScore = event.awayScore.current
-  const homeScoreClass = isFinished ? getScoreClass(homeScore, awayScore) : "text-foreground"
-  const awayScoreClass = isFinished ? getScoreClass(awayScore, homeScore) : "text-foreground"
+  const homeScoreClass = isFinished ? getFinishedScoreOpacityClass(homeScore, awayScore) : "opacity-100"
+  const awayScoreClass = isFinished ? getFinishedScoreOpacityClass(awayScore, homeScore) : "opacity-100"
 
   function handleTeamNameClick(teamId: number, teamName: string, e: MouseEvent<HTMLButtonElement>) {
     e.stopPropagation()
@@ -168,14 +162,30 @@ export function MatchCard({ event, onTeamClick }: MatchCardProps) {
               <AccordionContent className="pb-0 pt-1" onClick={(e) => e.stopPropagation()}>
                 <Separator className="mb-2" />
                 <div className="grid grid-cols-2 gap-x-4 gap-y-0.5 text-xs text-muted-foreground">
-                  {scoreKeys.map((key) => (
-                    <div key={key} className="flex justify-between">
-                      <span className="font-bold">{getPeriodLabel(key)}</span>
-                      <span className="tabular-nums">
-                        {event.homeScore[key] ?? "-"} - {event.awayScore[key] ?? "-"}
-                      </span>
-                    </div>
-                  ))}
+                  {scoreKeys.map((key) => {
+                    const hp = event.homeScore[key]
+                    const ap = event.awayScore[key]
+                    const hn = typeof hp === "number" ? hp : undefined
+                    const an = typeof ap === "number" ? ap : undefined
+                    return (
+                      <div key={key} className="flex justify-between">
+                        <span className="font-bold">{getPeriodLabel(key)}</span>
+                        <span className="tabular-nums">
+                          {hn != null && an != null ? (
+                            <>
+                              <span className={getFinishedScoreOpacityClass(hn, an)}>{hn}</span>
+                              {" - "}
+                              <span className={getFinishedScoreOpacityClass(an, hn)}>{an}</span>
+                            </>
+                          ) : (
+                            <>
+                              {hp ?? "-"} - {ap ?? "-"}
+                            </>
+                          )}
+                        </span>
+                      </div>
+                    )
+                  })}
                 </div>
               </AccordionContent>
             </AccordionItem>

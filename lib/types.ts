@@ -99,6 +99,10 @@ export interface BracketMatch {
   awayGroup?: BracketGroup
   homePlaceholder?: string
   awayPlaceholder?: string
+  /** Evidenzia la gara (es. semifinali che mandano alla finale di Conference) */
+  star?: boolean
+  /** Icona badge-sparkle nel titolo (es. finale di Conference) */
+  badgeSparkle?: boolean
 }
 
 export interface BracketRound {

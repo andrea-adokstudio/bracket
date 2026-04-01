@@ -18,10 +18,11 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { computeClassificationZones, computeResolvedStandings } from "@/lib/classification"
 import { formatItalianDateParts } from "@/lib/format-italian-date"
-import type { ClassificationResult, DashboardData, GroupKey, MatchEvent, StandingRow } from "@/lib/types"
+import type { ClassificationResult, DashboardData, GroupKey, StandingRow } from "@/lib/types"
 
 interface SeasonDashboardProps {
   data: DashboardData
+  view: "classifica" | "calendario"
 }
 
 function getClosestRound(data: DashboardData, groupKey: GroupKey, nowMs: number): number {
@@ -53,6 +54,7 @@ function GroupContent({
   selectedRound,
   onRoundChange,
   onTeamClick,
+  view,
 }: {
   groupKey: GroupKey
   data: DashboardData
@@ -61,6 +63,7 @@ function GroupContent({
   selectedRound: number
   onRoundChange: (round: number) => void
   onTeamClick: (teamId: number, teamName: string, group: GroupKey) => void
+  view: "classifica" | "calendario"
 }) {
   const matches = useMemo(
     () => data.events[groupKey][String(selectedRound)] ?? [],
@@ -99,21 +102,25 @@ function GroupContent({
 
   return (
     <div className="w-full space-y-4 overflow-x-hidden sm:space-y-6">
-      <Card className="rounded-xl border border-border ring-0">
-        <CardHeader className="px-3 pb-2 sm:px-6">
-          <CardTitle>Classifica</CardTitle>
-        </CardHeader>
-        <CardContent className="px-1 pb-2 sm:px-3 sm:pb-4">
-          <StandingsTable
-            rows={rows}
-            eventsByRound={data.events[groupKey]}
-            classifications={classifications}
-            onTeamClick={(teamId, teamName) => onTeamClick(teamId, teamName, groupKey)}
-          />
-        </CardContent>
-      </Card>
+      {view === "classifica" ? (
+        <Card className="rounded-xl border border-border ring-0">
+          <CardHeader className="px-3 pb-2 sm:px-6">
+            <CardTitle>Classifica</CardTitle>
+          </CardHeader>
+          <CardContent className="px-1 pb-2 sm:px-3 sm:pb-4">
+            <StandingsTable
+              rows={rows}
+              eventsByRound={data.events[groupKey]}
+              rounds={data.rounds}
+              classifications={classifications}
+              onTeamClick={(teamId, teamName) => onTeamClick(teamId, teamName, groupKey)}
+            />
+          </CardContent>
+        </Card>
+      ) : null}
 
-      <Card className="rounded-xl border border-border ring-0">
+      {view === "calendario" ? (
+        <Card className="rounded-xl border border-border ring-0">
         <CardHeader className="flex flex-col gap-3 px-3 pb-3 sm:flex-row sm:items-center sm:justify-between sm:px-6">
           <CardTitle>Calendario e risultati</CardTitle>
           <div className="flex w-full items-center gap-2 sm:w-auto">
@@ -155,7 +162,10 @@ function GroupContent({
                 />
               ))}
               {restingTeams.map((team) => (
-                <Card key={`rest-${team.id}`} className="h-full border-dashed gap-2 py-0">
+                <Card
+                  key={`rest-${team.id}`}
+                  className="h-full border border-dashed border-border ring-0 gap-2 py-0"
+                >
                   <CardContent className="flex h-full min-h-0 flex-col items-center justify-center gap-2 px-3 py-3 text-center sm:px-4 sm:py-3">
                     <TeamLogo teamId={team.id} teamName={team.name} className="h-14 w-14" />
                     <p className="text-lg font-bold leading-tight">{team.shortName ?? team.name}</p>
@@ -167,11 +177,12 @@ function GroupContent({
           )}
         </CardContent>
       </Card>
+      ) : null}
     </div>
   )
 }
 
-export function SeasonDashboard({ data }: SeasonDashboardProps) {
+export function SeasonDashboard({ data, view }: SeasonDashboardProps) {
   const [roundA, setRoundA] = useState(() => getClosestRound(data, "gironeA", Date.now()))
   const [roundB, setRoundB] = useState(() => getClosestRound(data, "gironeB", Date.now()))
   const [drawerOpen, setDrawerOpen] = useState(false)
@@ -188,15 +199,6 @@ export function SeasonDashboard({ data }: SeasonDashboardProps) {
     }, 60_000)
     return () => window.clearInterval(id)
   }, [data])
-
-  const selectedTeamMatches = useMemo<MatchEvent[]>(() => {
-    if (!selectedTeamId) return []
-    const matchesByRound = data.events[selectedGroup]
-    const allMatches = Object.values(matchesByRound).flat()
-    return allMatches.filter(
-      (match) => match.homeTeam.id === selectedTeamId || match.awayTeam.id === selectedTeamId,
-    )
-  }, [data.events, selectedGroup, selectedTeamId])
 
   const resolvedStandingsByGroup = useMemo<Record<GroupKey, StandingRow[]>>(
     () => ({
@@ -230,7 +232,7 @@ export function SeasonDashboard({ data }: SeasonDashboardProps) {
   }
 
   return (
-    <div className="space-y-4 sm:space-y-6">
+    <div className="w-full space-y-4 sm:space-y-6">
       <div className="flex flex-col gap-3 px-1 sm:flex-row sm:items-start sm:justify-between">
         <div>
           <h1 className="text-xl font-bold tracking-tight sm:text-2xl">
@@ -265,6 +267,7 @@ export function SeasonDashboard({ data }: SeasonDashboardProps) {
             selectedRound={roundA}
             onRoundChange={setRoundA}
             onTeamClick={handleTeamClick}
+            view={view}
           />
         </TabsContent>
         <TabsContent value="gironeB" className="w-full">
@@ -276,6 +279,7 @@ export function SeasonDashboard({ data }: SeasonDashboardProps) {
             selectedRound={roundB}
             onRoundChange={setRoundB}
             onTeamClick={handleTeamClick}
+            view={view}
           />
         </TabsContent>
       </Tabs>
@@ -285,7 +289,8 @@ export function SeasonDashboard({ data }: SeasonDashboardProps) {
         onOpenChange={setDrawerOpen}
         teamName={selectedTeamName}
         teamId={selectedTeamId}
-        matches={selectedTeamMatches}
+        rounds={data.rounds}
+        eventsByRound={data.events[selectedGroup]}
       />
     </div>
   )

@@ -31,24 +31,41 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 import { formatItalianDateParts } from "@/lib/format-italian-date"
+import { getFinishedScoreOpacityClass } from "@/lib/score-opacity"
 import type { MatchEvent } from "@/lib/types"
+
+type TeamRoundSlide =
+  | { kind: "match"; round: number; match: MatchEvent }
+  | { kind: "rest"; round: number; roundMatches: MatchEvent[] }
 
 interface TeamMatchesDrawerProps {
   open: boolean
   onOpenChange: (open: boolean) => void
   teamName: string
   teamId: number | null
-  matches: MatchEvent[]
+  rounds: number[]
+  eventsByRound: Record<string, MatchEvent[]>
 }
 
-function getClosestMatchIndex(matches: MatchEvent[]): number {
-  if (matches.length === 0) return 0;
+function slideTimestampMs(slide: TeamRoundSlide): number {
+  if (slide.kind === "match") return slide.match.startTimestamp * 1000;
+  const events = slide.roundMatches;
+  if (events.length === 0) return 0;
+  return (
+    events.reduce((acc, event) => acc + event.startTimestamp * 1000, 0) / events.length
+  );
+}
+
+function getClosestSlideIndex(slides: TeamRoundSlide[]): number {
+  if (slides.length === 0) return 0;
   const now = Date.now();
   let bestIndex = 0;
   let bestDistance = Number.POSITIVE_INFINITY;
 
-  matches.forEach((match, index) => {
-    const distance = Math.abs(match.startTimestamp * 1000 - now);
+  slides.forEach((slide, index) => {
+    const t = slideTimestampMs(slide);
+    if (t === 0) return;
+    const distance = Math.abs(t - now);
     if (distance < bestDistance) {
       bestDistance = distance;
       bestIndex = index;
@@ -63,14 +80,23 @@ export function TeamMatchesDrawer({
   onOpenChange,
   teamName,
   teamId,
-  matches,
+  rounds,
+  eventsByRound,
 }: TeamMatchesDrawerProps) {
   const [api, setApi] = useState<CarouselApi>();
   const [selectedIndex, setSelectedIndex] = useState(0);
-  const sortedMatches = useMemo(
-    () => [...matches].sort((a, b) => a.startTimestamp - b.startTimestamp),
-    [matches],
-  );
+
+  const slides = useMemo(() => {
+    if (teamId == null) return [];
+    return rounds.map((round) => {
+      const roundMatches = eventsByRound[String(round)] ?? [];
+      const match = roundMatches.find(
+        (m) => m.homeTeam.id === teamId || m.awayTeam.id === teamId,
+      );
+      if (match) return { kind: "match" as const, round, match };
+      return { kind: "rest" as const, round, roundMatches };
+    });
+  }, [rounds, eventsByRound, teamId]);
 
   useEffect(() => {
     if (!api) return;
@@ -91,19 +117,16 @@ export function TeamMatchesDrawer({
 
   useEffect(() => {
     if (!open || !api) return;
-    const targetIndex = getClosestMatchIndex(sortedMatches);
+    const targetIndex = getClosestSlideIndex(slides);
     api.scrollTo(targetIndex, true);
-  }, [api, open, sortedMatches]);
+  }, [api, open, slides]);
 
-  const availableRounds = useMemo(
-    () => [...new Set(sortedMatches.map((match) => match.round))].sort((a, b) => a - b),
-    [sortedMatches],
-  );
+  const availableRounds = rounds;
 
-  const selectedRound = sortedMatches[selectedIndex]?.round;
+  const selectedRound = slides[selectedIndex]?.round;
 
   function goToRound(round: number) {
-    const targetIndex = sortedMatches.findIndex((match) => match.round === round);
+    const targetIndex = slides.findIndex((slide) => slide.round === round);
     if (targetIndex >= 0) {
       api?.scrollTo(targetIndex);
     }
@@ -139,17 +162,6 @@ export function TeamMatchesDrawer({
     return type === "finished" || status === "Ended" || status === "AET";
   }
 
-  function getScoreClass(
-    score: number | undefined,
-    opponentScore: number | undefined,
-    finished: boolean,
-  ): string {
-    if (!finished || score == null || opponentScore == null) return "text-foreground";
-    if (score > opponentScore) return "text-foreground";
-    if (score < opponentScore) return "text-foreground/30";
-    return "text-foreground";
-  }
-
   return (
     <Drawer open={open} onOpenChange={onOpenChange}>
       <DrawerContent className="mx-auto w-full max-w-3xl">
@@ -163,12 +175,59 @@ export function TeamMatchesDrawer({
           </div>
         </DrawerHeader>
         <div className="px-4 pb-6">
-          {sortedMatches.length === 0 ? (
+          {slides.length === 0 ? (
             <p className="text-sm text-muted-foreground">Nessuna partita trovata.</p>
           ) : (
             <Carousel setApi={setApi} opts={{ align: "start" }} className="w-full">
-              <CarouselContent>
-                {sortedMatches.map((match) => {
+              <CarouselContent className="items-stretch">
+                {slides.map((slide) => {
+                  if (slide.kind === "rest") {
+                    const roundMatches = slide.roundMatches;
+                    const isRoundCompleted =
+                      roundMatches.length > 0 &&
+                      roundMatches.every(
+                        (match) =>
+                          match.statusType === "finished" ||
+                          match.status === "Ended" ||
+                          match.status === "AET",
+                      );
+                    const restLabel = isRoundCompleted ? "ha riposato" : "deve riposare";
+                    const anchorMatch = [...roundMatches].sort(
+                      (a, b) => a.startTimestamp - b.startTimestamp,
+                    )[0];
+                    const { dateLabel, timeLabel } = anchorMatch
+                      ? formatItalianDateParts(anchorMatch.startTimestamp * 1000)
+                      : { dateLabel: "—", timeLabel: "—" };
+                    return (
+                      <CarouselItem
+                        key={`rest-${slide.round}`}
+                        className="flex min-h-0 basis-full md:basis-1/2"
+                      >
+                        <div className="flex h-full min-h-0 w-full flex-col items-center justify-center rounded-lg border border-dashed px-3 py-3 sm:px-4">
+                          <span className="sr-only">
+                            Riposo.
+                            {anchorMatch
+                              ? ` ${dateLabel}, ${timeLabel}.`
+                              : " Nessuna partita in calendario per questa giornata."}{" "}
+                            {teamName}. {restLabel}
+                          </span>
+                          <div className="flex flex-col items-center gap-2 text-center">
+                            {teamId ? (
+                              <TeamLogo
+                                teamId={teamId}
+                                teamName={teamName}
+                                className="h-6 w-6 shrink-0"
+                              />
+                            ) : null}
+                            <p className="text-lg font-bold leading-tight">{teamName}</p>
+                            <p className="text-sm text-muted-foreground">{restLabel}</p>
+                          </div>
+                        </div>
+                      </CarouselItem>
+                    );
+                  }
+
+                  const match = slide.match;
                   const { dateLabel, timeLabel } = formatItalianDateParts(
                     match.startTimestamp * 1000,
                   );
@@ -178,12 +237,19 @@ export function TeamMatchesDrawer({
                   const awayScore = match.awayScore.current;
 
                   const finished = isFinishedStatus(match.status, match.statusType);
-                  const homeScoreClass = getScoreClass(homeScore, awayScore, finished);
-                  const awayScoreClass = getScoreClass(awayScore, homeScore, finished);
+                  const homeScoreClass = finished
+                    ? getFinishedScoreOpacityClass(homeScore, awayScore)
+                    : "opacity-100";
+                  const awayScoreClass = finished
+                    ? getFinishedScoreOpacityClass(awayScore, homeScore)
+                    : "opacity-100";
 
                   return (
-                    <CarouselItem key={match.id} className="basis-full md:basis-1/2">
-                      <div className="rounded-lg border px-3 py-3 sm:px-4">
+                    <CarouselItem
+                      key={match.id}
+                      className="flex min-h-0 basis-full md:basis-1/2"
+                    >
+                      <div className="h-full w-full rounded-lg border px-3 py-3 sm:px-4">
                         <div className="mb-2 flex flex-wrap items-center justify-between gap-1.5">
                           <Badge
                             className={
@@ -248,7 +314,7 @@ export function TeamMatchesDrawer({
               </CarouselContent>
             </Carousel>
           )}
-          {sortedMatches.length > 0 ? (
+          {slides.length > 0 ? (
             <div className="mt-4">
               <div className="flex items-center justify-center gap-3">
                 <Button
