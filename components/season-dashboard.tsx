@@ -174,46 +174,78 @@ function GroupContent({
 export function SeasonDashboard({ data }: SeasonDashboardProps) {
   const [roundA, setRoundA] = useState(() => getClosestRound(data, "gironeA", Date.now()))
   const [roundB, setRoundB] = useState(() => getClosestRound(data, "gironeB", Date.now()))
+  const [dashboardData, setDashboardData] = useState(data)
   const [drawerOpen, setDrawerOpen] = useState(false)
   const [selectedTeamId, setSelectedTeamId] = useState<number | null>(null)
   const [selectedTeamName, setSelectedTeamName] = useState("")
   const [selectedGroup, setSelectedGroup] = useState<GroupKey>("gironeA")
   const { dateLabel: updatedDateLabel, timeLabel: updatedTimeLabel } = formatItalianDateParts(
-    data.updatedAt,
+    dashboardData.updatedAt,
   )
 
   useEffect(() => {
     const id = window.setInterval(() => {
       const now = Date.now()
-      setRoundA(getClosestRound(data, "gironeA", now))
-      setRoundB(getClosestRound(data, "gironeB", now))
+      setRoundA(getClosestRound(dashboardData, "gironeA", now))
+      setRoundB(getClosestRound(dashboardData, "gironeB", now))
     }, 60_000)
     return () => window.clearInterval(id)
-  }, [data])
+  }, [dashboardData])
+
+  useEffect(() => {
+    function onDashboardUpdate(event: Event) {
+      const customEvent = event as CustomEvent<DashboardData>
+      if (!customEvent.detail) return
+      setDashboardData(customEvent.detail)
+      const now = Date.now()
+      setRoundA(getClosestRound(customEvent.detail, "gironeA", now))
+      setRoundB(getClosestRound(customEvent.detail, "gironeB", now))
+    }
+    window.addEventListener("dashboard-data-updated", onDashboardUpdate)
+    return () => window.removeEventListener("dashboard-data-updated", onDashboardUpdate)
+  }, [])
 
   const selectedTeamMatches = useMemo<MatchEvent[]>(() => {
     if (!selectedTeamId) return []
-    const matchesByRound = data.events[selectedGroup]
+    const matchesByRound = dashboardData.events[selectedGroup]
     const allMatches = Object.values(matchesByRound).flat()
     return allMatches.filter(
       (match) => match.homeTeam.id === selectedTeamId || match.awayTeam.id === selectedTeamId,
     )
-  }, [data.events, selectedGroup, selectedTeamId])
+  }, [dashboardData.events, selectedGroup, selectedTeamId])
 
   const resolvedStandingsByGroup = useMemo<Record<GroupKey, StandingRow[]>>(
     () => ({
-      gironeA: computeResolvedStandings(data.standings.gironeA, data.events.gironeA),
-      gironeB: computeResolvedStandings(data.standings.gironeB, data.events.gironeB),
+      gironeA: computeResolvedStandings(dashboardData.standings.gironeA, dashboardData.events.gironeA),
+      gironeB: computeResolvedStandings(dashboardData.standings.gironeB, dashboardData.events.gironeB),
     }),
-    [data.events.gironeA, data.events.gironeB, data.standings.gironeA, data.standings.gironeB],
+    [
+      dashboardData.events.gironeA,
+      dashboardData.events.gironeB,
+      dashboardData.standings.gironeA,
+      dashboardData.standings.gironeB,
+    ],
   )
 
   const classificationsByGroup = useMemo<Record<GroupKey, ClassificationResult[]>>(
     () => ({
-      gironeA: computeClassificationZones(resolvedStandingsByGroup.gironeA, data.events.gironeA, 28),
-      gironeB: computeClassificationZones(resolvedStandingsByGroup.gironeB, data.events.gironeB, 28),
+      gironeA: computeClassificationZones(
+        resolvedStandingsByGroup.gironeA,
+        dashboardData.events.gironeA,
+        28,
+      ),
+      gironeB: computeClassificationZones(
+        resolvedStandingsByGroup.gironeB,
+        dashboardData.events.gironeB,
+        28,
+      ),
     }),
-    [data.events.gironeA, data.events.gironeB, resolvedStandingsByGroup.gironeA, resolvedStandingsByGroup.gironeB],
+    [
+      dashboardData.events.gironeA,
+      dashboardData.events.gironeB,
+      resolvedStandingsByGroup.gironeA,
+      resolvedStandingsByGroup.gironeB,
+    ],
   )
 
   function handleTeamClick(teamId: number, teamName: string, group: GroupKey) {
@@ -228,7 +260,7 @@ export function SeasonDashboard({ data }: SeasonDashboardProps) {
       <div className="flex flex-col gap-3 px-1 sm:flex-row sm:items-start sm:justify-between">
         <div>
           <h1 className="text-xl font-bold tracking-tight sm:text-2xl">
-            Serie B Interregionale {data.seasonLabel}
+            Serie B Interregionale {dashboardData.seasonLabel}
           </h1>
           <p className="flex flex-wrap items-center gap-x-1.5 gap-y-0.5 text-sm text-muted-foreground">
             <span>Ultimo aggiornamento:</span>
@@ -253,7 +285,7 @@ export function SeasonDashboard({ data }: SeasonDashboardProps) {
         <TabsContent value="gironeA" className="w-full">
           <GroupContent
             groupKey="gironeA"
-            data={data}
+            data={dashboardData}
             rows={resolvedStandingsByGroup.gironeA}
             classifications={classificationsByGroup.gironeA}
             selectedRound={roundA}
@@ -264,7 +296,7 @@ export function SeasonDashboard({ data }: SeasonDashboardProps) {
         <TabsContent value="gironeB" className="w-full">
           <GroupContent
             groupKey="gironeB"
-            data={data}
+            data={dashboardData}
             rows={resolvedStandingsByGroup.gironeB}
             classifications={classificationsByGroup.gironeB}
             selectedRound={roundB}

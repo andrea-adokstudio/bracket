@@ -6,6 +6,7 @@ import { useTransition } from "react"
 
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
+import { fetchLiveDashboardDataClient } from "@/lib/sofascore-client"
 
 const links = [
   { href: "/", label: "Classifica e calendario" },
@@ -20,6 +21,8 @@ export function NavBar() {
     startTransition(() => {
       void (async () => {
         try {
+          const liveData = await fetchLiveDashboardDataClient()
+          window.dispatchEvent(new CustomEvent("dashboard-data-updated", { detail: liveData }))
           const response = await fetch("/api/aggiorna", { method: "POST" })
           const payload = (await response.json()) as { ok: boolean; message: string }
           if (payload.ok) router.refresh()
