@@ -16,7 +16,7 @@ import type {
 const TOURNAMENT_ID = 27700
 const SEASON_ID = 77655
 const SEASON_LABEL = "25/26"
-const API_BASE = "https://www.sofascore.com/api/v1"
+const API_BASES = ["https://api.sofascore.app/api/v1", "https://www.sofascore.com/api/v1"] as const
 
 const GROUP_LABEL_TO_KEY: Record<string, GroupKey> = {
   "Division A": "gironeA",
@@ -24,19 +24,28 @@ const GROUP_LABEL_TO_KEY: Record<string, GroupKey> = {
 }
 
 async function fetchJson<T>(endpoint: string): Promise<T> {
-  const response = await fetch(`${API_BASE}${endpoint}`, {
-    headers: {
-      "user-agent": "Mozilla/5.0",
-      accept: "application/json",
-    },
-    cache: "no-store",
-  })
+  let lastStatus: number | null = null
 
-  if (!response.ok) {
-    throw new Error(`Richiesta fallita ${endpoint}: ${response.status}`)
+  for (const base of API_BASES) {
+    const response = await fetch(`${base}${endpoint}`, {
+      headers: {
+        "user-agent":
+          "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
+        accept: "application/json, text/plain, */*",
+        referer: "https://www.sofascore.com/",
+        origin: "https://www.sofascore.com",
+      },
+      cache: "no-store",
+    })
+
+    if (response.ok) {
+      return (await response.json()) as T
+    }
+
+    lastStatus = response.status
   }
 
-  return (await response.json()) as T
+  throw new Error(`Richiesta fallita ${endpoint}: ${lastStatus ?? "errore di rete"}`)
 }
 
 function extractGroupKey(groupName?: string): GroupKey | null {
