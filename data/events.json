@@ -2,7 +2,7 @@
   "tournamentId": 27700,
   "seasonId": 77655,
   "seasonLabel": "25/26",
-  "updatedAt": "2026-04-02T20:44:22.968Z",
+  "updatedAt": "2026-04-02T22:41:06.513Z",
   "rounds": [
     1,
     2,
@@ -14154,8 +14154,8 @@
           "id": 15190331,
           "round": 24,
           "startTimestamp": 1775156400,
-          "status": "4th quarter",
-          "statusType": "inprogress",
+          "status": "Ended",
+          "statusType": "finished",
           "groupName": "Division B",
           "homeTeam": {
             "id": 1114299,
@@ -14175,7 +14175,8 @@
             "period1": 22,
             "period2": 19,
             "period3": 8,
-            "period4": 11
+            "period4": 11,
+            "normaltime": 60
           },
           "awayScore": {
             "current": 77,
@@ -14183,7 +14184,8 @@
             "period1": 23,
             "period2": 13,
             "period3": 28,
-            "period4": 13
+            "period4": 13,
+            "normaltime": 77
           }
         }
       ],
