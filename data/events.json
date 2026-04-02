@@ -2,7 +2,7 @@
   "tournamentId": 27700,
   "seasonId": 77655,
   "seasonLabel": "25/26",
-  "updatedAt": "2026-04-02T17:04:21.978Z",
+  "updatedAt": "2026-04-02T19:08:05.787Z",
   "rounds": [
     1,
     2,
@@ -6992,8 +6992,8 @@
           "id": 15188177,
           "round": 27,
           "startTimestamp": 1775152800,
-          "status": "Not started",
-          "statusType": "notstarted",
+          "status": "3rd quarter",
+          "statusType": "inprogress",
           "groupName": "Division A",
           "homeTeam": {
             "id": 1114268,
@@ -7008,10 +7008,18 @@
             "shortName": "Monfalcone"
           },
           "homeScore": {
-            "current": 0
+            "current": 65,
+            "display": 65,
+            "period1": 22,
+            "period2": 31,
+            "period3": 12
           },
           "awayScore": {
-            "current": 0
+            "current": 50,
+            "display": 50,
+            "period1": 19,
+            "period2": 25,
+            "period3": 6
           }
         },
         {
@@ -14142,8 +14150,8 @@
           "id": 15190331,
           "round": 24,
           "startTimestamp": 1775156400,
-          "status": "Not started",
-          "statusType": "notstarted",
+          "status": "1st quarter",
+          "statusType": "inprogress",
           "groupName": "Division B",
           "homeTeam": {
             "id": 1114299,
@@ -14158,10 +14166,14 @@
             "shortName": "Social OSA Milano"
           },
           "homeScore": {
-            "current": 0
+            "current": 2,
+            "display": 2,
+            "period1": 2
           },
           "awayScore": {
-            "current": 0
+            "current": 10,
+            "display": 10,
+            "period1": 10
           }
         }
       ],
@@ -14748,8 +14760,8 @@
           "id": 15190368,
           "round": 27,
           "startTimestamp": 1775155500,
-          "status": "Not started",
-          "statusType": "notstarted",
+          "status": "1st quarter",
+          "statusType": "inprogress",
           "groupName": "Division B",
           "homeTeam": {
             "id": 1114282,
@@ -14764,10 +14776,14 @@
             "shortName": "Sansebasket Cremona"
           },
           "homeScore": {
-            "current": 0
+            "current": 14,
+            "display": 14,
+            "period1": 14
           },
           "awayScore": {
-            "current": 0
+            "current": 16,
+            "display": 16,
+            "period1": 16
           }
         },
         {
