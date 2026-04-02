@@ -2,7 +2,7 @@
   "tournamentId": 27700,
   "seasonId": 77655,
   "seasonLabel": "25/26",
-  "updatedAt": "2026-04-01T22:49:49.033Z",
+  "updatedAt": "2026-04-02T02:57:02.493Z",
   "standings": {
     "gironeA": [
       {
@@ -248,22 +248,6 @@
     "gironeB": [
       {
         "position": 1,
-        "matches": 25,
-        "wins": 20,
-        "losses": 5,
-        "points": 40,
-        "scoresFor": 1955,
-        "scoresAgainst": 1683,
-        "scoreDiffFormatted": "+272",
-        "team": {
-          "id": 1114287,
-          "name": "Basket Team 95 Pizzighettone",
-          "slug": "basket-team-95-pizzighettone",
-          "shortName": "Basket Team 95 Pizzighettone"
-        }
-      },
-      {
-        "position": 2,
         "matches": 24,
         "wins": 20,
         "losses": 4,
@@ -276,6 +260,22 @@
           "name": "Sangiorgese Basket",
           "slug": "ltc-sangiorgese-basket",
           "shortName": "Sangiorgese"
+        }
+      },
+      {
+        "position": 2,
+        "matches": 25,
+        "wins": 20,
+        "losses": 5,
+        "points": 40,
+        "scoresFor": 1955,
+        "scoresAgainst": 1683,
+        "scoreDiffFormatted": "+272",
+        "team": {
+          "id": 1114287,
+          "name": "Basket Team 95 Pizzighettone",
+          "slug": "basket-team-95-pizzighettone",
+          "shortName": "Basket Team 95 Pizzighettone"
         }
       },
       {
