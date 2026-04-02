@@ -2,7 +2,7 @@
   "tournamentId": 27700,
   "seasonId": 77655,
   "seasonLabel": "25/26",
-  "updatedAt": "2026-04-02T20:09:26.063Z",
+  "updatedAt": "2026-04-02T20:44:22.968Z",
   "rounds": [
     1,
     2,
@@ -14154,7 +14154,7 @@
           "id": 15190331,
           "round": 24,
           "startTimestamp": 1775156400,
-          "status": "3rd quarter",
+          "status": "4th quarter",
           "statusType": "inprogress",
           "groupName": "Division B",
           "homeTeam": {
@@ -14170,18 +14170,20 @@
             "shortName": "Social OSA Milano"
           },
           "homeScore": {
-            "current": 46,
-            "display": 46,
+            "current": 60,
+            "display": 60,
             "period1": 22,
             "period2": 19,
-            "period3": 5
+            "period3": 8,
+            "period4": 11
           },
           "awayScore": {
-            "current": 48,
-            "display": 48,
+            "current": 77,
+            "display": 77,
             "period1": 23,
             "period2": 13,
-            "period3": 12
+            "period3": 28,
+            "period4": 13
           }
         }
       ],
@@ -14768,8 +14770,8 @@
           "id": 15190368,
           "round": 27,
           "startTimestamp": 1775155500,
-          "status": "4th quarter",
-          "statusType": "inprogress",
+          "status": "Ended",
+          "statusType": "finished",
           "groupName": "Division B",
           "homeTeam": {
             "id": 1114282,
@@ -14784,20 +14786,22 @@
             "shortName": "Sansebasket Cremona"
           },
           "homeScore": {
-            "current": 77,
-            "display": 77,
+            "current": 88,
+            "display": 88,
             "period1": 14,
             "period2": 26,
             "period3": 23,
-            "period4": 14
+            "period4": 25,
+            "normaltime": 88
           },
           "awayScore": {
-            "current": 53,
-            "display": 53,
+            "current": 62,
+            "display": 62,
             "period1": 16,
             "period2": 7,
             "period3": 17,
-            "period4": 13
+            "period4": 22,
+            "normaltime": 62
           }
         },
         {

@@ -2,7 +2,7 @@
   "tournamentId": 27700,
   "seasonId": 77655,
   "seasonLabel": "25/26",
-  "updatedAt": "2026-04-02T20:09:26.063Z",
+  "updatedAt": "2026-04-02T20:44:22.968Z",
   "standings": {
     "gironeA": [
       {
@@ -344,6 +344,22 @@
       },
       {
         "position": 7,
+        "matches": 25,
+        "wins": 13,
+        "losses": 12,
+        "points": 26,
+        "scoresFor": 2005,
+        "scoresAgainst": 1993,
+        "scoreDiffFormatted": "+12",
+        "team": {
+          "id": 1114282,
+          "name": "U.S. Nervianese",
+          "slug": "us-nervianese",
+          "shortName": "U.S. Nervianese"
+        }
+      },
+      {
+        "position": 8,
         "matches": 24,
         "wins": 13,
         "losses": 11,
@@ -356,22 +372,6 @@
           "name": "Campus Varese",
           "slug": "campus-varese",
           "shortName": "Campus Varese"
-        }
-      },
-      {
-        "position": 8,
-        "matches": 24,
-        "wins": 12,
-        "losses": 12,
-        "points": 24,
-        "scoresFor": 1917,
-        "scoresAgainst": 1931,
-        "scoreDiffFormatted": "-14",
-        "team": {
-          "id": 1114282,
-          "name": "U.S. Nervianese",
-          "slug": "us-nervianese",
-          "shortName": "U.S. Nervianese"
         }
       },
       {
@@ -472,13 +472,13 @@
       },
       {
         "position": 15,
-        "matches": 24,
+        "matches": 25,
         "wins": 3,
-        "losses": 21,
+        "losses": 22,
         "points": 6,
-        "scoresFor": 1467,
-        "scoresAgainst": 1883,
-        "scoreDiffFormatted": "-416",
+        "scoresFor": 1529,
+        "scoresAgainst": 1971,
+        "scoreDiffFormatted": "-442",
         "team": {
           "id": 1114286,
           "name": "Sansebasket Cremona",
