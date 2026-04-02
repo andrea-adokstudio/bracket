@@ -2,7 +2,7 @@
   "tournamentId": 27700,
   "seasonId": 77655,
   "seasonLabel": "25/26",
-  "updatedAt": "2026-04-02T19:08:05.787Z",
+  "updatedAt": "2026-04-02T20:09:26.063Z",
   "standings": {
     "gironeA": [
       {
@@ -55,6 +55,22 @@
       },
       {
         "position": 4,
+        "matches": 25,
+        "wins": 15,
+        "losses": 10,
+        "points": 30,
+        "scoresFor": 1970,
+        "scoresAgainst": 1978,
+        "scoreDiffFormatted": "-8",
+        "team": {
+          "id": 1114268,
+          "name": "Romano Lombardo Basket",
+          "slug": "romano-lombardo-basket",
+          "shortName": "Romano Lombardo Basket"
+        }
+      },
+      {
+        "position": 5,
         "matches": 24,
         "wins": 14,
         "losses": 10,
@@ -70,35 +86,19 @@
         }
       },
       {
-        "position": 5,
-        "matches": 24,
+        "position": 6,
+        "matches": 25,
         "wins": 14,
-        "losses": 10,
+        "losses": 11,
         "points": 28,
-        "scoresFor": 1955,
-        "scoresAgainst": 1861,
-        "scoreDiffFormatted": "+94",
+        "scoresFor": 2036,
+        "scoresAgainst": 1966,
+        "scoreDiffFormatted": "+70",
         "team": {
           "id": 331088,
           "name": "Basket Monfalcone",
           "slug": "basket-monfalcone",
           "shortName": "Monfalcone"
-        }
-      },
-      {
-        "position": 6,
-        "matches": 24,
-        "wins": 14,
-        "losses": 10,
-        "points": 28,
-        "scoresFor": 1865,
-        "scoresAgainst": 1897,
-        "scoreDiffFormatted": "-32",
-        "team": {
-          "id": 1114268,
-          "name": "Romano Lombardo Basket",
-          "slug": "romano-lombardo-basket",
-          "shortName": "Romano Lombardo Basket"
         }
       },
       {

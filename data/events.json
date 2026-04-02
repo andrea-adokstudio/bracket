@@ -2,7 +2,7 @@
   "tournamentId": 27700,
   "seasonId": 77655,
   "seasonLabel": "25/26",
-  "updatedAt": "2026-04-02T19:08:05.787Z",
+  "updatedAt": "2026-04-02T20:09:26.063Z",
   "rounds": [
     1,
     2,
@@ -6992,8 +6992,8 @@
           "id": 15188177,
           "round": 27,
           "startTimestamp": 1775152800,
-          "status": "3rd quarter",
-          "statusType": "inprogress",
+          "status": "Ended",
+          "statusType": "finished",
           "groupName": "Division A",
           "homeTeam": {
             "id": 1114268,
@@ -7008,18 +7008,22 @@
             "shortName": "Monfalcone"
           },
           "homeScore": {
-            "current": 65,
-            "display": 65,
+            "current": 105,
+            "display": 105,
             "period1": 22,
             "period2": 31,
-            "period3": 12
+            "period3": 22,
+            "period4": 30,
+            "normaltime": 105
           },
           "awayScore": {
-            "current": 50,
-            "display": 50,
+            "current": 81,
+            "display": 81,
             "period1": 19,
             "period2": 25,
-            "period3": 6
+            "period3": 19,
+            "period4": 18,
+            "normaltime": 81
           }
         },
         {
@@ -14150,7 +14154,7 @@
           "id": 15190331,
           "round": 24,
           "startTimestamp": 1775156400,
-          "status": "1st quarter",
+          "status": "3rd quarter",
           "statusType": "inprogress",
           "groupName": "Division B",
           "homeTeam": {
@@ -14166,14 +14170,18 @@
             "shortName": "Social OSA Milano"
           },
           "homeScore": {
-            "current": 2,
-            "display": 2,
-            "period1": 2
+            "current": 46,
+            "display": 46,
+            "period1": 22,
+            "period2": 19,
+            "period3": 5
           },
           "awayScore": {
-            "current": 10,
-            "display": 10,
-            "period1": 10
+            "current": 48,
+            "display": 48,
+            "period1": 23,
+            "period2": 13,
+            "period3": 12
           }
         }
       ],
@@ -14760,7 +14768,7 @@
           "id": 15190368,
           "round": 27,
           "startTimestamp": 1775155500,
-          "status": "1st quarter",
+          "status": "4th quarter",
           "statusType": "inprogress",
           "groupName": "Division B",
           "homeTeam": {
@@ -14776,14 +14784,20 @@
             "shortName": "Sansebasket Cremona"
           },
           "homeScore": {
-            "current": 14,
-            "display": 14,
-            "period1": 14
+            "current": 77,
+            "display": 77,
+            "period1": 14,
+            "period2": 26,
+            "period3": 23,
+            "period4": 14
           },
           "awayScore": {
-            "current": 16,
-            "display": 16,
-            "period1": 16
+            "current": 53,
+            "display": 53,
+            "period1": 16,
+            "period2": 7,
+            "period3": 17,
+            "period4": 13
           }
         },
         {
