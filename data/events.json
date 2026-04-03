@@ -2,7 +2,7 @@
   "tournamentId": 27700,
   "seasonId": 77655,
   "seasonLabel": "25/26",
-  "updatedAt": "2026-04-03T16:53:09.481Z",
+  "updatedAt": "2026-04-03T18:59:22.027Z",
   "rounds": [
     1,
     2,
@@ -7030,8 +7030,8 @@
           "id": 15188182,
           "round": 27,
           "startTimestamp": 1775239200,
-          "status": "Not started",
-          "statusType": "notstarted",
+          "status": "3rd quarter",
+          "statusType": "inprogress",
           "groupName": "Division A",
           "homeTeam": {
             "id": 1114278,
@@ -7046,10 +7046,18 @@
             "shortName": "New Flying Balls Ozzano"
           },
           "homeScore": {
-            "current": 0
+            "current": 38,
+            "display": 38,
+            "period1": 17,
+            "period2": 14,
+            "period3": 7
           },
           "awayScore": {
-            "current": 0
+            "current": 45,
+            "display": 45,
+            "period1": 19,
+            "period2": 20,
+            "period3": 6
           }
         },
         {
