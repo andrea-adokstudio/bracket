@@ -2,7 +2,7 @@
   "tournamentId": 27700,
   "seasonId": 77655,
   "seasonLabel": "25/26",
-  "updatedAt": "2026-04-07T15:19:34.132Z",
+  "updatedAt": "2026-04-07T17:11:20.912Z",
   "rounds": [
     1,
     2,
@@ -14845,32 +14845,6 @@
           }
         },
         {
-          "id": 15190372,
-          "round": 27,
-          "startTimestamp": 1775673000,
-          "status": "Not started",
-          "statusType": "notstarted",
-          "groupName": "Division B",
-          "homeTeam": {
-            "id": 1114297,
-            "name": "MaGo Marnatese",
-            "slug": "us-marnatese",
-            "shortName": "U.S. Marnatese"
-          },
-          "awayTeam": {
-            "id": 1114288,
-            "name": "Robur Saronno",
-            "slug": "robur-basket-saronno",
-            "shortName": "Robur Basket Saronno"
-          },
-          "homeScore": {
-            "current": 0
-          },
-          "awayScore": {
-            "current": 0
-          }
-        },
-        {
           "id": 15190376,
           "round": 27,
           "startTimestamp": 1775674800,
@@ -14940,6 +14914,32 @@
             "name": "Sangiorgese Basket",
             "slug": "ltc-sangiorgese-basket",
             "shortName": "Sangiorgese"
+          },
+          "homeScore": {
+            "current": 0
+          },
+          "awayScore": {
+            "current": 0
+          }
+        },
+        {
+          "id": 15190372,
+          "round": 27,
+          "startTimestamp": 1776969000,
+          "status": "Not started",
+          "statusType": "notstarted",
+          "groupName": "Division B",
+          "homeTeam": {
+            "id": 1114297,
+            "name": "MaGo Marnatese",
+            "slug": "us-marnatese",
+            "shortName": "U.S. Marnatese"
+          },
+          "awayTeam": {
+            "id": 1114288,
+            "name": "Robur Saronno",
+            "slug": "robur-basket-saronno",
+            "shortName": "Robur Basket Saronno"
           },
           "homeScore": {
             "current": 0
