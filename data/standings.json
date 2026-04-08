@@ -2,7 +2,7 @@
   "tournamentId": 27700,
   "seasonId": 77655,
   "seasonLabel": "25/26",
-  "updatedAt": "2026-04-08T17:15:51.134Z",
+  "updatedAt": "2026-04-08T19:36:18.581Z",
   "standings": {
     "gironeA": [
       {
@@ -166,22 +166,6 @@
       },
       {
         "position": 11,
-        "matches": 24,
-        "wins": 9,
-        "losses": 15,
-        "points": 18,
-        "scoresFor": 1883,
-        "scoresAgainst": 2017,
-        "scoreDiffFormatted": "-134",
-        "team": {
-          "id": 1114276,
-          "name": "Montebelluna Basket",
-          "slug": "montebelluna-basket",
-          "shortName": "Montebelluna Basket"
-        }
-      },
-      {
-        "position": 12,
         "matches": 25,
         "wins": 9,
         "losses": 16,
@@ -194,6 +178,22 @@
           "name": "Basket Iseo",
           "slug": "basket-iseo",
           "shortName": "Basket Iseo"
+        }
+      },
+      {
+        "position": 12,
+        "matches": 24,
+        "wins": 9,
+        "losses": 15,
+        "points": 18,
+        "scoresFor": 1883,
+        "scoresAgainst": 2017,
+        "scoreDiffFormatted": "-134",
+        "team": {
+          "id": 1114276,
+          "name": "Montebelluna Basket",
+          "slug": "montebelluna-basket",
+          "shortName": "Montebelluna Basket"
         }
       },
       {
@@ -328,22 +328,6 @@
       },
       {
         "position": 6,
-        "matches": 24,
-        "wins": 13,
-        "losses": 11,
-        "points": 26,
-        "scoresFor": 1839,
-        "scoresAgainst": 1724,
-        "scoreDiffFormatted": "+115",
-        "team": {
-          "id": 446074,
-          "name": "Basketball Gallarate",
-          "slug": "basketball-gallarate",
-          "shortName": "Gallarate"
-        }
-      },
-      {
-        "position": 7,
         "matches": 25,
         "wins": 13,
         "losses": 12,
@@ -359,7 +343,7 @@
         }
       },
       {
-        "position": 8,
+        "position": 7,
         "matches": 25,
         "wins": 13,
         "losses": 12,
@@ -372,6 +356,22 @@
           "name": "Campus Varese",
           "slug": "campus-varese",
           "shortName": "Campus Varese"
+        }
+      },
+      {
+        "position": 8,
+        "matches": 24,
+        "wins": 13,
+        "losses": 11,
+        "points": 26,
+        "scoresFor": 1839,
+        "scoresAgainst": 1724,
+        "scoreDiffFormatted": "+115",
+        "team": {
+          "id": 446074,
+          "name": "Basketball Gallarate",
+          "slug": "basketball-gallarate",
+          "shortName": "Gallarate"
         }
       },
       {
@@ -392,18 +392,18 @@
       },
       {
         "position": 10,
-        "matches": 24,
+        "matches": 25,
         "wins": 9,
-        "losses": 15,
+        "losses": 16,
         "points": 18,
-        "scoresFor": 1646,
-        "scoresAgainst": 1789,
-        "scoreDiffFormatted": "-143",
+        "scoresFor": 1952,
+        "scoresAgainst": 2066,
+        "scoreDiffFormatted": "-114",
         "team": {
-          "id": 1114285,
-          "name": "Blu Orobica Bergamo",
-          "slug": "blu-orobica-bergamo",
-          "shortName": "Blu Orobica Bergamo"
+          "id": 1114302,
+          "name": "Derthona Basketball Lab",
+          "slug": "derthona-basket",
+          "shortName": "Derthona Basket"
         }
       },
       {
@@ -424,38 +424,22 @@
       },
       {
         "position": 12,
-        "matches": 25,
+        "matches": 24,
         "wins": 9,
-        "losses": 16,
+        "losses": 15,
         "points": 18,
-        "scoresFor": 1952,
-        "scoresAgainst": 2066,
-        "scoreDiffFormatted": "-114",
+        "scoresFor": 1646,
+        "scoresAgainst": 1789,
+        "scoreDiffFormatted": "-143",
         "team": {
-          "id": 1114302,
-          "name": "Derthona Basketball Lab",
-          "slug": "derthona-basket",
-          "shortName": "Derthona Basket"
+          "id": 1114285,
+          "name": "Blu Orobica Bergamo",
+          "slug": "blu-orobica-bergamo",
+          "shortName": "Blu Orobica Bergamo"
         }
       },
       {
         "position": 13,
-        "matches": 24,
-        "wins": 8,
-        "losses": 16,
-        "points": 16,
-        "scoresFor": 1926,
-        "scoresAgainst": 1907,
-        "scoreDiffFormatted": "+19",
-        "team": {
-          "id": 1114297,
-          "name": "MaGo Marnatese",
-          "slug": "us-marnatese",
-          "shortName": "U.S. Marnatese"
-        }
-      },
-      {
-        "position": 14,
         "matches": 25,
         "wins": 8,
         "losses": 17,
@@ -468,6 +452,22 @@
           "name": "Robur Saronno",
           "slug": "robur-basket-saronno",
           "shortName": "Robur Basket Saronno"
+        }
+      },
+      {
+        "position": 14,
+        "matches": 24,
+        "wins": 8,
+        "losses": 16,
+        "points": 16,
+        "scoresFor": 1926,
+        "scoresAgainst": 1907,
+        "scoreDiffFormatted": "+19",
+        "team": {
+          "id": 1114297,
+          "name": "MaGo Marnatese",
+          "slug": "us-marnatese",
+          "shortName": "U.S. Marnatese"
         }
       },
       {

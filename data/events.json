@@ -2,7 +2,7 @@
   "tournamentId": 27700,
   "seasonId": 77655,
   "seasonLabel": "25/26",
-  "updatedAt": "2026-04-08T17:15:51.134Z",
+  "updatedAt": "2026-04-08T19:36:18.581Z",
   "rounds": [
     1,
     2,
@@ -7068,8 +7068,8 @@
           "id": 15188178,
           "round": 27,
           "startTimestamp": 1775671200,
-          "status": "Not started",
-          "statusType": "notstarted",
+          "status": "4th quarter",
+          "statusType": "inprogress",
           "groupName": "Division A",
           "homeTeam": {
             "id": 1114275,
@@ -7084,18 +7084,28 @@
             "shortName": "Padova"
           },
           "homeScore": {
-            "current": 0
+            "current": 61,
+            "display": 61,
+            "period1": 21,
+            "period2": 22,
+            "period3": 8,
+            "period4": 10
           },
           "awayScore": {
-            "current": 0
+            "current": 57,
+            "display": 57,
+            "period1": 9,
+            "period2": 20,
+            "period3": 11,
+            "period4": 17
           }
         },
         {
           "id": 15188181,
           "round": 27,
           "startTimestamp": 1775673000,
-          "status": "Not started",
-          "statusType": "notstarted",
+          "status": "Halftime",
+          "statusType": "inprogress",
           "groupName": "Division A",
           "homeTeam": {
             "id": 1114276,
@@ -7110,18 +7120,24 @@
             "shortName": "Jadran Trieste"
           },
           "homeScore": {
-            "current": 0
+            "current": 38,
+            "display": 38,
+            "period1": 23,
+            "period2": 15
           },
           "awayScore": {
-            "current": 0
+            "current": 44,
+            "display": 44,
+            "period1": 13,
+            "period2": 31
           }
         },
         {
           "id": 15188183,
           "round": 27,
           "startTimestamp": 1775673900,
-          "status": "Not started",
-          "statusType": "notstarted",
+          "status": "2nd quarter",
+          "statusType": "inprogress",
           "groupName": "Division A",
           "homeTeam": {
             "id": 826594,
@@ -7135,18 +7151,24 @@
             "shortName": "Sistema Basket Pordenone"
           },
           "homeScore": {
-            "current": 0
+            "current": 45,
+            "display": 45,
+            "period1": 19,
+            "period2": 26
           },
           "awayScore": {
-            "current": 0
+            "current": 44,
+            "display": 44,
+            "period1": 24,
+            "period2": 20
           }
         },
         {
           "id": 15188184,
           "round": 27,
           "startTimestamp": 1775674800,
-          "status": "Not started",
-          "statusType": "notstarted",
+          "status": "2nd quarter",
+          "statusType": "inprogress",
           "groupName": "Division A",
           "homeTeam": {
             "id": 1114271,
@@ -7161,10 +7183,16 @@
             "shortName": "Playbasket Carré"
           },
           "homeScore": {
-            "current": 0
+            "current": 34,
+            "display": 34,
+            "period1": 20,
+            "period2": 14
           },
           "awayScore": {
-            "current": 0
+            "current": 32,
+            "display": 32,
+            "period1": 19,
+            "period2": 13
           }
         },
         {
@@ -14822,8 +14850,8 @@
           "id": 15190370,
           "round": 27,
           "startTimestamp": 1775672100,
-          "status": "Not started",
-          "statusType": "notstarted",
+          "status": "4th quarter",
+          "statusType": "inprogress",
           "groupName": "Division B",
           "homeTeam": {
             "id": 1114284,
@@ -14838,18 +14866,28 @@
             "shortName": "Oleggio Magic Basket"
           },
           "homeScore": {
-            "current": 0
+            "current": 63,
+            "display": 63,
+            "period1": 15,
+            "period2": 24,
+            "period3": 24,
+            "period4": 0
           },
           "awayScore": {
-            "current": 0
+            "current": 62,
+            "display": 62,
+            "period1": 20,
+            "period2": 21,
+            "period3": 21,
+            "period4": 0
           }
         },
         {
           "id": 15190376,
           "round": 27,
           "startTimestamp": 1775674800,
-          "status": "Not started",
-          "statusType": "notstarted",
+          "status": "2nd quarter",
+          "statusType": "inprogress",
           "groupName": "Division B",
           "homeTeam": {
             "id": 1114301,
@@ -14864,18 +14902,24 @@
             "shortName": "Blu Orobica Bergamo"
           },
           "homeScore": {
-            "current": 0
+            "current": 33,
+            "display": 33,
+            "period1": 21,
+            "period2": 12
           },
           "awayScore": {
-            "current": 0
+            "current": 26,
+            "display": 26,
+            "period1": 17,
+            "period2": 9
           }
         },
         {
           "id": 15190380,
           "round": 27,
           "startTimestamp": 1775674800,
-          "status": "Not started",
-          "statusType": "notstarted",
+          "status": "2nd quarter",
+          "statusType": "inprogress",
           "groupName": "Division B",
           "homeTeam": {
             "id": 446074,
@@ -14890,10 +14934,16 @@
             "shortName": "Bocconi Sport Milano"
           },
           "homeScore": {
-            "current": 0
+            "current": 27,
+            "display": 27,
+            "period1": 25,
+            "period2": 2
           },
           "awayScore": {
-            "current": 0
+            "current": 22,
+            "display": 22,
+            "period1": 16,
+            "period2": 6
           }
         },
         {
