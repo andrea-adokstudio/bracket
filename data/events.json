@@ -2,7 +2,7 @@
   "tournamentId": 27700,
   "seasonId": 77655,
   "seasonLabel": "25/26",
-  "updatedAt": "2026-04-07T22:50:02.925Z",
+  "updatedAt": "2026-04-08T03:22:41.990Z",
   "rounds": [
     1,
     2,
@@ -15029,32 +15029,6 @@
           }
         },
         {
-          "id": 15190391,
-          "round": 28,
-          "startTimestamp": 1775934000,
-          "status": "Not started",
-          "statusType": "notstarted",
-          "groupName": "Division B",
-          "homeTeam": {
-            "id": 1114288,
-            "name": "Robur Saronno",
-            "slug": "robur-basket-saronno",
-            "shortName": "Robur Basket Saronno"
-          },
-          "awayTeam": {
-            "id": 1114283,
-            "name": "Bocconi Team Milano",
-            "slug": "bocconi-sport-milano",
-            "shortName": "Bocconi Sport Milano"
-          },
-          "homeScore": {
-            "current": 0
-          },
-          "awayScore": {
-            "current": 0
-          }
-        },
-        {
           "id": 15190390,
           "round": 28,
           "startTimestamp": 1775934000,
@@ -15124,6 +15098,32 @@
             "name": "MaGo Marnatese",
             "slug": "us-marnatese",
             "shortName": "U.S. Marnatese"
+          },
+          "homeScore": {
+            "current": 0
+          },
+          "awayScore": {
+            "current": 0
+          }
+        },
+        {
+          "id": 15190391,
+          "round": 28,
+          "startTimestamp": 1776366900,
+          "status": "Not started",
+          "statusType": "notstarted",
+          "groupName": "Division B",
+          "homeTeam": {
+            "id": 1114288,
+            "name": "Robur Saronno",
+            "slug": "robur-basket-saronno",
+            "shortName": "Robur Basket Saronno"
+          },
+          "awayTeam": {
+            "id": 1114283,
+            "name": "Bocconi Team Milano",
+            "slug": "bocconi-sport-milano",
+            "shortName": "Bocconi Sport Milano"
           },
           "homeScore": {
             "current": 0
