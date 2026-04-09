@@ -2,7 +2,7 @@
   "tournamentId": 27700,
   "seasonId": 77655,
   "seasonLabel": "25/26",
-  "updatedAt": "2026-04-09T20:39:20.418Z",
+  "updatedAt": "2026-04-09T20:53:35.659Z",
   "rounds": [
     1,
     2,
@@ -7219,8 +7219,8 @@
           "id": 15188185,
           "round": 27,
           "startTimestamp": 1775762100,
-          "status": "4th quarter",
-          "statusType": "inprogress",
+          "status": "Ended",
+          "statusType": "finished",
           "groupName": "Division A",
           "homeTeam": {
             "id": 1114273,
@@ -7235,20 +7235,22 @@
             "shortName": "Pallacanestro Gardonese"
           },
           "homeScore": {
-            "current": 63,
-            "display": 63,
+            "current": 72,
+            "display": 72,
             "period1": 15,
             "period2": 18,
             "period3": 16,
-            "period4": 14
+            "period4": 23,
+            "normaltime": 72
           },
           "awayScore": {
-            "current": 59,
-            "display": 59,
+            "current": 64,
+            "display": 64,
             "period1": 15,
             "period2": 18,
             "period3": 17,
-            "period4": 9
+            "period4": 14,
+            "normaltime": 64
           }
         }
       ],

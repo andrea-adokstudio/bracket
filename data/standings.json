@@ -2,7 +2,7 @@
   "tournamentId": 27700,
   "seasonId": 77655,
   "seasonLabel": "25/26",
-  "updatedAt": "2026-04-09T20:39:20.418Z",
+  "updatedAt": "2026-04-09T20:53:35.659Z",
   "standings": {
     "gironeA": [
       {
@@ -198,13 +198,13 @@
       },
       {
         "position": 13,
-        "matches": 24,
+        "matches": 25,
         "wins": 8,
-        "losses": 16,
+        "losses": 17,
         "points": 16,
-        "scoresFor": 1674,
-        "scoresAgainst": 1796,
-        "scoreDiffFormatted": "-122",
+        "scoresFor": 1738,
+        "scoresAgainst": 1868,
+        "scoreDiffFormatted": "-130",
         "team": {
           "id": 1114270,
           "name": "Pallacanestro Gardonese",
@@ -214,13 +214,13 @@
       },
       {
         "position": 14,
-        "matches": 24,
-        "wins": 6,
+        "matches": 25,
+        "wins": 7,
         "losses": 18,
-        "points": 12,
-        "scoresFor": 1773,
-        "scoresAgainst": 2025,
-        "scoreDiffFormatted": "-252",
+        "points": 14,
+        "scoresFor": 1845,
+        "scoresAgainst": 2089,
+        "scoreDiffFormatted": "-244",
         "team": {
           "id": 1114273,
           "name": "Olimpia Castello",
