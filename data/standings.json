@@ -2,7 +2,7 @@
   "tournamentId": 27700,
   "seasonId": 77655,
   "seasonLabel": "25/26",
-  "updatedAt": "2026-04-09T09:20:03.602Z",
+  "updatedAt": "2026-04-09T11:08:10.800Z",
   "standings": {
     "gironeA": [
       {
@@ -440,22 +440,6 @@
       },
       {
         "position": 13,
-        "matches": 25,
-        "wins": 8,
-        "losses": 17,
-        "points": 16,
-        "scoresFor": 1949,
-        "scoresAgainst": 2038,
-        "scoreDiffFormatted": "-89",
-        "team": {
-          "id": 1114288,
-          "name": "Robur Saronno",
-          "slug": "robur-basket-saronno",
-          "shortName": "Robur Basket Saronno"
-        }
-      },
-      {
-        "position": 14,
         "matches": 24,
         "wins": 8,
         "losses": 16,
@@ -468,6 +452,22 @@
           "name": "MaGo Marnatese",
           "slug": "us-marnatese",
           "shortName": "U.S. Marnatese"
+        }
+      },
+      {
+        "position": 14,
+        "matches": 25,
+        "wins": 8,
+        "losses": 17,
+        "points": 16,
+        "scoresFor": 1949,
+        "scoresAgainst": 2038,
+        "scoreDiffFormatted": "-89",
+        "team": {
+          "id": 1114288,
+          "name": "Robur Saronno",
+          "slug": "robur-basket-saronno",
+          "shortName": "Robur Basket Saronno"
         }
       },
       {
