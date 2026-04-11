@@ -2,7 +2,7 @@
   "tournamentId": 27700,
   "seasonId": 77655,
   "seasonLabel": "25/26",
-  "updatedAt": "2026-04-11T18:58:28.579Z",
+  "updatedAt": "2026-04-11T20:28:53.271Z",
   "rounds": [
     1,
     2,
@@ -7259,8 +7259,8 @@
           "id": 15188190,
           "round": 28,
           "startTimestamp": 1775932200,
-          "status": "Not started",
-          "statusType": "notstarted",
+          "status": "Ended",
+          "statusType": "finished",
           "groupName": "Division A",
           "homeTeam": {
             "id": 1114272,
@@ -7275,18 +7275,30 @@
             "shortName": "Montebelluna Basket"
           },
           "homeScore": {
-            "current": 0
+            "current": 94,
+            "display": 94,
+            "period1": 30,
+            "period2": 19,
+            "period3": 28,
+            "period4": 17,
+            "normaltime": 94
           },
           "awayScore": {
-            "current": 0
+            "current": 81,
+            "display": 81,
+            "period1": 14,
+            "period2": 31,
+            "period3": 21,
+            "period4": 15,
+            "normaltime": 81
           }
         },
         {
           "id": 15188189,
           "round": 28,
           "startTimestamp": 1775932200,
-          "status": "Not started",
-          "statusType": "notstarted",
+          "status": "Ended",
+          "statusType": "finished",
           "groupName": "Division A",
           "homeTeam": {
             "id": 1114268,
@@ -7301,10 +7313,22 @@
             "shortName": "S.C. Oderzo Basket"
           },
           "homeScore": {
-            "current": 0
+            "current": 85,
+            "display": 85,
+            "period1": 20,
+            "period2": 22,
+            "period3": 27,
+            "period4": 16,
+            "normaltime": 85
           },
           "awayScore": {
-            "current": 0
+            "current": 71,
+            "display": 71,
+            "period1": 26,
+            "period2": 7,
+            "period3": 15,
+            "period4": 23,
+            "normaltime": 71
           }
         },
         {
@@ -15088,8 +15112,8 @@
           "id": 15190387,
           "round": 28,
           "startTimestamp": 1775932200,
-          "status": "Not started",
-          "statusType": "notstarted",
+          "status": "Ended",
+          "statusType": "finished",
           "groupName": "Division B",
           "homeTeam": {
             "id": 1114300,
@@ -15104,10 +15128,22 @@
             "shortName": "Basket Sette Laghi Gazzada"
           },
           "homeScore": {
-            "current": 0
+            "current": 55,
+            "display": 55,
+            "period1": 10,
+            "period2": 23,
+            "period3": 14,
+            "period4": 8,
+            "normaltime": 55
           },
           "awayScore": {
-            "current": 0
+            "current": 53,
+            "display": 53,
+            "period1": 16,
+            "period2": 14,
+            "period3": 19,
+            "period4": 4,
+            "normaltime": 53
           }
         },
         {
