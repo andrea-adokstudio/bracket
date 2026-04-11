@@ -2,7 +2,7 @@
   "tournamentId": 27700,
   "seasonId": 77655,
   "seasonLabel": "25/26",
-  "updatedAt": "2026-04-11T20:28:53.271Z",
+  "updatedAt": "2026-04-11T20:44:14.512Z",
   "standings": {
     "gironeA": [
       {
@@ -328,29 +328,13 @@
       },
       {
         "position": 6,
-        "matches": 25,
+        "matches": 26,
         "wins": 14,
-        "losses": 11,
-        "points": 28,
-        "scoresFor": 1910,
-        "scoresAgainst": 1793,
-        "scoreDiffFormatted": "+117",
-        "team": {
-          "id": 446074,
-          "name": "Basketball Gallarate",
-          "slug": "basketball-gallarate",
-          "shortName": "Gallarate"
-        }
-      },
-      {
-        "position": 7,
-        "matches": 25,
-        "wins": 13,
         "losses": 12,
-        "points": 26,
-        "scoresFor": 2005,
-        "scoresAgainst": 1993,
-        "scoreDiffFormatted": "+12",
+        "points": 28,
+        "scoresFor": 2094,
+        "scoresAgainst": 2073,
+        "scoreDiffFormatted": "+21",
         "team": {
           "id": 1114282,
           "name": "U.S. Nervianese",
@@ -359,14 +343,30 @@
         }
       },
       {
-        "position": 8,
-        "matches": 25,
-        "wins": 13,
+        "position": 7,
+        "matches": 26,
+        "wins": 14,
         "losses": 12,
+        "points": 28,
+        "scoresFor": 1990,
+        "scoresAgainst": 1882,
+        "scoreDiffFormatted": "+108",
+        "team": {
+          "id": 446074,
+          "name": "Basketball Gallarate",
+          "slug": "basketball-gallarate",
+          "shortName": "Gallarate"
+        }
+      },
+      {
+        "position": 8,
+        "matches": 26,
+        "wins": 13,
+        "losses": 13,
         "points": 26,
-        "scoresFor": 2017,
-        "scoresAgainst": 2033,
-        "scoreDiffFormatted": "-16",
+        "scoresFor": 2082,
+        "scoresAgainst": 2124,
+        "scoreDiffFormatted": "-42",
         "team": {
           "id": 1114299,
           "name": "Campus Varese",
@@ -472,13 +472,13 @@
       },
       {
         "position": 15,
-        "matches": 25,
-        "wins": 3,
+        "matches": 26,
+        "wins": 4,
         "losses": 22,
-        "points": 6,
-        "scoresFor": 1529,
-        "scoresAgainst": 1971,
-        "scoreDiffFormatted": "-442",
+        "points": 8,
+        "scoresFor": 1620,
+        "scoresAgainst": 2036,
+        "scoreDiffFormatted": "-416",
         "team": {
           "id": 1114286,
           "name": "Sansebasket Cremona",

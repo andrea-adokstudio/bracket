@@ -2,7 +2,7 @@
   "tournamentId": 27700,
   "seasonId": 77655,
   "seasonLabel": "25/26",
-  "updatedAt": "2026-04-11T20:28:53.271Z",
+  "updatedAt": "2026-04-11T20:44:14.512Z",
   "rounds": [
     1,
     2,
@@ -15150,8 +15150,8 @@
           "id": 15190388,
           "round": 28,
           "startTimestamp": 1775933100,
-          "status": "Not started",
-          "statusType": "notstarted",
+          "status": "Ended",
+          "statusType": "finished",
           "groupName": "Division B",
           "homeTeam": {
             "id": 1114282,
@@ -15166,18 +15166,30 @@
             "shortName": "Gallarate"
           },
           "homeScore": {
-            "current": 0
+            "current": 89,
+            "display": 89,
+            "period1": 22,
+            "period2": 24,
+            "period3": 26,
+            "period4": 17,
+            "normaltime": 89
           },
           "awayScore": {
-            "current": 0
+            "current": 80,
+            "display": 80,
+            "period1": 17,
+            "period2": 33,
+            "period3": 14,
+            "period4": 16,
+            "normaltime": 80
           }
         },
         {
           "id": 15190390,
           "round": 28,
           "startTimestamp": 1775934000,
-          "status": "Not started",
-          "statusType": "notstarted",
+          "status": "Ended",
+          "statusType": "finished",
           "groupName": "Division B",
           "homeTeam": {
             "id": 1114286,
@@ -15192,10 +15204,22 @@
             "shortName": "Campus Varese"
           },
           "homeScore": {
-            "current": 0
+            "current": 91,
+            "display": 91,
+            "period1": 23,
+            "period2": 21,
+            "period3": 17,
+            "period4": 30,
+            "normaltime": 91
           },
           "awayScore": {
-            "current": 0
+            "current": 65,
+            "display": 65,
+            "period1": 21,
+            "period2": 13,
+            "period3": 21,
+            "period4": 10,
+            "normaltime": 65
           }
         },
         {
