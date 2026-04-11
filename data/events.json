@@ -2,7 +2,7 @@
   "tournamentId": 27700,
   "seasonId": 77655,
   "seasonLabel": "25/26",
-  "updatedAt": "2026-04-11T16:49:07.318Z",
+  "updatedAt": "2026-04-11T18:58:28.579Z",
   "rounds": [
     1,
     2,
@@ -15050,8 +15050,8 @@
           "id": 15190384,
           "round": 28,
           "startTimestamp": 1775926800,
-          "status": "Not started",
-          "statusType": "notstarted",
+          "status": "Ended",
+          "statusType": "finished",
           "groupName": "Division B",
           "homeTeam": {
             "id": 1114285,
@@ -15066,10 +15066,22 @@
             "shortName": "Basket Team 95 Pizzighettone"
           },
           "homeScore": {
-            "current": 0
+            "current": 81,
+            "display": 81,
+            "period1": 17,
+            "period2": 19,
+            "period3": 23,
+            "period4": 22,
+            "normaltime": 81
           },
           "awayScore": {
-            "current": 0
+            "current": 74,
+            "display": 74,
+            "period1": 24,
+            "period2": 13,
+            "period3": 20,
+            "period4": 17,
+            "normaltime": 74
           }
         },
         {

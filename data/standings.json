@@ -2,7 +2,7 @@
   "tournamentId": 27700,
   "seasonId": 77655,
   "seasonLabel": "25/26",
-  "updatedAt": "2026-04-11T16:49:07.318Z",
+  "updatedAt": "2026-04-11T18:58:28.579Z",
   "standings": {
     "gironeA": [
       {
@@ -264,13 +264,13 @@
       },
       {
         "position": 2,
-        "matches": 25,
+        "matches": 26,
         "wins": 20,
-        "losses": 5,
+        "losses": 6,
         "points": 40,
-        "scoresFor": 1955,
-        "scoresAgainst": 1683,
-        "scoreDiffFormatted": "+272",
+        "scoresFor": 2029,
+        "scoresAgainst": 1764,
+        "scoreDiffFormatted": "+265",
         "team": {
           "id": 1114287,
           "name": "Basket Team 95 Pizzighettone",
@@ -408,6 +408,22 @@
       },
       {
         "position": 11,
+        "matches": 26,
+        "wins": 10,
+        "losses": 16,
+        "points": 20,
+        "scoresFor": 1808,
+        "scoresAgainst": 1952,
+        "scoreDiffFormatted": "-144",
+        "team": {
+          "id": 1114285,
+          "name": "Blu Orobica Bergamo",
+          "slug": "blu-orobica-bergamo",
+          "shortName": "Blu Orobica Bergamo"
+        }
+      },
+      {
+        "position": 12,
         "matches": 25,
         "wins": 9,
         "losses": 16,
@@ -423,39 +439,7 @@
         }
       },
       {
-        "position": 12,
-        "matches": 25,
-        "wins": 9,
-        "losses": 16,
-        "points": 18,
-        "scoresFor": 1727,
-        "scoresAgainst": 1878,
-        "scoreDiffFormatted": "-151",
-        "team": {
-          "id": 1114285,
-          "name": "Blu Orobica Bergamo",
-          "slug": "blu-orobica-bergamo",
-          "shortName": "Blu Orobica Bergamo"
-        }
-      },
-      {
         "position": 13,
-        "matches": 24,
-        "wins": 8,
-        "losses": 16,
-        "points": 16,
-        "scoresFor": 1926,
-        "scoresAgainst": 1907,
-        "scoreDiffFormatted": "+19",
-        "team": {
-          "id": 1114297,
-          "name": "MaGo Marnatese",
-          "slug": "us-marnatese",
-          "shortName": "U.S. Marnatese"
-        }
-      },
-      {
-        "position": 14,
         "matches": 25,
         "wins": 8,
         "losses": 17,
@@ -468,6 +452,22 @@
           "name": "Robur Saronno",
           "slug": "robur-basket-saronno",
           "shortName": "Robur Basket Saronno"
+        }
+      },
+      {
+        "position": 14,
+        "matches": 24,
+        "wins": 8,
+        "losses": 16,
+        "points": 16,
+        "scoresFor": 1926,
+        "scoresAgainst": 1907,
+        "scoreDiffFormatted": "+19",
+        "team": {
+          "id": 1114297,
+          "name": "MaGo Marnatese",
+          "slug": "us-marnatese",
+          "shortName": "U.S. Marnatese"
         }
       },
       {
