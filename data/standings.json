@@ -2,7 +2,7 @@
   "tournamentId": 27700,
   "seasonId": 77655,
   "seasonLabel": "25/26",
-  "updatedAt": "2026-04-12T16:51:13.931Z",
+  "updatedAt": "2026-04-12T17:56:43.702Z",
   "standings": {
     "gironeA": [
       {
@@ -59,6 +59,22 @@
         "wins": 16,
         "losses": 10,
         "points": 32,
+        "scoresFor": 2059,
+        "scoresAgainst": 1941,
+        "scoreDiffFormatted": "+118",
+        "team": {
+          "id": 1114271,
+          "name": "JB Stings Curtatone",
+          "slug": "jb-stings-curtatone",
+          "shortName": "JB Stings Curtatone"
+        }
+      },
+      {
+        "position": 5,
+        "matches": 26,
+        "wins": 16,
+        "losses": 10,
+        "points": 32,
         "scoresFor": 2055,
         "scoresAgainst": 2049,
         "scoreDiffFormatted": "+6",
@@ -70,46 +86,14 @@
         }
       },
       {
-        "position": 5,
-        "matches": 25,
-        "wins": 15,
-        "losses": 10,
-        "points": 30,
-        "scoresFor": 1979,
-        "scoresAgainst": 1869,
-        "scoreDiffFormatted": "+110",
-        "team": {
-          "id": 1114271,
-          "name": "JB Stings Curtatone",
-          "slug": "jb-stings-curtatone",
-          "shortName": "JB Stings Curtatone"
-        }
-      },
-      {
         "position": 6,
-        "matches": 25,
+        "matches": 27,
         "wins": 14,
-        "losses": 11,
-        "points": 28,
-        "scoresFor": 2036,
-        "scoresAgainst": 1966,
-        "scoreDiffFormatted": "+70",
-        "team": {
-          "id": 331088,
-          "name": "Basket Monfalcone",
-          "slug": "basket-monfalcone",
-          "shortName": "Monfalcone"
-        }
-      },
-      {
-        "position": 7,
-        "matches": 26,
-        "wins": 13,
         "losses": 13,
-        "points": 26,
-        "scoresFor": 1944,
-        "scoresAgainst": 1914,
-        "scoreDiffFormatted": "+30",
+        "points": 28,
+        "scoresFor": 2020,
+        "scoresAgainst": 1989,
+        "scoreDiffFormatted": "+31",
         "team": {
           "id": 1114277,
           "name": "Sistema Basket Pordenone",
@@ -118,14 +102,30 @@
         }
       },
       {
+        "position": 7,
+        "matches": 26,
+        "wins": 14,
+        "losses": 12,
+        "points": 28,
+        "scoresFor": 2108,
+        "scoresAgainst": 2046,
+        "scoreDiffFormatted": "+62",
+        "team": {
+          "id": 331088,
+          "name": "Basket Monfalcone",
+          "slug": "basket-monfalcone",
+          "shortName": "Monfalcone"
+        }
+      },
+      {
         "position": 8,
-        "matches": 25,
-        "wins": 12,
+        "matches": 26,
+        "wins": 13,
         "losses": 13,
-        "points": 24,
-        "scoresFor": 1941,
-        "scoresAgainst": 1947,
-        "scoreDiffFormatted": "-6",
+        "points": 26,
+        "scoresFor": 2016,
+        "scoresAgainst": 2019,
+        "scoreDiffFormatted": "-3",
         "team": {
           "id": 826594,
           "name": "Bmr Basket 2000 Reggio Emilia",
@@ -134,13 +134,13 @@
       },
       {
         "position": 9,
-        "matches": 25,
-        "wins": 11,
+        "matches": 26,
+        "wins": 12,
         "losses": 14,
-        "points": 22,
-        "scoresFor": 1900,
-        "scoresAgainst": 1924,
-        "scoreDiffFormatted": "-24",
+        "points": 24,
+        "scoresFor": 1984,
+        "scoresAgainst": 1978,
+        "scoreDiffFormatted": "+6",
         "team": {
           "id": 264607,
           "name": "Virtus Padova Basket",
@@ -166,29 +166,13 @@
       },
       {
         "position": 11,
-        "matches": 25,
+        "matches": 26,
         "wins": 10,
-        "losses": 15,
-        "points": 20,
-        "scoresFor": 1788,
-        "scoresAgainst": 1834,
-        "scoreDiffFormatted": "-46",
-        "team": {
-          "id": 1114279,
-          "name": "Jadran Trieste",
-          "slug": "jadran-trieste",
-          "shortName": "Jadran Trieste"
-        }
-      },
-      {
-        "position": 12,
-        "matches": 25,
-        "wins": 9,
         "losses": 16,
-        "points": 18,
-        "scoresFor": 1865,
-        "scoresAgainst": 1991,
-        "scoreDiffFormatted": "-126",
+        "points": 20,
+        "scoresFor": 1945,
+        "scoresAgainst": 2062,
+        "scoreDiffFormatted": "-117",
         "team": {
           "id": 1114269,
           "name": "Basket Iseo",
@@ -197,14 +181,30 @@
         }
       },
       {
+        "position": 12,
+        "matches": 26,
+        "wins": 10,
+        "losses": 16,
+        "points": 20,
+        "scoresFor": 1860,
+        "scoresAgainst": 1909,
+        "scoreDiffFormatted": "-49",
+        "team": {
+          "id": 1114279,
+          "name": "Jadran Trieste",
+          "slug": "jadran-trieste",
+          "shortName": "Jadran Trieste"
+        }
+      },
+      {
         "position": 13,
-        "matches": 25,
+        "matches": 26,
         "wins": 8,
-        "losses": 17,
+        "losses": 18,
         "points": 16,
-        "scoresFor": 1738,
-        "scoresAgainst": 1868,
-        "scoreDiffFormatted": "-130",
+        "scoresFor": 1792,
+        "scoresAgainst": 1952,
+        "scoreDiffFormatted": "-160",
         "team": {
           "id": 1114270,
           "name": "Pallacanestro Gardonese",
@@ -214,13 +214,13 @@
       },
       {
         "position": 14,
-        "matches": 25,
+        "matches": 26,
         "wins": 7,
-        "losses": 18,
+        "losses": 19,
         "points": 14,
-        "scoresFor": 1845,
-        "scoresAgainst": 2089,
-        "scoreDiffFormatted": "-244",
+        "scoresFor": 1920,
+        "scoresAgainst": 2165,
+        "scoreDiffFormatted": "-245",
         "team": {
           "id": 1114273,
           "name": "Olimpia Castello",
@@ -230,13 +230,13 @@
       },
       {
         "position": 15,
-        "matches": 26,
+        "matches": 27,
         "wins": 5,
-        "losses": 21,
+        "losses": 22,
         "points": 10,
-        "scoresFor": 1777,
-        "scoresAgainst": 2025,
-        "scoreDiffFormatted": "-248",
+        "scoresFor": 1848,
+        "scoresAgainst": 2105,
+        "scoreDiffFormatted": "-257",
         "team": {
           "id": 1114274,
           "name": "Playbasket Carré",
@@ -248,13 +248,13 @@
     "gironeB": [
       {
         "position": 1,
-        "matches": 24,
-        "wins": 20,
+        "matches": 25,
+        "wins": 21,
         "losses": 4,
-        "points": 40,
-        "scoresFor": 1849,
-        "scoresAgainst": 1634,
-        "scoreDiffFormatted": "+215",
+        "points": 42,
+        "scoresFor": 1944,
+        "scoresAgainst": 1712,
+        "scoreDiffFormatted": "+232",
         "team": {
           "id": 328578,
           "name": "Sangiorgese Basket",
@@ -456,13 +456,13 @@
       },
       {
         "position": 14,
-        "matches": 24,
+        "matches": 25,
         "wins": 8,
-        "losses": 16,
+        "losses": 17,
         "points": 16,
-        "scoresFor": 1926,
-        "scoresAgainst": 1907,
-        "scoreDiffFormatted": "+19",
+        "scoresFor": 2004,
+        "scoresAgainst": 2002,
+        "scoreDiffFormatted": "+2",
         "team": {
           "id": 1114297,
           "name": "MaGo Marnatese",

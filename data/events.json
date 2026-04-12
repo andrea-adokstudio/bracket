@@ -2,7 +2,7 @@
   "tournamentId": 27700,
   "seasonId": 77655,
   "seasonLabel": "25/26",
-  "updatedAt": "2026-04-12T16:51:13.931Z",
+  "updatedAt": "2026-04-12T17:56:43.702Z",
   "rounds": [
     1,
     2,
@@ -7335,8 +7335,8 @@
           "id": 15188191,
           "round": 28,
           "startTimestamp": 1776006000,
-          "status": "Not started",
-          "statusType": "notstarted",
+          "status": "Ended",
+          "statusType": "finished",
           "groupName": "Division A",
           "homeTeam": {
             "id": 1114279,
@@ -7350,18 +7350,20 @@
             "slug": "bmr-basket-2000-reggio-emilia"
           },
           "homeScore": {
-            "current": 0
+            "current": 72,
+            "display": 72
           },
           "awayScore": {
-            "current": 0
+            "current": 75,
+            "display": 75
           }
         },
         {
           "id": 15188192,
           "round": 28,
           "startTimestamp": 1776009600,
-          "status": "Not started",
-          "statusType": "notstarted",
+          "status": "Ended",
+          "statusType": "finished",
           "groupName": "Division A",
           "homeTeam": {
             "id": 331088,
@@ -7376,18 +7378,20 @@
             "shortName": "JB Stings Curtatone"
           },
           "homeScore": {
-            "current": 0
+            "current": 72,
+            "display": 72
           },
           "awayScore": {
-            "current": 0
+            "current": 80,
+            "display": 80
           }
         },
         {
           "id": 15188194,
           "round": 28,
           "startTimestamp": 1776009600,
-          "status": "Not started",
-          "statusType": "notstarted",
+          "status": "Ended",
+          "statusType": "finished",
           "groupName": "Division A",
           "homeTeam": {
             "id": 1114274,
@@ -7402,18 +7406,20 @@
             "shortName": "Basket Iseo"
           },
           "homeScore": {
-            "current": 0
+            "current": 71,
+            "display": 71
           },
           "awayScore": {
-            "current": 0
+            "current": 80,
+            "display": 80
           }
         },
         {
           "id": 15188195,
           "round": 28,
           "startTimestamp": 1776009600,
-          "status": "Not started",
-          "statusType": "notstarted",
+          "status": "Ended",
+          "statusType": "finished",
           "groupName": "Division A",
           "homeTeam": {
             "id": 1114277,
@@ -7428,18 +7434,20 @@
             "shortName": "Olimpia Castello"
           },
           "homeScore": {
-            "current": 0
+            "current": 76,
+            "display": 76
           },
           "awayScore": {
-            "current": 0
+            "current": 75,
+            "display": 75
           }
         },
         {
           "id": 15188193,
           "round": 28,
           "startTimestamp": 1776009600,
-          "status": "Not started",
-          "statusType": "notstarted",
+          "status": "Ended",
+          "statusType": "finished",
           "groupName": "Division A",
           "homeTeam": {
             "id": 264607,
@@ -7454,10 +7462,12 @@
             "shortName": "Pallacanestro Gardonese"
           },
           "homeScore": {
-            "current": 0
+            "current": 84,
+            "display": 84
           },
           "awayScore": {
-            "current": 0
+            "current": 54,
+            "display": 54
           }
         }
       ],
@@ -15252,8 +15262,8 @@
           "id": 15190393,
           "round": 28,
           "startTimestamp": 1776009600,
-          "status": "Not started",
-          "statusType": "notstarted",
+          "status": "Ended",
+          "statusType": "finished",
           "groupName": "Division B",
           "homeTeam": {
             "id": 328578,
@@ -15268,10 +15278,12 @@
             "shortName": "U.S. Marnatese"
           },
           "homeScore": {
-            "current": 0
+            "current": 95,
+            "display": 95
           },
           "awayScore": {
-            "current": 0
+            "current": 78,
+            "display": 78
           }
         },
         {
