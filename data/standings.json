@@ -2,7 +2,7 @@
   "tournamentId": 27700,
   "seasonId": 77655,
   "seasonLabel": "25/26",
-  "updatedAt": "2026-04-12T17:56:43.702Z",
+  "updatedAt": "2026-04-12T19:02:05.455Z",
   "standings": {
     "gironeA": [
       {
@@ -280,34 +280,34 @@
       },
       {
         "position": 3,
-        "matches": 25,
-        "wins": 17,
+        "matches": 26,
+        "wins": 18,
         "losses": 8,
-        "points": 34,
-        "scoresFor": 2002,
-        "scoresAgainst": 1888,
-        "scoreDiffFormatted": "+114",
-        "team": {
-          "id": 1114284,
-          "name": "SocialOSA Milano",
-          "slug": "social-osa-milano",
-          "shortName": "Social OSA Milano"
-        }
-      },
-      {
-        "position": 4,
-        "matches": 25,
-        "wins": 17,
-        "losses": 8,
-        "points": 34,
-        "scoresFor": 2045,
-        "scoresAgainst": 1898,
-        "scoreDiffFormatted": "+147",
+        "points": 36,
+        "scoresFor": 2141,
+        "scoresAgainst": 1988,
+        "scoreDiffFormatted": "+153",
         "team": {
           "id": 1114303,
           "name": "Pallacanestro Pavia 1933",
           "slug": "pallacanestro-pavia-1933",
           "shortName": "Pallacanestro Pavia 1933"
+        }
+      },
+      {
+        "position": 4,
+        "matches": 26,
+        "wins": 17,
+        "losses": 9,
+        "points": 34,
+        "scoresFor": 2092,
+        "scoresAgainst": 1984,
+        "scoreDiffFormatted": "+108",
+        "team": {
+          "id": 1114284,
+          "name": "SocialOSA Milano",
+          "slug": "social-osa-milano",
+          "shortName": "Social OSA Milano"
         }
       },
       {

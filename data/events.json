@@ -2,7 +2,7 @@
   "tournamentId": 27700,
   "seasonId": 77655,
   "seasonLabel": "25/26",
-  "updatedAt": "2026-04-12T17:56:43.702Z",
+  "updatedAt": "2026-04-12T19:02:05.455Z",
   "rounds": [
     1,
     2,
@@ -7351,11 +7351,21 @@
           },
           "homeScore": {
             "current": 72,
-            "display": 72
+            "display": 72,
+            "period1": 14,
+            "period2": 23,
+            "period3": 14,
+            "period4": 21,
+            "normaltime": 72
           },
           "awayScore": {
             "current": 75,
-            "display": 75
+            "display": 75,
+            "period1": 17,
+            "period2": 18,
+            "period3": 15,
+            "period4": 25,
+            "normaltime": 75
           }
         },
         {
@@ -7379,11 +7389,21 @@
           },
           "homeScore": {
             "current": 72,
-            "display": 72
+            "display": 72,
+            "period1": 18,
+            "period2": 19,
+            "period3": 10,
+            "period4": 25,
+            "normaltime": 72
           },
           "awayScore": {
             "current": 80,
-            "display": 80
+            "display": 80,
+            "period1": 17,
+            "period2": 26,
+            "period3": 25,
+            "period4": 12,
+            "normaltime": 80
           }
         },
         {
@@ -7407,11 +7427,21 @@
           },
           "homeScore": {
             "current": 71,
-            "display": 71
+            "display": 71,
+            "period1": 18,
+            "period2": 26,
+            "period3": 14,
+            "period4": 13,
+            "normaltime": 71
           },
           "awayScore": {
             "current": 80,
-            "display": 80
+            "display": 80,
+            "period1": 16,
+            "period2": 26,
+            "period3": 17,
+            "period4": 21,
+            "normaltime": 80
           }
         },
         {
@@ -7435,11 +7465,21 @@
           },
           "homeScore": {
             "current": 76,
-            "display": 76
+            "display": 76,
+            "period1": 18,
+            "period2": 15,
+            "period3": 19,
+            "period4": 24,
+            "normaltime": 76
           },
           "awayScore": {
             "current": 75,
-            "display": 75
+            "display": 75,
+            "period1": 15,
+            "period2": 28,
+            "period3": 19,
+            "period4": 13,
+            "normaltime": 75
           }
         },
         {
@@ -7463,11 +7503,21 @@
           },
           "homeScore": {
             "current": 84,
-            "display": 84
+            "display": 84,
+            "period1": 25,
+            "period2": 15,
+            "period3": 24,
+            "period4": 20,
+            "normaltime": 84
           },
           "awayScore": {
             "current": 54,
-            "display": 54
+            "display": 54,
+            "period1": 13,
+            "period2": 11,
+            "period3": 8,
+            "period4": 22,
+            "normaltime": 54
           }
         }
       ],
@@ -15236,8 +15286,8 @@
           "id": 15190392,
           "round": 28,
           "startTimestamp": 1776009600,
-          "status": "Not started",
-          "statusType": "notstarted",
+          "status": "AET",
+          "statusType": "finished",
           "groupName": "Division B",
           "homeTeam": {
             "id": 1114303,
@@ -15252,10 +15302,24 @@
             "shortName": "Social OSA Milano"
           },
           "homeScore": {
-            "current": 0
+            "current": 96,
+            "display": 96,
+            "period1": 22,
+            "period2": 24,
+            "period3": 18,
+            "period4": 22,
+            "normaltime": 86,
+            "overtime": 10
           },
           "awayScore": {
-            "current": 0
+            "current": 90,
+            "display": 90,
+            "period1": 14,
+            "period2": 24,
+            "period3": 13,
+            "period4": 35,
+            "normaltime": 86,
+            "overtime": 4
           }
         },
         {
@@ -15279,11 +15343,21 @@
           },
           "homeScore": {
             "current": 95,
-            "display": 95
+            "display": 95,
+            "period1": 30,
+            "period2": 21,
+            "period3": 24,
+            "period4": 20,
+            "normaltime": 95
           },
           "awayScore": {
             "current": 78,
-            "display": 78
+            "display": 78,
+            "period1": 17,
+            "period2": 19,
+            "period3": 22,
+            "period4": 20,
+            "normaltime": 78
           }
         },
         {
