@@ -18,7 +18,16 @@ export function NavBar() {
 
   return (
     <nav className="sticky top-0 z-20 border-b bg-background/90 backdrop-blur">
-      <div className="mx-auto flex w-full max-w-6xl items-center gap-2 px-2 py-2 sm:px-4">
+      <div className="mx-auto flex w-full max-w-6xl flex-wrap items-center gap-2 px-2 py-2 sm:px-4">
+        <Link
+          href="/"
+          className={cn(
+            "mr-auto text-sm font-semibold tracking-tight sm:text-base",
+            pathname === "/" ? "text-foreground" : "text-muted-foreground hover:text-foreground",
+          )}
+        >
+          Bracket RB
+        </Link>
         {links.map((link) => {
           const active = pathname === link.href
           return (

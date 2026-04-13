@@ -1,9 +1,17 @@
+import type { Metadata } from "next"
 import { Geist_Mono, Inter } from "next/font/google"
 
 import "./globals.css"
 import { NavBar } from "@/components/nav-bar"
 import { TooltipProvider } from "@/components/ui/tooltip"
 import { cn } from "@/lib/utils"
+
+export const metadata: Metadata = {
+  title: {
+    default: "Bracket RB",
+    template: "%s · Bracket RB",
+  },
+}
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" })
 

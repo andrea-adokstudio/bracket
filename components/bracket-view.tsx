@@ -1,6 +1,7 @@
 import { IconBadgeSparkle, IconStar } from "nucleo-glass"
 import type { CSSProperties } from "react"
 
+import { PlayoutRulesIntro } from "@/components/playout-rules-intro"
 import { TeamLogo } from "@/components/team-logo"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
@@ -126,7 +127,7 @@ function MatchCard({
   )
 }
 
-function RoundSection({ round }: { round: BracketRound }) {
+function RoundSection({ round, playoff = true }: { round: BracketRound; playoff?: boolean }) {
   return (
     <div className="space-y-2">
       {round.name ? (
@@ -134,10 +135,34 @@ function RoundSection({ round }: { round: BracketRound }) {
       ) : null}
       <div className="space-y-2">
         {round.matches.map((match) => (
-          <MatchCard key={match.label} match={match} />
+          <MatchCard key={match.label} match={match} playoff={playoff} />
         ))}
       </div>
     </div>
+  )
+}
+
+function PlayoutBoard({ title, rounds }: { title: string; rounds: BracketRound[] }) {
+  return (
+    <section className="space-y-3">
+      <h2 className="text-lg font-semibold">{title}</h2>
+      {rounds.map((round) => (
+        <div key={round.name} className="space-y-2">
+          {round.name ? (
+            <h3 className="text-sm font-semibold text-muted-foreground">{round.name}</h3>
+          ) : null}
+          <div
+            className={
+              round.matches.length > 1 ? "grid gap-3 md:grid-cols-2" : "mx-auto w-full max-w-md space-y-2"
+            }
+          >
+            {round.matches.map((match) => (
+              <MatchCard key={match.label} match={match} playoff={false} />
+            ))}
+          </div>
+        </div>
+      ))}
+    </section>
   )
 }
 
@@ -222,40 +247,10 @@ export function BracketView({ data }: BracketViewProps) {
       <Separator />
 
       <div className="space-y-6">
-        <section className="mx-auto flex w-full max-w-3xl flex-col items-center space-y-3 text-center text-pretty">
-          <h2 className="text-lg font-semibold">Playout</h2>
-          <div className="mx-auto max-w-3xl space-y-3 text-sm leading-relaxed text-muted-foreground">
-            <p>
-              Alla fine della regular season la 9ª e la 10ª classificata in ogni girone si salvano e terminano
-              anticipatamente la stagione. Le squadre classificate dall’11º al 14º posto affrontano l’unico turno
-              playout previsto, al meglio delle tre partite (3, 10 e 17 maggio), incrociando le squadre dell’altro
-              girone della stessa conference (girone A e girone B).
-            </p>
-            <p>
-              Dai sei tabelloni che si vanno a creare con gli incroci 11ª contro 14ª e 12ª contro 13ª, le perdenti
-              retrocedono in Serie C, per un totale di 12 retrocessioni, quattro per ogni conference. Le squadre
-              classificate al 15º posto vengono retrocesse direttamente, senza disputare il playout.
-            </p>
-          </div>
-        </section>
+        <PlayoutRulesIntro />
 
-        <section className="space-y-3">
-          <h2 className="text-lg font-semibold">Playout — incroci dal Girone A</h2>
-          <div className="grid gap-3 md:grid-cols-2">
-            {data.tabelloneC.map((match) => (
-              <MatchCard key={match.label} match={match} playoff={false} />
-            ))}
-          </div>
-        </section>
-
-        <section className="space-y-3">
-          <h2 className="text-lg font-semibold">Playout — incroci dal Girone B</h2>
-          <div className="grid gap-3 md:grid-cols-2">
-            {data.tabelloneD.map((match) => (
-              <MatchCard key={match.label} match={match} playoff={false} />
-            ))}
-          </div>
-        </section>
+        <PlayoutBoard title="Playout — incroci dal Girone A" rounds={data.tabelloneC} />
+        <PlayoutBoard title="Playout — incroci dal Girone B" rounds={data.tabelloneD} />
       </div>
     </div>
   )

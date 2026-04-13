@@ -114,6 +114,6 @@ export interface BracketData {
   tabelloneA: BracketRound[]
   tabelloneB: BracketRound[]
   finaleConference: BracketRound[]
-  tabelloneC: BracketMatch[]
-  tabelloneD: BracketMatch[]
+  tabelloneC: BracketRound[]
+  tabelloneD: BracketRound[]
 }

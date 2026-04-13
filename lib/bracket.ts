@@ -102,15 +102,48 @@ export function buildBracketData(
     },
   ]
 
-  /** Incroci playout: 11ª vs 14ª e 12ª vs 13ª tra girone A e B (15ª retrocessione diretta, fuori tabellone). */
-  const tabelloneC: BracketMatch[] = [
-    createSeededMatch("11ª A vs 14ª B", gironeA, 11, "A", gironeB, 14, "B"),
-    createSeededMatch("12ª A vs 13ª B", gironeA, 12, "A", gironeB, 13, "B"),
+  /**
+   * Playout a due turni: 11ª vs 14ª e 12ª vs 13ª tra gironi A e B; vincenti salve, perdenti spareggio.
+   * La 15ª classificata retrocede direttamente (fuori tabellone).
+   */
+  const tabelloneC: BracketRound[] = [
+    {
+      name: "Primo turno",
+      matches: [
+        createSeededMatch("11ª A vs 14ª B", gironeA, 11, "A", gironeB, 14, "B"),
+        createSeededMatch("12ª A vs 13ª B", gironeA, 12, "A", gironeB, 13, "B"),
+      ],
+    },
+    {
+      name: "Seconda possibilità",
+      matches: [
+        createWinnerMatch(
+          "Perdenti del tabellone",
+          "Perdente 11ª A vs 14ª B",
+          "Perdente 12ª A vs 13ª B",
+        ),
+      ],
+    },
   ]
 
-  const tabelloneD: BracketMatch[] = [
-    createSeededMatch("11ª B vs 14ª A", gironeB, 11, "B", gironeA, 14, "A"),
-    createSeededMatch("12ª B vs 13ª A", gironeB, 12, "B", gironeA, 13, "A"),
+  const tabelloneD: BracketRound[] = [
+    {
+      name: "Primo turno",
+      matches: [
+        createSeededMatch("11ª B vs 14ª A", gironeB, 11, "B", gironeA, 14, "A"),
+        createSeededMatch("12ª B vs 13ª A", gironeB, 12, "B", gironeA, 13, "A"),
+      ],
+    },
+    {
+      name: "Seconda possibilità",
+      matches: [
+        createWinnerMatch(
+          "Perdenti del tabellone",
+          "Perdente 11ª B vs 14ª A",
+          "Perdente 12ª B vs 13ª A",
+        ),
+      ],
+    },
   ]
 
   return {

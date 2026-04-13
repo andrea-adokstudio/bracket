@@ -8,7 +8,7 @@ import { BracketView } from "@/components/bracket-view"
 import { StandingsTable } from "@/components/standings-table"
 import { TeamLogo } from "@/components/team-logo"
 import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { buildBracketData } from "@/lib/bracket"
 import { computeClassificationZones, computeResolvedStandings } from "@/lib/classification"
@@ -424,6 +424,7 @@ export function SimulationPage({ data }: SimulationPageProps) {
         <Button
           type="button"
           variant="default"
+          disabled={simulatedCount === 0}
           onClick={handleClear}
           className="shrink-0 border-transparent bg-[#B40404] text-white hover:bg-[#B40404]/90 hover:text-white focus-visible:border-[#B40404] focus-visible:ring-[#B40404]/40"
         >
@@ -488,7 +489,11 @@ export function SimulationPage({ data }: SimulationPageProps) {
 
       <Card className="rounded-xl border border-border ring-0">
         <CardHeader className="px-3 pb-2 sm:px-6">
-          <CardTitle>Tabellone simulato (playoff e playout)</CardTitle>
+          <CardTitle>Playoff e Playout</CardTitle>
+          <CardDescription>
+            Tabellone simulato: incroci aggiornati in base alla classifica simulata. Stesse regole descritte per il
+            tabellone ufficiale.
+          </CardDescription>
         </CardHeader>
         <CardContent className="px-3 pb-3 sm:px-6 sm:pb-6">
           <BracketView data={bracket} />
