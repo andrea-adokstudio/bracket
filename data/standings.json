@@ -2,7 +2,7 @@
   "tournamentId": 27700,
   "seasonId": 77655,
   "seasonLabel": "25/26",
-  "updatedAt": "2026-04-12T22:44:07.251Z",
+  "updatedAt": "2026-04-13T03:41:01.492Z",
   "standings": {
     "gironeA": [
       {
@@ -87,22 +87,6 @@
       },
       {
         "position": 6,
-        "matches": 27,
-        "wins": 14,
-        "losses": 13,
-        "points": 28,
-        "scoresFor": 2020,
-        "scoresAgainst": 1989,
-        "scoreDiffFormatted": "+31",
-        "team": {
-          "id": 1114277,
-          "name": "Sistema Basket Pordenone",
-          "slug": "sistema-basket-pordenone",
-          "shortName": "Sistema Basket Pordenone"
-        }
-      },
-      {
-        "position": 7,
         "matches": 26,
         "wins": 14,
         "losses": 12,
@@ -115,6 +99,22 @@
           "name": "Basket Monfalcone",
           "slug": "basket-monfalcone",
           "shortName": "Monfalcone"
+        }
+      },
+      {
+        "position": 7,
+        "matches": 27,
+        "wins": 14,
+        "losses": 13,
+        "points": 28,
+        "scoresFor": 2020,
+        "scoresAgainst": 1989,
+        "scoreDiffFormatted": "+31",
+        "team": {
+          "id": 1114277,
+          "name": "Sistema Basket Pordenone",
+          "slug": "sistema-basket-pordenone",
+          "shortName": "Sistema Basket Pordenone"
         }
       },
       {
@@ -154,22 +154,6 @@
         "wins": 10,
         "losses": 16,
         "points": 20,
-        "scoresFor": 2053,
-        "scoresAgainst": 2179,
-        "scoreDiffFormatted": "-126",
-        "team": {
-          "id": 1114276,
-          "name": "Montebelluna Basket",
-          "slug": "montebelluna-basket",
-          "shortName": "Montebelluna Basket"
-        }
-      },
-      {
-        "position": 11,
-        "matches": 26,
-        "wins": 10,
-        "losses": 16,
-        "points": 20,
         "scoresFor": 1945,
         "scoresAgainst": 2062,
         "scoreDiffFormatted": "-117",
@@ -178,6 +162,22 @@
           "name": "Basket Iseo",
           "slug": "basket-iseo",
           "shortName": "Basket Iseo"
+        }
+      },
+      {
+        "position": 11,
+        "matches": 26,
+        "wins": 10,
+        "losses": 16,
+        "points": 20,
+        "scoresFor": 2053,
+        "scoresAgainst": 2179,
+        "scoreDiffFormatted": "-126",
+        "team": {
+          "id": 1114276,
+          "name": "Montebelluna Basket",
+          "slug": "montebelluna-basket",
+          "shortName": "Montebelluna Basket"
         }
       },
       {
