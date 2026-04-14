@@ -2,7 +2,7 @@
   "tournamentId": 27700,
   "seasonId": 77655,
   "seasonLabel": "25/26",
-  "updatedAt": "2026-04-14T19:27:24.996Z",
+  "updatedAt": "2026-04-14T21:03:09.961Z",
   "standings": {
     "gironeA": [
       {
@@ -154,22 +154,6 @@
         "wins": 10,
         "losses": 16,
         "points": 20,
-        "scoresFor": 1945,
-        "scoresAgainst": 2062,
-        "scoreDiffFormatted": "-117",
-        "team": {
-          "id": 1114269,
-          "name": "Basket Iseo",
-          "slug": "basket-iseo",
-          "shortName": "Basket Iseo"
-        }
-      },
-      {
-        "position": 11,
-        "matches": 26,
-        "wins": 10,
-        "losses": 16,
-        "points": 20,
         "scoresFor": 2053,
         "scoresAgainst": 2179,
         "scoreDiffFormatted": "-126",
@@ -178,6 +162,22 @@
           "name": "Montebelluna Basket",
           "slug": "montebelluna-basket",
           "shortName": "Montebelluna Basket"
+        }
+      },
+      {
+        "position": 11,
+        "matches": 26,
+        "wins": 10,
+        "losses": 16,
+        "points": 20,
+        "scoresFor": 1945,
+        "scoresAgainst": 2062,
+        "scoreDiffFormatted": "-117",
+        "team": {
+          "id": 1114269,
+          "name": "Basket Iseo",
+          "slug": "basket-iseo",
+          "shortName": "Basket Iseo"
         }
       },
       {
