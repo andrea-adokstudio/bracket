@@ -2,7 +2,7 @@
   "tournamentId": 27700,
   "seasonId": 77655,
   "seasonLabel": "25/26",
-  "updatedAt": "2026-04-15T19:38:55.803Z",
+  "updatedAt": "2026-04-15T21:01:29.498Z",
   "standings": {
     "gironeA": [
       {
@@ -248,13 +248,13 @@
     "gironeB": [
       {
         "position": 1,
-        "matches": 25,
+        "matches": 26,
         "wins": 21,
-        "losses": 4,
+        "losses": 5,
         "points": 42,
-        "scoresFor": 1944,
-        "scoresAgainst": 1712,
-        "scoreDiffFormatted": "+232",
+        "scoresFor": 2010,
+        "scoresAgainst": 1787,
+        "scoreDiffFormatted": "+223",
         "team": {
           "id": 328578,
           "name": "Sangiorgese Basket",
@@ -412,6 +412,22 @@
         "wins": 10,
         "losses": 16,
         "points": 20,
+        "scoresFor": 2027,
+        "scoresAgainst": 2132,
+        "scoreDiffFormatted": "-105",
+        "team": {
+          "id": 1114302,
+          "name": "Derthona Basketball Lab",
+          "slug": "derthona-basket",
+          "shortName": "Derthona Basket"
+        }
+      },
+      {
+        "position": 12,
+        "matches": 26,
+        "wins": 10,
+        "losses": 16,
+        "points": 20,
         "scoresFor": 1808,
         "scoresAgainst": 1952,
         "scoreDiffFormatted": "-144",
@@ -420,22 +436,6 @@
           "name": "Blu Orobica Bergamo",
           "slug": "blu-orobica-bergamo",
           "shortName": "Blu Orobica Bergamo"
-        }
-      },
-      {
-        "position": 12,
-        "matches": 25,
-        "wins": 9,
-        "losses": 16,
-        "points": 18,
-        "scoresFor": 1952,
-        "scoresAgainst": 2066,
-        "scoreDiffFormatted": "-114",
-        "team": {
-          "id": 1114302,
-          "name": "Derthona Basketball Lab",
-          "slug": "derthona-basket",
-          "shortName": "Derthona Basket"
         }
       },
       {

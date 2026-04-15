@@ -2,7 +2,7 @@
   "tournamentId": 27700,
   "seasonId": 77655,
   "seasonLabel": "25/26",
-  "updatedAt": "2026-04-15T19:38:55.803Z",
+  "updatedAt": "2026-04-15T21:01:29.498Z",
   "rounds": [
     1,
     2,
@@ -15080,8 +15080,8 @@
           "id": 15190373,
           "round": 27,
           "startTimestamp": 1776277800,
-          "status": "3rd quarter",
-          "statusType": "inprogress",
+          "status": "Ended",
+          "statusType": "finished",
           "groupName": "Division B",
           "homeTeam": {
             "id": 1114302,
@@ -15096,18 +15096,22 @@
             "shortName": "Sangiorgese"
           },
           "homeScore": {
-            "current": 55,
-            "display": 55,
+            "current": 75,
+            "display": 75,
             "period1": 17,
             "period2": 17,
-            "period3": 21
+            "period3": 21,
+            "period4": 20,
+            "normaltime": 75
           },
           "awayScore": {
-            "current": 47,
-            "display": 47,
+            "current": 66,
+            "display": 66,
             "period1": 17,
             "period2": 17,
-            "period3": 13
+            "period3": 16,
+            "period4": 16,
+            "normaltime": 66
           }
         },
         {
