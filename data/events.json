@@ -2,7 +2,7 @@
   "tournamentId": 27700,
   "seasonId": 77655,
   "seasonLabel": "25/26",
-  "updatedAt": "2026-04-16T19:27:11.334Z",
+  "updatedAt": "2026-04-16T20:59:08.318Z",
   "rounds": [
     1,
     2,
@@ -15376,8 +15376,8 @@
           "id": 15190391,
           "round": 28,
           "startTimestamp": 1776366900,
-          "status": "Not started",
-          "statusType": "notstarted",
+          "status": "Ended",
+          "statusType": "finished",
           "groupName": "Division B",
           "homeTeam": {
             "id": 1114288,
@@ -15392,10 +15392,22 @@
             "shortName": "Bocconi Sport Milano"
           },
           "homeScore": {
-            "current": 0
+            "current": 99,
+            "display": 99,
+            "period1": 24,
+            "period2": 22,
+            "period3": 22,
+            "period4": 31,
+            "normaltime": 99
           },
           "awayScore": {
-            "current": 0
+            "current": 104,
+            "display": 104,
+            "period1": 31,
+            "period2": 27,
+            "period3": 30,
+            "period4": 16,
+            "normaltime": 104
           }
         }
       ],

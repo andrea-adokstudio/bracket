@@ -2,7 +2,7 @@
   "tournamentId": 27700,
   "seasonId": 77655,
   "seasonLabel": "25/26",
-  "updatedAt": "2026-04-16T19:27:11.334Z",
+  "updatedAt": "2026-04-16T20:59:08.318Z",
   "standings": {
     "gironeA": [
       {
@@ -376,13 +376,13 @@
       },
       {
         "position": 9,
-        "matches": 25,
-        "wins": 12,
+        "matches": 26,
+        "wins": 13,
         "losses": 13,
-        "points": 24,
-        "scoresFor": 1926,
-        "scoresAgainst": 1971,
-        "scoreDiffFormatted": "-45",
+        "points": 26,
+        "scoresFor": 2030,
+        "scoresAgainst": 2070,
+        "scoreDiffFormatted": "-40",
         "team": {
           "id": 1114283,
           "name": "Bocconi Team Milano",
@@ -440,13 +440,13 @@
       },
       {
         "position": 13,
-        "matches": 25,
+        "matches": 26,
         "wins": 8,
-        "losses": 17,
+        "losses": 18,
         "points": 16,
-        "scoresFor": 1949,
-        "scoresAgainst": 2038,
-        "scoreDiffFormatted": "-89",
+        "scoresFor": 2048,
+        "scoresAgainst": 2142,
+        "scoreDiffFormatted": "-94",
         "team": {
           "id": 1114288,
           "name": "Robur Saronno",
