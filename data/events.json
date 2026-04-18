@@ -2,7 +2,7 @@
   "tournamentId": 27700,
   "seasonId": 77655,
   "seasonLabel": "25/26",
-  "updatedAt": "2026-04-18T20:47:41.766Z",
+  "updatedAt": "2026-04-18T22:44:55.946Z",
   "rounds": [
     1,
     2,
@@ -15616,8 +15616,8 @@
           "id": 15190401,
           "round": 29,
           "startTimestamp": 1776538800,
-          "status": "4th quarter",
-          "statusType": "inprogress",
+          "status": "Ended",
+          "statusType": "finished",
           "groupName": "Division B",
           "homeTeam": {
             "id": 1114301,
@@ -15632,12 +15632,13 @@
             "shortName": "Pallacanestro Pavia 1933"
           },
           "homeScore": {
-            "current": 73,
-            "display": 73,
+            "current": 77,
+            "display": 77,
             "period1": 20,
             "period2": 23,
             "period3": 20,
-            "period4": 10
+            "period4": 14,
+            "normaltime": 77
           },
           "awayScore": {
             "current": 72,
@@ -15645,7 +15646,8 @@
             "period1": 21,
             "period2": 14,
             "period3": 22,
-            "period4": 15
+            "period4": 15,
+            "normaltime": 72
           }
         },
         {

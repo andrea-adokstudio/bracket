@@ -2,7 +2,7 @@
   "tournamentId": 27700,
   "seasonId": 77655,
   "seasonLabel": "25/26",
-  "updatedAt": "2026-04-18T20:47:41.766Z",
+  "updatedAt": "2026-04-18T22:44:55.946Z",
   "standings": {
     "gironeA": [
       {
@@ -280,13 +280,13 @@
       },
       {
         "position": 3,
-        "matches": 26,
+        "matches": 27,
         "wins": 18,
-        "losses": 8,
+        "losses": 9,
         "points": 36,
-        "scoresFor": 2141,
-        "scoresAgainst": 1988,
-        "scoreDiffFormatted": "+153",
+        "scoresFor": 2213,
+        "scoresAgainst": 2065,
+        "scoreDiffFormatted": "+148",
         "team": {
           "id": 1114303,
           "name": "Pallacanestro Pavia 1933",
@@ -392,13 +392,13 @@
       },
       {
         "position": 10,
-        "matches": 26,
-        "wins": 10,
+        "matches": 27,
+        "wins": 11,
         "losses": 16,
-        "points": 20,
-        "scoresFor": 1934,
-        "scoresAgainst": 2004,
-        "scoreDiffFormatted": "-70",
+        "points": 22,
+        "scoresFor": 2011,
+        "scoresAgainst": 2076,
+        "scoreDiffFormatted": "-65",
         "team": {
           "id": 1114301,
           "name": "Basket Sette Laghi Gazzada",
