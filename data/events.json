@@ -2,7 +2,7 @@
   "tournamentId": 27700,
   "seasonId": 77655,
   "seasonLabel": "25/26",
-  "updatedAt": "2026-04-18T19:03:00.287Z",
+  "updatedAt": "2026-04-18T20:47:41.766Z",
   "rounds": [
     1,
     2,
@@ -7563,8 +7563,8 @@
           "id": 15188198,
           "round": 29,
           "startTimestamp": 1776537000,
-          "status": "2nd quarter",
-          "statusType": "inprogress",
+          "status": "Ended",
+          "statusType": "finished",
           "groupName": "Division A",
           "homeTeam": {
             "id": 1114269,
@@ -7579,24 +7579,30 @@
             "shortName": "Romano Lombardo Basket"
           },
           "homeScore": {
-            "current": 26,
-            "display": 26,
+            "current": 76,
+            "display": 76,
             "period1": 21,
-            "period2": 5
+            "period2": 21,
+            "period3": 16,
+            "period4": 18,
+            "normaltime": 76
           },
           "awayScore": {
-            "current": 15,
-            "display": 15,
+            "current": 71,
+            "display": 71,
             "period1": 12,
-            "period2": 3
+            "period2": 20,
+            "period3": 18,
+            "period4": 21,
+            "normaltime": 71
           }
         },
         {
           "id": 15188197,
           "round": 29,
           "startTimestamp": 1776537000,
-          "status": "2nd quarter",
-          "statusType": "inprogress",
+          "status": "Ended",
+          "statusType": "finished",
           "groupName": "Division A",
           "homeTeam": {
             "id": 1114276,
@@ -7611,24 +7617,30 @@
             "shortName": "Playbasket Carré"
           },
           "homeScore": {
-            "current": 32,
-            "display": 32,
+            "current": 83,
+            "display": 83,
             "period1": 16,
-            "period2": 16
+            "period2": 25,
+            "period3": 21,
+            "period4": 21,
+            "normaltime": 83
           },
           "awayScore": {
-            "current": 23,
-            "display": 23,
+            "current": 66,
+            "display": 66,
             "period1": 17,
-            "period2": 6
+            "period2": 14,
+            "period3": 21,
+            "period4": 14,
+            "normaltime": 66
           }
         },
         {
           "id": 15188199,
           "round": 29,
           "startTimestamp": 1776538800,
-          "status": "1st quarter",
-          "statusType": "inprogress",
+          "status": "Ended",
+          "statusType": "finished",
           "groupName": "Division A",
           "homeTeam": {
             "id": 1114270,
@@ -7643,14 +7655,22 @@
             "shortName": "New Flying Balls Ozzano"
           },
           "homeScore": {
-            "current": 0,
-            "display": 0,
-            "period1": 0
+            "current": 70,
+            "display": 70,
+            "period1": 25,
+            "period2": 16,
+            "period3": 18,
+            "period4": 11,
+            "normaltime": 70
           },
           "awayScore": {
-            "current": 2,
-            "display": 2,
-            "period1": 2
+            "current": 85,
+            "display": 85,
+            "period1": 21,
+            "period2": 19,
+            "period3": 27,
+            "period4": 18,
+            "normaltime": 85
           }
         },
         {
@@ -15596,7 +15616,7 @@
           "id": 15190401,
           "round": 29,
           "startTimestamp": 1776538800,
-          "status": "1st quarter",
+          "status": "4th quarter",
           "statusType": "inprogress",
           "groupName": "Division B",
           "homeTeam": {
@@ -15612,22 +15632,28 @@
             "shortName": "Pallacanestro Pavia 1933"
           },
           "homeScore": {
-            "current": 2,
-            "display": 2,
-            "period1": 2
+            "current": 73,
+            "display": 73,
+            "period1": 20,
+            "period2": 23,
+            "period3": 20,
+            "period4": 10
           },
           "awayScore": {
-            "current": 0,
-            "display": 0,
-            "period1": 0
+            "current": 72,
+            "display": 72,
+            "period1": 21,
+            "period2": 14,
+            "period3": 22,
+            "period4": 15
           }
         },
         {
           "id": 15190402,
           "round": 29,
           "startTimestamp": 1776538800,
-          "status": "Not started",
-          "statusType": "notstarted",
+          "status": "Ended",
+          "statusType": "finished",
           "groupName": "Division B",
           "homeTeam": {
             "id": 1114287,
@@ -15642,10 +15668,22 @@
             "shortName": "Oleggio Magic Basket"
           },
           "homeScore": {
-            "current": 0
+            "current": 82,
+            "display": 82,
+            "period1": 17,
+            "period2": 23,
+            "period3": 20,
+            "period4": 22,
+            "normaltime": 82
           },
           "awayScore": {
-            "current": 0
+            "current": 70,
+            "display": 70,
+            "period1": 16,
+            "period2": 21,
+            "period3": 15,
+            "period4": 18,
+            "normaltime": 70
           }
         },
         {
