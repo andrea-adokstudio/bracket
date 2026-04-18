@@ -2,7 +2,7 @@
   "tournamentId": 27700,
   "seasonId": 77655,
   "seasonLabel": "25/26",
-  "updatedAt": "2026-04-18T16:53:16.796Z",
+  "updatedAt": "2026-04-18T19:03:00.287Z",
   "standings": {
     "gironeA": [
       {
@@ -39,13 +39,13 @@
       },
       {
         "position": 3,
-        "matches": 26,
-        "wins": 18,
+        "matches": 27,
+        "wins": 19,
         "losses": 8,
-        "points": 36,
-        "scoresFor": 2147,
-        "scoresAgainst": 2013,
-        "scoreDiffFormatted": "+134",
+        "points": 38,
+        "scoresFor": 2216,
+        "scoresAgainst": 2075,
+        "scoreDiffFormatted": "+141",
         "team": {
           "id": 1114278,
           "name": "Dinamo Gorizia",
@@ -119,13 +119,13 @@
       },
       {
         "position": 8,
-        "matches": 26,
+        "matches": 27,
         "wins": 13,
-        "losses": 13,
+        "losses": 14,
         "points": 26,
-        "scoresFor": 2016,
-        "scoresAgainst": 2019,
-        "scoreDiffFormatted": "-3",
+        "scoresFor": 2078,
+        "scoresAgainst": 2088,
+        "scoreDiffFormatted": "-10",
         "team": {
           "id": 826594,
           "name": "Bmr Basket 2000 Reggio Emilia",
@@ -296,13 +296,13 @@
       },
       {
         "position": 4,
-        "matches": 26,
-        "wins": 17,
+        "matches": 27,
+        "wins": 18,
         "losses": 9,
-        "points": 34,
-        "scoresFor": 2092,
-        "scoresAgainst": 1984,
-        "scoreDiffFormatted": "+108",
+        "points": 36,
+        "scoresFor": 2179,
+        "scoresAgainst": 2053,
+        "scoreDiffFormatted": "+126",
         "team": {
           "id": 1114284,
           "name": "SocialOSA Milano",
@@ -312,6 +312,38 @@
       },
       {
         "position": 5,
+        "matches": 27,
+        "wins": 15,
+        "losses": 12,
+        "points": 30,
+        "scoresFor": 2177,
+        "scoresAgainst": 2147,
+        "scoreDiffFormatted": "+30",
+        "team": {
+          "id": 1114282,
+          "name": "U.S. Nervianese",
+          "slug": "us-nervianese",
+          "shortName": "U.S. Nervianese"
+        }
+      },
+      {
+        "position": 6,
+        "matches": 27,
+        "wins": 15,
+        "losses": 12,
+        "points": 30,
+        "scoresFor": 2081,
+        "scoresAgainst": 1967,
+        "scoreDiffFormatted": "+114",
+        "team": {
+          "id": 446074,
+          "name": "Basketball Gallarate",
+          "slug": "basketball-gallarate",
+          "shortName": "Gallarate"
+        }
+      },
+      {
+        "position": 7,
         "matches": 27,
         "wins": 15,
         "losses": 12,
@@ -327,46 +359,14 @@
         }
       },
       {
-        "position": 6,
-        "matches": 26,
-        "wins": 14,
-        "losses": 12,
-        "points": 28,
-        "scoresFor": 2094,
-        "scoresAgainst": 2073,
-        "scoreDiffFormatted": "+21",
-        "team": {
-          "id": 1114282,
-          "name": "U.S. Nervianese",
-          "slug": "us-nervianese",
-          "shortName": "U.S. Nervianese"
-        }
-      },
-      {
-        "position": 7,
-        "matches": 26,
-        "wins": 14,
-        "losses": 12,
-        "points": 28,
-        "scoresFor": 1990,
-        "scoresAgainst": 1882,
-        "scoreDiffFormatted": "+108",
-        "team": {
-          "id": 446074,
-          "name": "Basketball Gallarate",
-          "slug": "basketball-gallarate",
-          "shortName": "Gallarate"
-        }
-      },
-      {
         "position": 8,
-        "matches": 26,
-        "wins": 13,
+        "matches": 27,
+        "wins": 14,
         "losses": 13,
-        "points": 26,
-        "scoresFor": 2082,
-        "scoresAgainst": 2124,
-        "scoreDiffFormatted": "-42",
+        "points": 28,
+        "scoresFor": 2170,
+        "scoresAgainst": 2210,
+        "scoreDiffFormatted": "-40",
         "team": {
           "id": 1114299,
           "name": "Campus Varese",
@@ -408,13 +408,13 @@
       },
       {
         "position": 11,
-        "matches": 26,
+        "matches": 27,
         "wins": 10,
-        "losses": 16,
+        "losses": 17,
         "points": 20,
-        "scoresFor": 2027,
-        "scoresAgainst": 2132,
-        "scoreDiffFormatted": "-105",
+        "scoresFor": 2112,
+        "scoresAgainst": 2223,
+        "scoreDiffFormatted": "-111",
         "team": {
           "id": 1114302,
           "name": "Derthona Basketball Lab",
@@ -424,13 +424,13 @@
       },
       {
         "position": 12,
-        "matches": 26,
+        "matches": 27,
         "wins": 10,
-        "losses": 16,
+        "losses": 17,
         "points": 20,
-        "scoresFor": 1808,
-        "scoresAgainst": 1952,
-        "scoreDiffFormatted": "-144",
+        "scoresFor": 1894,
+        "scoresAgainst": 2040,
+        "scoreDiffFormatted": "-146",
         "team": {
           "id": 1114285,
           "name": "Blu Orobica Bergamo",
@@ -456,13 +456,13 @@
       },
       {
         "position": 14,
-        "matches": 25,
+        "matches": 26,
         "wins": 8,
-        "losses": 17,
+        "losses": 18,
         "points": 16,
-        "scoresFor": 2004,
-        "scoresAgainst": 2002,
-        "scoreDiffFormatted": "+2",
+        "scoresFor": 2078,
+        "scoresAgainst": 2085,
+        "scoreDiffFormatted": "-7",
         "team": {
           "id": 1114297,
           "name": "MaGo Marnatese",
@@ -472,13 +472,13 @@
       },
       {
         "position": 15,
-        "matches": 26,
+        "matches": 27,
         "wins": 4,
-        "losses": 22,
+        "losses": 23,
         "points": 8,
-        "scoresFor": 1620,
-        "scoresAgainst": 2036,
-        "scoreDiffFormatted": "-416",
+        "scoresFor": 1689,
+        "scoresAgainst": 2123,
+        "scoreDiffFormatted": "-434",
         "team": {
           "id": 1114286,
           "name": "Sansebasket Cremona",

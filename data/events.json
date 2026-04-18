@@ -2,7 +2,7 @@
   "tournamentId": 27700,
   "seasonId": 77655,
   "seasonLabel": "25/26",
-  "updatedAt": "2026-04-18T16:53:16.796Z",
+  "updatedAt": "2026-04-18T19:03:00.287Z",
   "rounds": [
     1,
     2,
@@ -7526,8 +7526,8 @@
           "id": 15188196,
           "round": 29,
           "startTimestamp": 1776528000,
-          "status": "3rd quarter",
-          "statusType": "inprogress",
+          "status": "Ended",
+          "statusType": "finished",
           "groupName": "Division A",
           "homeTeam": {
             "id": 826594,
@@ -7541,26 +7541,30 @@
             "shortName": "Dinamo Gorizia"
           },
           "homeScore": {
-            "current": 41,
-            "display": 41,
+            "current": 62,
+            "display": 62,
             "period1": 17,
             "period2": 24,
-            "period3": 0
+            "period3": 8,
+            "period4": 13,
+            "normaltime": 62
           },
           "awayScore": {
-            "current": 43,
-            "display": 43,
+            "current": 69,
+            "display": 69,
             "period1": 18,
             "period2": 25,
-            "period3": 0
+            "period3": 11,
+            "period4": 15,
+            "normaltime": 69
           }
         },
         {
           "id": 15188198,
           "round": 29,
           "startTimestamp": 1776537000,
-          "status": "Not started",
-          "statusType": "notstarted",
+          "status": "2nd quarter",
+          "statusType": "inprogress",
           "groupName": "Division A",
           "homeTeam": {
             "id": 1114269,
@@ -7575,18 +7579,24 @@
             "shortName": "Romano Lombardo Basket"
           },
           "homeScore": {
-            "current": 0
+            "current": 26,
+            "display": 26,
+            "period1": 21,
+            "period2": 5
           },
           "awayScore": {
-            "current": 0
+            "current": 15,
+            "display": 15,
+            "period1": 12,
+            "period2": 3
           }
         },
         {
           "id": 15188197,
           "round": 29,
           "startTimestamp": 1776537000,
-          "status": "Not started",
-          "statusType": "notstarted",
+          "status": "2nd quarter",
+          "statusType": "inprogress",
           "groupName": "Division A",
           "homeTeam": {
             "id": 1114276,
@@ -7601,18 +7611,24 @@
             "shortName": "Playbasket Carré"
           },
           "homeScore": {
-            "current": 0
+            "current": 32,
+            "display": 32,
+            "period1": 16,
+            "period2": 16
           },
           "awayScore": {
-            "current": 0
+            "current": 23,
+            "display": 23,
+            "period1": 17,
+            "period2": 6
           }
         },
         {
           "id": 15188199,
           "round": 29,
           "startTimestamp": 1776538800,
-          "status": "Not started",
-          "statusType": "notstarted",
+          "status": "1st quarter",
+          "statusType": "inprogress",
           "groupName": "Division A",
           "homeTeam": {
             "id": 1114270,
@@ -7627,10 +7643,14 @@
             "shortName": "New Flying Balls Ozzano"
           },
           "homeScore": {
-            "current": 0
+            "current": 0,
+            "display": 0,
+            "period1": 0
           },
           "awayScore": {
-            "current": 0
+            "current": 2,
+            "display": 2,
+            "period1": 2
           }
         },
         {
@@ -15424,8 +15444,8 @@
           "id": 15190396,
           "round": 29,
           "startTimestamp": 1776528000,
-          "status": "Halftime",
-          "statusType": "inprogress",
+          "status": "Ended",
+          "statusType": "finished",
           "groupName": "Division B",
           "homeTeam": {
             "id": 446074,
@@ -15440,24 +15460,30 @@
             "shortName": "Derthona Basket"
           },
           "homeScore": {
-            "current": 48,
-            "display": 48,
+            "current": 91,
+            "display": 91,
             "period1": 24,
-            "period2": 24
+            "period2": 24,
+            "period3": 19,
+            "period4": 24,
+            "normaltime": 91
           },
           "awayScore": {
-            "current": 47,
-            "display": 47,
+            "current": 85,
+            "display": 85,
             "period1": 26,
-            "period2": 21
+            "period2": 21,
+            "period3": 17,
+            "period4": 21,
+            "normaltime": 85
           }
         },
         {
           "id": 15190395,
           "round": 29,
           "startTimestamp": 1776528000,
-          "status": "3rd quarter",
-          "statusType": "inprogress",
+          "status": "Ended",
+          "statusType": "finished",
           "groupName": "Division B",
           "homeTeam": {
             "id": 1114284,
@@ -15472,26 +15498,30 @@
             "shortName": "Sansebasket Cremona"
           },
           "homeScore": {
-            "current": 54,
-            "display": 54,
+            "current": 87,
+            "display": 87,
             "period1": 33,
             "period2": 19,
-            "period3": 2
+            "period3": 18,
+            "period4": 17,
+            "normaltime": 87
           },
           "awayScore": {
-            "current": 47,
-            "display": 47,
+            "current": 69,
+            "display": 69,
             "period1": 20,
             "period2": 24,
-            "period3": 3
+            "period3": 16,
+            "period4": 9,
+            "normaltime": 69
           }
         },
         {
           "id": 15190399,
           "round": 29,
           "startTimestamp": 1776529800,
-          "status": "1st quarter",
-          "statusType": "inprogress",
+          "status": "Ended",
+          "statusType": "finished",
           "groupName": "Division B",
           "homeTeam": {
             "id": 1114297,
@@ -15506,22 +15536,30 @@
             "shortName": "U.S. Nervianese"
           },
           "homeScore": {
-            "current": 25,
-            "display": 25,
-            "period1": 25
+            "current": 74,
+            "display": 74,
+            "period1": 27,
+            "period2": 14,
+            "period3": 16,
+            "period4": 17,
+            "normaltime": 74
           },
           "awayScore": {
-            "current": 22,
-            "display": 22,
-            "period1": 22
+            "current": 83,
+            "display": 83,
+            "period1": 22,
+            "period2": 22,
+            "period3": 20,
+            "period4": 19,
+            "normaltime": 83
           }
         },
         {
           "id": 15190400,
           "round": 29,
           "startTimestamp": 1776531600,
-          "status": "Not started",
-          "statusType": "notstarted",
+          "status": "Ended",
+          "statusType": "finished",
           "groupName": "Division B",
           "homeTeam": {
             "id": 1114299,
@@ -15536,18 +15574,30 @@
             "shortName": "Blu Orobica Bergamo"
           },
           "homeScore": {
-            "current": 0
+            "current": 88,
+            "display": 88,
+            "period1": 24,
+            "period2": 15,
+            "period3": 24,
+            "period4": 25,
+            "normaltime": 88
           },
           "awayScore": {
-            "current": 0
+            "current": 86,
+            "display": 86,
+            "period1": 22,
+            "period2": 19,
+            "period3": 20,
+            "period4": 25,
+            "normaltime": 86
           }
         },
         {
           "id": 15190401,
           "round": 29,
           "startTimestamp": 1776538800,
-          "status": "Not started",
-          "statusType": "notstarted",
+          "status": "1st quarter",
+          "statusType": "inprogress",
           "groupName": "Division B",
           "homeTeam": {
             "id": 1114301,
@@ -15562,10 +15612,14 @@
             "shortName": "Pallacanestro Pavia 1933"
           },
           "homeScore": {
-            "current": 0
+            "current": 2,
+            "display": 2,
+            "period1": 2
           },
           "awayScore": {
-            "current": 0
+            "current": 0,
+            "display": 0,
+            "period1": 0
           }
         },
         {
