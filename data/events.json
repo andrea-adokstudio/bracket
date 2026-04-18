@@ -2,7 +2,7 @@
   "tournamentId": 27700,
   "seasonId": 77655,
   "seasonLabel": "25/26",
-  "updatedAt": "2026-04-18T14:50:30.266Z",
+  "updatedAt": "2026-04-18T16:53:16.796Z",
   "rounds": [
     1,
     2,
@@ -7526,8 +7526,8 @@
           "id": 15188196,
           "round": 29,
           "startTimestamp": 1776528000,
-          "status": "Not started",
-          "statusType": "notstarted",
+          "status": "3rd quarter",
+          "statusType": "inprogress",
           "groupName": "Division A",
           "homeTeam": {
             "id": 826594,
@@ -7541,10 +7541,18 @@
             "shortName": "Dinamo Gorizia"
           },
           "homeScore": {
-            "current": 0
+            "current": 41,
+            "display": 41,
+            "period1": 17,
+            "period2": 24,
+            "period3": 0
           },
           "awayScore": {
-            "current": 0
+            "current": 43,
+            "display": 43,
+            "period1": 18,
+            "period2": 25,
+            "period3": 0
           }
         },
         {
@@ -15416,8 +15424,8 @@
           "id": 15190396,
           "round": 29,
           "startTimestamp": 1776528000,
-          "status": "Not started",
-          "statusType": "notstarted",
+          "status": "Halftime",
+          "statusType": "inprogress",
           "groupName": "Division B",
           "homeTeam": {
             "id": 446074,
@@ -15432,18 +15440,24 @@
             "shortName": "Derthona Basket"
           },
           "homeScore": {
-            "current": 0
+            "current": 48,
+            "display": 48,
+            "period1": 24,
+            "period2": 24
           },
           "awayScore": {
-            "current": 0
+            "current": 47,
+            "display": 47,
+            "period1": 26,
+            "period2": 21
           }
         },
         {
           "id": 15190395,
           "round": 29,
           "startTimestamp": 1776528000,
-          "status": "Not started",
-          "statusType": "notstarted",
+          "status": "3rd quarter",
+          "statusType": "inprogress",
           "groupName": "Division B",
           "homeTeam": {
             "id": 1114284,
@@ -15458,18 +15472,26 @@
             "shortName": "Sansebasket Cremona"
           },
           "homeScore": {
-            "current": 0
+            "current": 54,
+            "display": 54,
+            "period1": 33,
+            "period2": 19,
+            "period3": 2
           },
           "awayScore": {
-            "current": 0
+            "current": 47,
+            "display": 47,
+            "period1": 20,
+            "period2": 24,
+            "period3": 3
           }
         },
         {
           "id": 15190399,
           "round": 29,
           "startTimestamp": 1776529800,
-          "status": "Not started",
-          "statusType": "notstarted",
+          "status": "1st quarter",
+          "statusType": "inprogress",
           "groupName": "Division B",
           "homeTeam": {
             "id": 1114297,
@@ -15484,10 +15506,14 @@
             "shortName": "U.S. Nervianese"
           },
           "homeScore": {
-            "current": 0
+            "current": 25,
+            "display": 25,
+            "period1": 25
           },
           "awayScore": {
-            "current": 0
+            "current": 22,
+            "display": 22,
+            "period1": 22
           }
         },
         {
