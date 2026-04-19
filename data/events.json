@@ -2,7 +2,7 @@
   "tournamentId": 27700,
   "seasonId": 77655,
   "seasonLabel": "25/26",
-  "updatedAt": "2026-04-19T16:53:22.298Z",
+  "updatedAt": "2026-04-19T19:03:08.871Z",
   "rounds": [
     1,
     2,
@@ -7677,8 +7677,8 @@
           "id": 15188200,
           "round": 29,
           "startTimestamp": 1776614400,
-          "status": "Not started",
-          "statusType": "notstarted",
+          "status": "Ended",
+          "statusType": "finished",
           "groupName": "Division A",
           "homeTeam": {
             "id": 331088,
@@ -7693,18 +7693,30 @@
             "shortName": "Padova"
           },
           "homeScore": {
-            "current": 0
+            "current": 98,
+            "display": 98,
+            "period1": 26,
+            "period2": 21,
+            "period3": 30,
+            "period4": 21,
+            "normaltime": 98
           },
           "awayScore": {
-            "current": 0
+            "current": 79,
+            "display": 79,
+            "period1": 21,
+            "period2": 30,
+            "period3": 18,
+            "period4": 10,
+            "normaltime": 79
           }
         },
         {
           "id": 15188201,
           "round": 29,
           "startTimestamp": 1776614400,
-          "status": "Not started",
-          "statusType": "notstarted",
+          "status": "Ended",
+          "statusType": "finished",
           "groupName": "Division A",
           "homeTeam": {
             "id": 1114279,
@@ -7719,18 +7731,30 @@
             "shortName": "Olimpia Castello"
           },
           "homeScore": {
-            "current": 0
+            "current": 89,
+            "display": 89,
+            "period1": 23,
+            "period2": 15,
+            "period3": 29,
+            "period4": 22,
+            "normaltime": 89
           },
           "awayScore": {
-            "current": 0
+            "current": 79,
+            "display": 79,
+            "period1": 19,
+            "period2": 18,
+            "period3": 19,
+            "period4": 23,
+            "normaltime": 79
           }
         },
         {
           "id": 15188202,
           "round": 29,
           "startTimestamp": 1776614400,
-          "status": "Not started",
-          "statusType": "notstarted",
+          "status": "Ended",
+          "statusType": "finished",
           "groupName": "Division A",
           "homeTeam": {
             "id": 1114275,
@@ -7745,10 +7769,22 @@
             "shortName": "JB Stings Curtatone"
           },
           "homeScore": {
-            "current": 0
+            "current": 82,
+            "display": 82,
+            "period1": 23,
+            "period2": 22,
+            "period3": 25,
+            "period4": 12,
+            "normaltime": 82
           },
           "awayScore": {
-            "current": 0
+            "current": 56,
+            "display": 56,
+            "period1": 13,
+            "period2": 23,
+            "period3": 7,
+            "period4": 13,
+            "normaltime": 56
           }
         }
       ],
@@ -15692,8 +15728,8 @@
           "id": 15190404,
           "round": 29,
           "startTimestamp": 1776614400,
-          "status": "Not started",
-          "statusType": "notstarted",
+          "status": "Ended",
+          "statusType": "finished",
           "groupName": "Division B",
           "homeTeam": {
             "id": 1114283,
@@ -15708,10 +15744,22 @@
             "shortName": "Sangiorgese"
           },
           "homeScore": {
-            "current": 0
+            "current": 56,
+            "display": 56,
+            "period1": 22,
+            "period2": 12,
+            "period3": 10,
+            "period4": 12,
+            "normaltime": 56
           },
           "awayScore": {
-            "current": 0
+            "current": 83,
+            "display": 83,
+            "period1": 17,
+            "period2": 21,
+            "period3": 21,
+            "period4": 24,
+            "normaltime": 83
           }
         }
       ],
