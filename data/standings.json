@@ -2,7 +2,7 @@
   "tournamentId": 27700,
   "seasonId": 77655,
   "seasonLabel": "25/26",
-  "updatedAt": "2026-04-18T22:44:55.946Z",
+  "updatedAt": "2026-04-19T03:39:16.417Z",
   "standings": {
     "gironeA": [
       {
@@ -87,22 +87,6 @@
       },
       {
         "position": 6,
-        "matches": 27,
-        "wins": 14,
-        "losses": 13,
-        "points": 28,
-        "scoresFor": 2020,
-        "scoresAgainst": 1989,
-        "scoreDiffFormatted": "+31",
-        "team": {
-          "id": 1114277,
-          "name": "Sistema Basket Pordenone",
-          "slug": "sistema-basket-pordenone",
-          "shortName": "Sistema Basket Pordenone"
-        }
-      },
-      {
-        "position": 7,
         "matches": 26,
         "wins": 14,
         "losses": 12,
@@ -115,6 +99,22 @@
           "name": "Basket Monfalcone",
           "slug": "basket-monfalcone",
           "shortName": "Monfalcone"
+        }
+      },
+      {
+        "position": 7,
+        "matches": 27,
+        "wins": 14,
+        "losses": 13,
+        "points": 28,
+        "scoresFor": 2020,
+        "scoresAgainst": 1989,
+        "scoreDiffFormatted": "+31",
+        "team": {
+          "id": 1114277,
+          "name": "Sistema Basket Pordenone",
+          "slug": "sistema-basket-pordenone",
+          "shortName": "Sistema Basket Pordenone"
         }
       },
       {
