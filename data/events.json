@@ -2,7 +2,7 @@
   "tournamentId": 27700,
   "seasonId": 77655,
   "seasonLabel": "25/26",
-  "updatedAt": "2026-04-20T10:05:56.456Z",
+  "updatedAt": "2026-04-20T14:03:49.702Z",
   "rounds": [
     1,
     2,
@@ -33,7 +33,8 @@
     27,
     28,
     29,
-    30
+    30,
+    5
   ],
   "events": {
     "gironeA": {
@@ -1111,6 +1112,271 @@
         }
       ],
       "5": [
+        {
+          "id": 14915002,
+          "round": 5,
+          "startTimestamp": 1761408000,
+          "status": "Ended",
+          "statusType": "finished",
+          "groupName": "Division A",
+          "homeTeam": {
+            "id": 826594,
+            "name": "Bmr Basket 2000 Reggio Emilia",
+            "slug": "bmr-basket-2000-reggio-emilia"
+          },
+          "awayTeam": {
+            "id": 331088,
+            "name": "Basket Monfalcone",
+            "slug": "basket-monfalcone",
+            "shortName": "Monfalcone"
+          },
+          "homeScore": {
+            "current": 92,
+            "display": 92,
+            "period1": 23,
+            "period2": 29,
+            "period3": 19,
+            "period4": 21,
+            "normaltime": 92
+          },
+          "awayScore": {
+            "current": 78,
+            "display": 78,
+            "period1": 19,
+            "period2": 19,
+            "period3": 14,
+            "period4": 26,
+            "normaltime": 78
+          }
+        },
+        {
+          "id": 14915004,
+          "round": 5,
+          "startTimestamp": 1761417000,
+          "status": "Ended",
+          "statusType": "finished",
+          "groupName": "Division A",
+          "homeTeam": {
+            "id": 1114276,
+            "name": "Montebelluna Basket",
+            "slug": "montebelluna-basket",
+            "shortName": "Montebelluna Basket"
+          },
+          "awayTeam": {
+            "id": 1114278,
+            "name": "Dinamo Gorizia",
+            "slug": "dinamo-gorizia",
+            "shortName": "Dinamo Gorizia"
+          },
+          "homeScore": {
+            "current": 78,
+            "display": 78,
+            "period1": 22,
+            "period2": 22,
+            "period3": 14,
+            "period4": 20,
+            "normaltime": 78
+          },
+          "awayScore": {
+            "current": 83,
+            "display": 83,
+            "period1": 17,
+            "period2": 15,
+            "period3": 26,
+            "period4": 25,
+            "normaltime": 83
+          }
+        },
+        {
+          "id": 14915006,
+          "round": 5,
+          "startTimestamp": 1761417000,
+          "status": "Ended",
+          "statusType": "finished",
+          "groupName": "Division A",
+          "homeTeam": {
+            "id": 1114272,
+            "name": "New Flying Balls Ozzano",
+            "slug": "new-flying-balls-ozzano",
+            "shortName": "New Flying Balls Ozzano"
+          },
+          "awayTeam": {
+            "id": 264607,
+            "name": "Virtus Padova Basket",
+            "slug": "virtus-padova-basket",
+            "shortName": "Padova"
+          },
+          "homeScore": {
+            "current": 84,
+            "display": 84,
+            "period1": 25,
+            "period2": 14,
+            "period3": 26,
+            "period4": 19,
+            "normaltime": 84
+          },
+          "awayScore": {
+            "current": 58,
+            "display": 58,
+            "period1": 13,
+            "period2": 17,
+            "period3": 7,
+            "period4": 21,
+            "normaltime": 58
+          }
+        },
+        {
+          "id": 14915008,
+          "round": 5,
+          "startTimestamp": 1761418800,
+          "status": "Ended",
+          "statusType": "finished",
+          "groupName": "Division A",
+          "homeTeam": {
+            "id": 1114270,
+            "name": "Pallacanestro Gardonese",
+            "slug": "pallacanestro-gardonese",
+            "shortName": "Pallacanestro Gardonese"
+          },
+          "awayTeam": {
+            "id": 1114277,
+            "name": "Sistema Basket Pordenone",
+            "slug": "sistema-basket-pordenone",
+            "shortName": "Sistema Basket Pordenone"
+          },
+          "homeScore": {
+            "current": 83,
+            "display": 83,
+            "period1": 16,
+            "period2": 20,
+            "period3": 24,
+            "period4": 23,
+            "normaltime": 83
+          },
+          "awayScore": {
+            "current": 64,
+            "display": 64,
+            "period1": 15,
+            "period2": 20,
+            "period3": 19,
+            "period4": 10,
+            "normaltime": 64
+          }
+        },
+        {
+          "id": 14915010,
+          "round": 5,
+          "startTimestamp": 1761498000,
+          "status": "Ended",
+          "statusType": "finished",
+          "groupName": "Division A",
+          "homeTeam": {
+            "id": 1114271,
+            "name": "JB Stings Curtatone",
+            "slug": "jb-stings-curtatone",
+            "shortName": "JB Stings Curtatone"
+          },
+          "awayTeam": {
+            "id": 1114268,
+            "name": "Romano Lombardo Basket",
+            "slug": "romano-lombardo-basket",
+            "shortName": "Romano Lombardo Basket"
+          },
+          "homeScore": {
+            "current": 81,
+            "display": 81,
+            "period1": 30,
+            "period2": 16,
+            "period3": 18,
+            "period4": 17,
+            "normaltime": 81
+          },
+          "awayScore": {
+            "current": 57,
+            "display": 57,
+            "period1": 17,
+            "period2": 19,
+            "period3": 12,
+            "period4": 9,
+            "normaltime": 57
+          }
+        },
+        {
+          "id": 14915009,
+          "round": 5,
+          "startTimestamp": 1761498000,
+          "status": "Ended",
+          "statusType": "finished",
+          "groupName": "Division A",
+          "homeTeam": {
+            "id": 1114275,
+            "name": "S.C. Oderzo Basket",
+            "slug": "sc-oderzo-basket",
+            "shortName": "S.C. Oderzo Basket"
+          },
+          "awayTeam": {
+            "id": 1114269,
+            "name": "Basket Iseo",
+            "slug": "basket-iseo",
+            "shortName": "Basket Iseo"
+          },
+          "homeScore": {
+            "current": 95,
+            "display": 95,
+            "period1": 22,
+            "period2": 26,
+            "period3": 17,
+            "period4": 30,
+            "normaltime": 95
+          },
+          "awayScore": {
+            "current": 55,
+            "display": 55,
+            "period1": 17,
+            "period2": 15,
+            "period3": 8,
+            "period4": 15,
+            "normaltime": 55
+          }
+        },
+        {
+          "id": 14915011,
+          "round": 5,
+          "startTimestamp": 1761499800,
+          "status": "Ended",
+          "statusType": "finished",
+          "groupName": "Division A",
+          "homeTeam": {
+            "id": 1114273,
+            "name": "Olimpia Castello",
+            "slug": "olimpia-castello",
+            "shortName": "Olimpia Castello"
+          },
+          "awayTeam": {
+            "id": 1114274,
+            "name": "Playbasket Carré",
+            "slug": "playbasket-carre",
+            "shortName": "Playbasket Carré"
+          },
+          "homeScore": {
+            "current": 72,
+            "display": 72,
+            "period1": 23,
+            "period2": 18,
+            "period3": 18,
+            "period4": 13,
+            "normaltime": 72
+          },
+          "awayScore": {
+            "current": 81,
+            "display": 81,
+            "period1": 18,
+            "period2": 23,
+            "period3": 18,
+            "period4": 22,
+            "normaltime": 81
+          }
+        },
         {
           "id": 14915002,
           "round": 5,
@@ -9054,6 +9320,272 @@
         }
       ],
       "5": [
+        {
+          "id": 14915012,
+          "round": 5,
+          "startTimestamp": 1761408000,
+          "status": "Ended",
+          "statusType": "finished",
+          "groupName": "Division B",
+          "homeTeam": {
+            "id": 1114283,
+            "name": "Bocconi Team Milano",
+            "slug": "bocconi-sport-milano",
+            "shortName": "Bocconi Sport Milano"
+          },
+          "awayTeam": {
+            "id": 1114303,
+            "name": "Pallacanestro Pavia 1933",
+            "slug": "pallacanestro-pavia-1933",
+            "shortName": "Pallacanestro Pavia 1933"
+          },
+          "homeScore": {
+            "current": 81,
+            "display": 81,
+            "period1": 27,
+            "period2": 14,
+            "period3": 18,
+            "period4": 22,
+            "normaltime": 81
+          },
+          "awayScore": {
+            "current": 79,
+            "display": 79,
+            "period1": 22,
+            "period2": 16,
+            "period3": 19,
+            "period4": 22,
+            "normaltime": 79
+          }
+        },
+        {
+          "id": 14915013,
+          "round": 5,
+          "startTimestamp": 1761408000,
+          "status": "Ended",
+          "statusType": "finished",
+          "groupName": "Division B",
+          "homeTeam": {
+            "id": 1114284,
+            "name": "SocialOSA Milano",
+            "slug": "social-osa-milano",
+            "shortName": "Social OSA Milano"
+          },
+          "awayTeam": {
+            "id": 1114287,
+            "name": "Basket Team 95 Pizzighettone",
+            "slug": "basket-team-95-pizzighettone",
+            "shortName": "Basket Team 95 Pizzighettone"
+          },
+          "homeScore": {
+            "current": 70,
+            "display": 70,
+            "period1": 18,
+            "period2": 23,
+            "period3": 16,
+            "period4": 13,
+            "normaltime": 70
+          },
+          "awayScore": {
+            "current": 79,
+            "display": 79,
+            "period1": 23,
+            "period2": 15,
+            "period3": 23,
+            "period4": 18,
+            "normaltime": 79
+          }
+        },
+        {
+          "id": 14915018,
+          "round": 5,
+          "startTimestamp": 1761418800,
+          "status": "Ended",
+          "statusType": "finished",
+          "groupName": "Division B",
+          "homeTeam": {
+            "id": 1114301,
+            "name": "Basket Sette Laghi Gazzada",
+            "slug": "basket-sette-laghi-gazzada",
+            "shortName": "Basket Sette Laghi Gazzada"
+          },
+          "awayTeam": {
+            "id": 1114297,
+            "name": "MaGo Marnatese",
+            "slug": "us-marnatese",
+            "shortName": "U.S. Marnatese"
+          },
+          "homeScore": {
+            "current": 67,
+            "display": 67,
+            "period1": 17,
+            "period2": 17,
+            "period3": 17,
+            "period4": 16,
+            "normaltime": 67
+          },
+          "awayScore": {
+            "current": 78,
+            "display": 78,
+            "period1": 17,
+            "period2": 22,
+            "period3": 26,
+            "period4": 13,
+            "normaltime": 78
+          }
+        },
+        {
+          "id": 14915017,
+          "round": 5,
+          "startTimestamp": 1761418800,
+          "status": "Ended",
+          "statusType": "finished",
+          "groupName": "Division B",
+          "homeTeam": {
+            "id": 1114288,
+            "name": "Robur Saronno",
+            "slug": "robur-basket-saronno",
+            "shortName": "Robur Basket Saronno"
+          },
+          "awayTeam": {
+            "id": 328578,
+            "name": "Sangiorgese Basket",
+            "slug": "ltc-sangiorgese-basket",
+            "shortName": "Sangiorgese"
+          },
+          "homeScore": {
+            "current": 71,
+            "display": 71,
+            "period1": 13,
+            "period2": 28,
+            "period3": 13,
+            "period4": 17,
+            "normaltime": 71
+          },
+          "awayScore": {
+            "current": 77,
+            "display": 77,
+            "period1": 22,
+            "period2": 14,
+            "period3": 20,
+            "period4": 21,
+            "normaltime": 77
+          }
+        },
+        {
+          "id": 14915016,
+          "round": 5,
+          "startTimestamp": 1761498000,
+          "status": "Ended",
+          "statusType": "finished",
+          "groupName": "Division B",
+          "homeTeam": {
+            "id": 1114302,
+            "name": "Derthona Basketball Lab",
+            "slug": "derthona-basket",
+            "shortName": "Derthona Basket"
+          },
+          "awayTeam": {
+            "id": 1114282,
+            "name": "U.S. Nervianese",
+            "slug": "us-nervianese",
+            "shortName": "U.S. Nervianese"
+          },
+          "homeScore": {
+            "current": 82,
+            "display": 82,
+            "period1": 20,
+            "period2": 23,
+            "period3": 24,
+            "period4": 15,
+            "normaltime": 82
+          },
+          "awayScore": {
+            "current": 80,
+            "display": 80,
+            "period1": 26,
+            "period2": 22,
+            "period3": 15,
+            "period4": 17,
+            "normaltime": 80
+          }
+        },
+        {
+          "id": 14915014,
+          "round": 5,
+          "startTimestamp": 1761501600,
+          "status": "Ended",
+          "statusType": "finished",
+          "groupName": "Division B",
+          "homeTeam": {
+            "id": 1114299,
+            "name": "Campus Varese",
+            "slug": "campus-varese",
+            "shortName": "Campus Varese"
+          },
+          "awayTeam": {
+            "id": 446074,
+            "name": "Basketball Gallarate",
+            "slug": "basketball-gallarate",
+            "shortName": "Gallarate"
+          },
+          "homeScore": {
+            "current": 81,
+            "display": 81,
+            "period1": 24,
+            "period2": 18,
+            "period3": 15,
+            "period4": 24,
+            "normaltime": 81
+          },
+          "awayScore": {
+            "current": 79,
+            "display": 79,
+            "period1": 17,
+            "period2": 19,
+            "period3": 24,
+            "period4": 19,
+            "normaltime": 79
+          }
+        },
+        {
+          "id": 14915015,
+          "round": 5,
+          "startTimestamp": 1761764400,
+          "status": "Ended",
+          "statusType": "finished",
+          "groupName": "Division B",
+          "homeTeam": {
+            "id": 1114300,
+            "name": "Oleggio Magic Basket",
+            "slug": "oleggio-magic-basket",
+            "shortName": "Oleggio Magic Basket"
+          },
+          "awayTeam": {
+            "id": 1114285,
+            "name": "Blu Orobica Bergamo",
+            "slug": "blu-orobica-bergamo",
+            "shortName": "Blu Orobica Bergamo"
+          },
+          "homeScore": {
+            "current": 90,
+            "display": 90,
+            "period1": 16,
+            "period2": 19,
+            "period3": 29,
+            "period4": 26,
+            "normaltime": 90
+          },
+          "awayScore": {
+            "current": 72,
+            "display": 72,
+            "period1": 19,
+            "period2": 21,
+            "period3": 21,
+            "period4": 11,
+            "normaltime": 72
+          }
+        },
         {
           "id": 14915012,
           "round": 5,
