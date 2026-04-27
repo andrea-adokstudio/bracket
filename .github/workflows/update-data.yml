@@ -29,7 +29,13 @@ jobs:
       - name: Install dependencies
         run: npm install --no-audit --no-fund
 
+      # SofaScore spesso risponde 403 dagli IP GitHub: imposta i secrets HTTPS_PROXY (e se serve
+      # HTTP_PROXY) con un proxy raggiungibile dal runner. Alternativa: runner self-hosted o PR con
+      # data/*.json aggiornati da locale (`npm run fetch-data`).
       - name: Fetch latest data (with retries)
+        env:
+          HTTP_PROXY: ${{ secrets.HTTP_PROXY }}
+          HTTPS_PROXY: ${{ secrets.HTTPS_PROXY }}
         run: |
           for i in 1 2 3; do
             if npm run fetch-data; then

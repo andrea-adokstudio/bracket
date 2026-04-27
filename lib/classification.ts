@@ -361,6 +361,23 @@ export function computeClassificationZones(
   const remainingMatches = getRemainingMatches(events)
   const remainingByTeam = buildRemainingByTeam(remainingMatches)
 
+  if (remainingMatches.length === 0) {
+    return standings.map((team) => {
+      let zone: ClassificationResult["zone"] = "safe"
+      if (team.position <= 8) zone = "playoff-assured"
+      else if (team.position >= 15) zone = "relegated"
+      else if (team.position >= 11 && team.position <= 14) zone = "playout-zone"
+
+      return {
+        teamId: team.team.id,
+        currentRank: team.position,
+        bestPossibleRank: team.position,
+        worstPossibleRank: team.position,
+        zone,
+      }
+    })
+  }
+
   return standings.map((team) => {
     const teamRemaining = remainingByTeam.get(team.team.id) ?? Math.max(0, totalMatches - team.matches)
     const teamMaxPoints = team.points + teamRemaining * 2

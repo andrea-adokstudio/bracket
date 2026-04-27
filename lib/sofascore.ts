@@ -1,5 +1,6 @@
 import { mkdir, writeFile } from "node:fs/promises"
 import path from "node:path"
+import { fetch as undiciFetch, ProxyAgent } from "undici"
 
 import type {
   DashboardData,
@@ -20,19 +21,88 @@ const API_BASES = ["https://api.sofascore.app/api/v1", "https://www.sofascore.co
 const REQUEST_RETRIES = 3
 const RETRY_DELAY_MS = 1200
 
+/** Allineato a richieste XHR dal sito (riduce 403 da WAF su IP datacenter / client “nudi”). */
+const SOFASCORE_WEB_ORIGIN = "https://www.sofascore.com"
+const SOFASCORE_CHROME_UA =
+  "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36"
+
+const SOFASCORE_JSON_HEADERS: Record<string, string> = {
+  "User-Agent": SOFASCORE_CHROME_UA,
+  Accept: "application/json",
+  "Accept-Language": "it-IT,it;q=0.9,en;q=0.8",
+  Referer: `${SOFASCORE_WEB_ORIGIN}/`,
+  Origin: SOFASCORE_WEB_ORIGIN,
+}
+
+let sofascoreSessionPrimed = false
+
+let cachedProxyUrl: string | undefined
+let cachedProxyAgent: ProxyAgent | undefined
+
+function getSofascoreProxyAgent(): ProxyAgent | undefined {
+  const url = (process.env.HTTPS_PROXY ?? process.env.HTTP_PROXY ?? "").trim()
+  if (!url) return undefined
+  if (cachedProxyUrl !== url) {
+    cachedProxyUrl = url
+    cachedProxyAgent = new ProxyAgent(url)
+  }
+  return cachedProxyAgent
+}
+
+/**
+ * Con proxy: undici + ProxyAgent (routing affidabile da CI).
+ * Senza proxy: fetch nativo (stesso stack TLS di prima, meno divergenze rispetto al browser).
+ */
+function sofascoreRequest(url: string, headers: Record<string, string>): Promise<Response> {
+  const dispatcher = getSofascoreProxyAgent()
+  if (dispatcher) {
+    return undiciFetch(url, {
+      cache: "no-store",
+      redirect: "follow",
+      headers,
+      dispatcher,
+    }) as unknown as Promise<Response>
+  }
+  return fetch(url, {
+    cache: "no-store",
+    redirect: "follow",
+    headers,
+  })
+}
+
+async function primeSofascoreSessionOnce(): Promise<void> {
+  if (sofascoreSessionPrimed) return
+  sofascoreSessionPrimed = true
+  try {
+    await sofascoreRequest(`${SOFASCORE_WEB_ORIGIN}/`, {
+      "User-Agent": SOFASCORE_CHROME_UA,
+      Accept: "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+      "Accept-Language": "it-IT,it;q=0.9,en;q=0.8",
+    })
+  } catch {
+    /* cookie/WAF opzionali: le API possono funzionare comunque */
+  }
+}
+
+function sofascoreFetch(url: string): Promise<Response> {
+  return sofascoreRequest(url, SOFASCORE_JSON_HEADERS)
+}
+
 const GROUP_LABEL_TO_KEY: Record<string, GroupKey> = {
   "Division A": "gironeA",
   "Division B": "gironeB",
 }
 
 async function fetchJson<T>(endpoint: string): Promise<T> {
+  await primeSofascoreSessionOnce()
+
   let lastError = "errore sconosciuto"
 
   for (const base of API_BASES) {
     for (let attempt = 1; attempt <= REQUEST_RETRIES; attempt++) {
       const url = `${base}${endpoint}`
       try {
-        const response = await fetch(url, { cache: "no-store" })
+        const response = await sofascoreFetch(url)
 
         if (!response.ok) {
           const body = await response.text().catch(() => "")
