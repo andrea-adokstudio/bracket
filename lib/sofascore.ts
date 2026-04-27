@@ -20,6 +20,12 @@ const SEASON_LABEL = "25/26"
 const API_BASES = ["https://api.sofascore.app/api/v1", "https://www.sofascore.com/api/v1"] as const
 const REQUEST_RETRIES = 3
 const RETRY_DELAY_MS = 1200
+const ROUND_CONCURRENCY = 1
+const ROUND_RETRY_STATUS = new Set([403, 429, 502, 503, 504])
+const ROUND_RETRIES = 4
+const ROUND_RETRY_BASE_DELAY_MS = 1400
+const ROUND_JITTER_MIN_MS = 350
+const ROUND_JITTER_MAX_MS = 900
 
 /** Allineato a richieste XHR dal sito (riduce 403 da WAF su IP datacenter / client “nudi”). */
 const SOFASCORE_WEB_ORIGIN = "https://www.sofascore.com"
@@ -90,6 +96,14 @@ async function primeSofascoreSessionOnce(): Promise<void> {
 
 function sofascoreFetch(url: string): Promise<Response> {
   return sofascoreRequest(url, SOFASCORE_JSON_HEADERS)
+}
+
+function sleep(ms: number): Promise<void> {
+  return new Promise((resolve) => setTimeout(resolve, ms))
+}
+
+function randomInt(min: number, max: number): number {
+  return Math.floor(Math.random() * (max - min + 1)) + min
 }
 
 const GROUP_LABEL_TO_KEY: Record<string, GroupKey> = {
@@ -216,16 +230,35 @@ async function fetchRounds(): Promise<number[]> {
   return payload.rounds.map((item) => item.round)
 }
 
+async function fetchRoundEvents(round: number): Promise<{ events: unknown[] }> {
+  const endpoint = `/unique-tournament/${TOURNAMENT_ID}/season/${SEASON_ID}/events/round/${round}`
+  let lastError = "errore sconosciuto"
+
+  for (let attempt = 1; attempt <= ROUND_RETRIES; attempt++) {
+    try {
+      return await fetchJson<{ events: unknown[] }>(endpoint)
+    } catch (error) {
+      const message = error instanceof Error ? error.message : String(error)
+      lastError = message
+      const statusMatch = message.match(/: (\d{3})\b/)
+      const statusCode = statusMatch ? Number(statusMatch[1]) : null
+      const shouldRetry = statusCode !== null && ROUND_RETRY_STATUS.has(statusCode)
+      if (!shouldRetry || attempt >= ROUND_RETRIES) break
+      const backoff = ROUND_RETRY_BASE_DELAY_MS * 2 ** (attempt - 1)
+      await sleep(backoff + randomInt(ROUND_JITTER_MIN_MS, ROUND_JITTER_MAX_MS))
+    }
+  }
+
+  throw new Error(`Round ${round} non recuperato: ${lastError}`)
+}
+
 async function fetchEventsByRound(rounds: number[]): Promise<GroupedEvents> {
   const grouped: GroupedEvents = { gironeA: {}, gironeB: {} }
-  const concurrency = 6
-  for (let i = 0; i < rounds.length; i += concurrency) {
-    const chunk = rounds.slice(i, i + concurrency)
+  for (let i = 0; i < rounds.length; i += ROUND_CONCURRENCY) {
+    const chunk = rounds.slice(i, i + ROUND_CONCURRENCY)
     const roundPayloads = await Promise.all(
       chunk.map(async (round) => {
-        const payload = await fetchJson<{ events: unknown[] }>(
-          `/unique-tournament/${TOURNAMENT_ID}/season/${SEASON_ID}/events/round/${round}`,
-        )
+        const payload = await fetchRoundEvents(round)
         return { round, payload }
       }),
     )
@@ -282,6 +315,9 @@ async function fetchEventsByRound(rounds: number[]): Promise<GroupedEvents> {
         grouped[groupKey][String(round)].push(normalized)
       }
     }
+
+    // Piccolo jitter tra round/chunk per ridurre pattern ripetitivi sul proxy.
+    await sleep(randomInt(ROUND_JITTER_MIN_MS, ROUND_JITTER_MAX_MS))
   }
 
   return grouped
