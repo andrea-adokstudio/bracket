@@ -1,8 +1,6 @@
 name: Update Sofascore Data
 
 on:
-  schedule:
-    - cron: "0 */2 * * *"
   workflow_dispatch:
 
 permissions:
@@ -29,9 +27,9 @@ jobs:
       - name: Install dependencies
         run: npm install --no-audit --no-fund
 
-      # SofaScore spesso risponde 403 dagli IP GitHub: imposta i secrets HTTPS_PROXY (e se serve
-      # HTTP_PROXY) con un proxy raggiungibile dal runner. Alternativa: runner self-hosted o PR con
-      # data/*.json aggiornati da locale (`npm run fetch-data`).
+      # SofaScore (Akamai + TLS fingerprinting) blocca gli IP GitHub: serve un proxy che bypassi
+      # entrambe le protezioni. Configura il secret HTTPS_PROXY (es. ScraperAPI Proxy Mode:
+      # http://scraperapi:API_KEY@proxy-server.scraperapi.com:8001).
       - name: Fetch latest data (with retries)
         env:
           HTTP_PROXY: ${{ secrets.HTTP_PROXY }}

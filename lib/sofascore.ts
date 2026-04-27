@@ -44,7 +44,11 @@ function getSofascoreProxyAgent(): ProxyAgent | undefined {
   if (!url) return undefined
   if (cachedProxyUrl !== url) {
     cachedProxyUrl = url
-    cachedProxyAgent = new ProxyAgent(url)
+    // ScraperAPI (e simili) intercettano HTTPS: il certificato presentato non corrisponde a sofascore.
+    cachedProxyAgent = new ProxyAgent({
+      uri: url,
+      requestTls: { rejectUnauthorized: false },
+    })
   }
   return cachedProxyAgent
 }
