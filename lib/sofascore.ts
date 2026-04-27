@@ -17,9 +17,10 @@ import type {
 const TOURNAMENT_ID = 27700
 const SEASON_ID = 77655
 const SEASON_LABEL = "25/26"
-const API_BASES = ["https://api.sofascore.app/api/v1", "https://www.sofascore.com/api/v1"] as const
+const API_BASES = ["https://www.sofascore.com/api/v1", "https://api.sofascore.app/api/v1"] as const
 const REQUEST_RETRIES = 3
 const RETRY_DELAY_MS = 1200
+const REQUEST_TIMEOUT_MS = 25_000
 const ROUND_CONCURRENCY = 1
 const ROUND_RETRY_STATUS = new Set([403, 429, 502, 503, 504])
 const ROUND_RETRIES = 4
@@ -63,7 +64,11 @@ function getSofascoreProxyAgent(): ProxyAgent | undefined {
  * Con proxy: undici + ProxyAgent (routing affidabile da CI).
  * Senza proxy: fetch nativo (stesso stack TLS di prima, meno divergenze rispetto al browser).
  */
-function sofascoreRequest(url: string, headers: Record<string, string>): Promise<Response> {
+function sofascoreRequest(
+  url: string,
+  headers: Record<string, string>,
+  signal?: AbortSignal,
+): Promise<Response> {
   const dispatcher = getSofascoreProxyAgent()
   if (dispatcher) {
     return undiciFetch(url, {
@@ -71,12 +76,14 @@ function sofascoreRequest(url: string, headers: Record<string, string>): Promise
       redirect: "follow",
       headers,
       dispatcher,
+      signal,
     }) as unknown as Promise<Response>
   }
   return fetch(url, {
     cache: "no-store",
     redirect: "follow",
     headers,
+    signal,
   })
 }
 
@@ -94,16 +101,20 @@ async function primeSofascoreSessionOnce(): Promise<void> {
   }
 }
 
-function sofascoreFetch(url: string): Promise<Response> {
-  return sofascoreRequest(url, SOFASCORE_JSON_HEADERS)
-}
-
 function sleep(ms: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, ms))
 }
 
 function randomInt(min: number, max: number): number {
   return Math.floor(Math.random() * (max - min + 1)) + min
+}
+
+function getApiBasesForCurrentNetwork(): readonly string[] {
+  // Con proxy anti-bot (ScraperAPI), sofascore.app mostra instabilita maggiore rispetto a sofascore.com.
+  if (getSofascoreProxyAgent()) {
+    return [API_BASES[0]]
+  }
+  return API_BASES
 }
 
 const GROUP_LABEL_TO_KEY: Record<string, GroupKey> = {
@@ -115,12 +126,15 @@ async function fetchJson<T>(endpoint: string): Promise<T> {
   await primeSofascoreSessionOnce()
 
   let lastError = "errore sconosciuto"
+  const bases = getApiBasesForCurrentNetwork()
 
-  for (const base of API_BASES) {
+  for (const base of bases) {
     for (let attempt = 1; attempt <= REQUEST_RETRIES; attempt++) {
       const url = `${base}${endpoint}`
+      const controller = new AbortController()
+      const timer = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS)
       try {
-        const response = await sofascoreFetch(url)
+        const response = await sofascoreRequest(url, SOFASCORE_JSON_HEADERS, controller.signal)
 
         if (!response.ok) {
           const body = await response.text().catch(() => "")
@@ -136,6 +150,8 @@ async function fetchJson<T>(endpoint: string): Promise<T> {
       } catch (error) {
         const message = error instanceof Error ? error.message : String(error)
         lastError = `Errore rete ${endpoint} (base: ${base}, tentativo: ${attempt}): ${message}`
+      } finally {
+        clearTimeout(timer)
       }
 
       if (attempt < REQUEST_RETRIES) {
