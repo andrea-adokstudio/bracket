@@ -7,10 +7,9 @@ import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 
 const links = [
-  { href: "/", label: "Classifica" },
+  { href: "/", label: "Seconda fase" },
   { href: "/calendario", label: "Calendario" },
-  { href: "/tabellone", label: "Tabellone" },
-  { href: "/simulazione", label: "Simulazione" },
+  { href: "/classifica", label: "Classifica" },
 ]
 
 export function NavBar() {
@@ -23,13 +22,17 @@ export function NavBar() {
           href="/"
           className={cn(
             "mr-auto text-sm font-semibold tracking-tight sm:text-base",
-            pathname === "/" ? "text-foreground" : "text-muted-foreground hover:text-foreground",
+            pathname === "/" || pathname === "/seconda-fase"
+              ? "text-foreground"
+              : "text-muted-foreground hover:text-foreground",
           )}
         >
           Bracket RB
         </Link>
         {links.map((link) => {
-          const active = pathname === link.href
+          const active =
+            pathname === link.href ||
+            (link.href === "/" && pathname === "/seconda-fase")
           return (
             <Button
               key={link.href}

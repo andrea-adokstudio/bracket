@@ -1,8 +1,8 @@
 import { DataMissingFallback } from "@/components/data-missing-fallback"
-import { SecondaFaseView } from "@/components/seconda-fase-view"
+import { SeasonDashboard } from "@/components/season-dashboard"
 import { getDashboardData } from "@/lib/data"
 
-export default async function Page() {
+export default async function ClassificaPage() {
   let data = null
 
   try {
@@ -13,7 +13,7 @@ export default async function Page() {
 
   return (
     <div className="mx-auto flex min-h-svh w-full max-w-6xl px-2 py-4 sm:px-4 sm:py-6">
-      <SecondaFaseView data={data} />
+      <SeasonDashboard key={data.updatedAt} data={data} view="classifica" />
     </div>
   )
 }

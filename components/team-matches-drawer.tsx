@@ -30,49 +30,22 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
+import type { RoundOption } from "@/components/round-selector"
 import { formatItalianDateParts } from "@/lib/format-italian-date"
 import { getFinishedScoreOpacityClass } from "@/lib/score-opacity"
 import type { MatchEvent } from "@/lib/types"
 
 type TeamRoundSlide =
-  | { kind: "match"; round: number; match: MatchEvent }
-  | { kind: "rest"; round: number; roundMatches: MatchEvent[] }
+  | { kind: "match"; roundKey: string; match: MatchEvent }
+  | { kind: "rest"; roundKey: string; roundMatches: MatchEvent[] }
 
 interface TeamMatchesDrawerProps {
   open: boolean
   onOpenChange: (open: boolean) => void
   teamName: string
   teamId: number | null
-  rounds: number[]
+  roundOptions: RoundOption[]
   eventsByRound: Record<string, MatchEvent[]>
-}
-
-function slideTimestampMs(slide: TeamRoundSlide): number {
-  if (slide.kind === "match") return slide.match.startTimestamp * 1000;
-  const events = slide.roundMatches;
-  if (events.length === 0) return 0;
-  return (
-    events.reduce((acc, event) => acc + event.startTimestamp * 1000, 0) / events.length
-  );
-}
-
-function getClosestSlideIndex(slides: TeamRoundSlide[]): number {
-  if (slides.length === 0) return 0;
-  const now = Date.now();
-  let bestIndex = 0;
-  let bestDistance = Number.POSITIVE_INFINITY;
-
-  slides.forEach((slide, index) => {
-    const t = slideTimestampMs(slide);
-    if (t === 0) return;
-    const distance = Math.abs(t - now);
-    if (distance < bestDistance) {
-      bestDistance = distance;
-      bestIndex = index;
-    }
-  });
-
-  return bestIndex;
 }
 
 export function TeamMatchesDrawer({
@@ -80,23 +53,28 @@ export function TeamMatchesDrawer({
   onOpenChange,
   teamName,
   teamId,
-  rounds,
+  roundOptions,
   eventsByRound,
 }: TeamMatchesDrawerProps) {
   const [api, setApi] = useState<CarouselApi>();
   const [selectedIndex, setSelectedIndex] = useState(0);
 
+  const availableRoundKeys = useMemo(
+    () => roundOptions.map((o) => o.value),
+    [roundOptions],
+  );
+
   const slides = useMemo(() => {
     if (teamId == null) return [];
-    return rounds.map((round) => {
-      const roundMatches = eventsByRound[String(round)] ?? [];
+    return availableRoundKeys.map((roundKey) => {
+      const roundMatches = eventsByRound[roundKey] ?? [];
       const match = roundMatches.find(
         (m) => m.homeTeam.id === teamId || m.awayTeam.id === teamId,
       );
-      if (match) return { kind: "match" as const, round, match };
-      return { kind: "rest" as const, round, roundMatches };
+      if (match) return { kind: "match" as const, roundKey, match };
+      return { kind: "rest" as const, roundKey, roundMatches };
     });
-  }, [rounds, eventsByRound, teamId]);
+  }, [availableRoundKeys, eventsByRound, teamId]);
 
   useEffect(() => {
     if (!api) return;
@@ -117,34 +95,32 @@ export function TeamMatchesDrawer({
 
   useEffect(() => {
     if (!open || !api) return;
-    const targetIndex = getClosestSlideIndex(slides);
+    const targetIndex = Math.max(slides.length - 1, 0);
     api.scrollTo(targetIndex, true);
   }, [api, open, slides]);
 
-  const availableRounds = rounds;
+  const selectedRoundKey = slides[selectedIndex]?.roundKey;
 
-  const selectedRound = slides[selectedIndex]?.round;
-
-  function goToRound(round: number) {
-    const targetIndex = slides.findIndex((slide) => slide.round === round);
+  function goToRound(roundKey: string) {
+    const targetIndex = slides.findIndex((slide) => slide.roundKey === roundKey);
     if (targetIndex >= 0) {
       api?.scrollTo(targetIndex);
     }
   }
 
-  const currentRoundIndex = availableRounds.findIndex((round) => round === selectedRound);
+  const currentRoundIndex = availableRoundKeys.findIndex((key) => key === selectedRoundKey);
   const canGoPrevRound = currentRoundIndex > 0;
   const canGoNextRound =
-    currentRoundIndex >= 0 && currentRoundIndex < availableRounds.length - 1;
+    currentRoundIndex >= 0 && currentRoundIndex < availableRoundKeys.length - 1;
 
   function goPrevRound() {
     if (!canGoPrevRound) return;
-    goToRound(availableRounds[currentRoundIndex - 1]);
+    goToRound(availableRoundKeys[currentRoundIndex - 1]);
   }
 
   function goNextRound() {
     if (!canGoNextRound) return;
-    goToRound(availableRounds[currentRoundIndex + 1]);
+    goToRound(availableRoundKeys[currentRoundIndex + 1]);
   }
 
   function translateStatus(status: string): string {
@@ -200,7 +176,7 @@ export function TeamMatchesDrawer({
                       : { dateLabel: "—", timeLabel: "—" };
                     return (
                       <CarouselItem
-                        key={`rest-${slide.round}`}
+                        key={`rest-${slide.roundKey}`}
                         className="flex min-h-0 basis-full md:basis-1/2"
                       >
                         <div className="flex h-full min-h-0 w-full flex-col items-center justify-center rounded-lg border border-dashed px-3 py-3 sm:px-4">
@@ -328,16 +304,21 @@ export function TeamMatchesDrawer({
                   <IconCircleArrowLeft className="h-4 w-4" />
                 </Button>
                 <Select
-                  value={selectedRound ? String(selectedRound) : undefined}
-                  onValueChange={(value) => goToRound(Number(value))}
+                  value={
+                    selectedRoundKey &&
+                    roundOptions.some((o) => o.value === selectedRoundKey)
+                      ? selectedRoundKey
+                      : undefined
+                  }
+                  onValueChange={(value) => goToRound(value)}
                 >
-                  <SelectTrigger className="w-full sm:w-44">
-                    <SelectValue placeholder="Seleziona giornata" />
+                  <SelectTrigger className="w-full min-w-0 sm:max-w-[min(100%,20rem)]">
+                    <SelectValue placeholder="Seleziona" />
                   </SelectTrigger>
                   <SelectContent>
-                    {availableRounds.map((round) => (
-                      <SelectItem key={round} value={String(round)}>
-                        Giornata {round}
+                    {roundOptions.map((opt) => (
+                      <SelectItem key={opt.value} value={opt.value}>
+                        {opt.label}
                       </SelectItem>
                     ))}
                   </SelectContent>

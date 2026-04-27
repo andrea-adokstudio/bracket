@@ -2,7 +2,7 @@ import { DataMissingFallback } from "@/components/data-missing-fallback"
 import { SecondaFaseView } from "@/components/seconda-fase-view"
 import { getDashboardData } from "@/lib/data"
 
-export default async function Page() {
+export default async function SecondaFasePage() {
   let data = null
 
   try {

@@ -1,7 +1,8 @@
 import { readFile } from "node:fs/promises"
 import path from "node:path"
 
-import type { DashboardData, EventsFileData, StandingsFileData } from "@/lib/types"
+import { deriveGironeRoundNumbers } from "@/lib/event-rounds"
+import { normalizeGroupedEvents, type DashboardData, type EventsFileData, type StandingsFileData } from "@/lib/types"
 
 const STANDINGS_FILE = path.join(process.cwd(), "data", "standings.json")
 const EVENTS_FILE = path.join(process.cwd(), "data", "events.json")
@@ -13,13 +14,19 @@ export async function getDashboardData(): Promise<DashboardData> {
   ])
 
   const standings = JSON.parse(standingsRaw) as StandingsFileData
-  const events = JSON.parse(eventsRaw) as EventsFileData
+  const eventsFile = JSON.parse(eventsRaw) as EventsFileData
+  const groupedEvents = normalizeGroupedEvents(eventsFile.events)
 
-  return {
+  const partial: DashboardData = {
     seasonLabel: standings.seasonLabel,
     updatedAt: standings.updatedAt,
-    rounds: events.rounds,
+    rounds: eventsFile.rounds,
     standings: standings.standings,
-    events: events.events,
+    events: groupedEvents,
+  }
+
+  return {
+    ...partial,
+    rounds: deriveGironeRoundNumbers(partial),
   }
 }

@@ -1,6 +1,7 @@
 export type GroupKey = "gironeA" | "gironeB"
 
-export type TournamentGroupName = "Division A" | "Division B"
+/** Raggruppamento calendario: gironi + incroci playoff/playout tra A e B */
+export type EventsBucketKey = GroupKey | "playoffAB" | "playoutAB"
 
 export interface TeamInfo {
   id: number
@@ -37,7 +38,12 @@ export interface MatchEvent {
   startTimestamp: number
   status: string
   statusType: string
-  groupName: TournamentGroupName
+  /** Etichetta torneo/girone lato SofaScore (es. Division A, fasi playoff). */
+  groupName: string
+  /** Nome fase turno SofaScore (es. "Ottavi di finale") — playoff/playout. */
+  roundLabel?: string
+  /** Slug fase turno dall'API, se presente. */
+  roundSlug?: string
   homeTeam: TeamInfo
   awayTeam: TeamInfo
   homeScore: MatchScore
@@ -45,7 +51,24 @@ export interface MatchEvent {
 }
 
 export type GroupedStandings = Record<GroupKey, StandingRow[]>
-export type GroupedEvents = Record<GroupKey, Record<string, MatchEvent[]>>
+export type GroupedEvents = Record<EventsBucketKey, Record<string, MatchEvent[]>>
+
+/** Ordine tab calendario: playoff/playout prima dei gironi. */
+export const CALENDAR_TAB_ORDER: readonly EventsBucketKey[] = [
+  "playoffAB",
+  "playoutAB",
+  "gironeA",
+  "gironeB",
+] as const
+
+export function normalizeGroupedEvents(raw: GroupedEvents | Partial<GroupedEvents> | undefined): GroupedEvents {
+  return {
+    gironeA: raw?.gironeA ?? {},
+    gironeB: raw?.gironeB ?? {},
+    playoffAB: raw?.playoffAB ?? {},
+    playoutAB: raw?.playoutAB ?? {},
+  }
+}
 
 export interface StandingsFileData {
   seasonId: number

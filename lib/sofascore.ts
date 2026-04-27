@@ -2,17 +2,20 @@ import { mkdir, writeFile } from "node:fs/promises"
 import path from "node:path"
 import { fetch as undiciFetch, ProxyAgent } from "undici"
 
-import type {
-  DashboardData,
-  EventsFileData,
-  GroupKey,
-  GroupedEvents,
-  GroupedStandings,
-  MatchScore,
-  MatchEvent,
-  StandingRow,
-  StandingsFileData,
+import {
+  normalizeGroupedEvents,
+  type DashboardData,
+  type EventsBucketKey,
+  type EventsFileData,
+  type GroupKey,
+  type GroupedEvents,
+  type GroupedStandings,
+  type MatchScore,
+  type MatchEvent,
+  type StandingRow,
+  type StandingsFileData,
 } from "@/lib/types"
+import { resolveEventStorageKey } from "@/lib/event-rounds"
 
 const TOURNAMENT_ID = 27700
 const SEASON_ID = 77655
@@ -30,16 +33,12 @@ const ROUND_JITTER_MAX_MS = 900
 
 /** Allineato a richieste XHR dal sito (riduce 403 da WAF su IP datacenter / client “nudi”). */
 const SOFASCORE_WEB_ORIGIN = "https://www.sofascore.com"
+const SOFASCORE_TOURNAMENT_PATH = `/it/basketball/tournament/italy/serie-b-interregionale/${TOURNAMENT_ID}`
 const SOFASCORE_CHROME_UA =
   "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36"
 
-const SOFASCORE_JSON_HEADERS: Record<string, string> = {
-  "User-Agent": SOFASCORE_CHROME_UA,
-  Accept: "application/json",
-  "Accept-Language": "it-IT,it;q=0.9,en;q=0.8",
-  Referer: `${SOFASCORE_WEB_ORIGIN}/`,
-  Origin: SOFASCORE_WEB_ORIGIN,
-}
+/** Cookie raccolti dalla visita alle pagine HTML (molte API rispondono 403 senza Cookie). */
+let sessionCookieHeader: string | undefined
 
 let sofascoreSessionPrimed = false
 
@@ -60,44 +59,90 @@ function getSofascoreProxyAgent(): ProxyAgent | undefined {
   return cachedProxyAgent
 }
 
-/**
- * Con proxy: undici + ProxyAgent (routing affidabile da CI).
- * Senza proxy: fetch nativo (stesso stack TLS di prima, meno divergenze rispetto al browser).
- */
+/** Sempre undici: stesso stack e `getSetCookie` coerente (Node fetch varia tra versioni). */
 function sofascoreRequest(
   url: string,
   headers: Record<string, string>,
   signal?: AbortSignal,
 ): Promise<Response> {
   const dispatcher = getSofascoreProxyAgent()
-  if (dispatcher) {
-    return undiciFetch(url, {
-      cache: "no-store",
-      redirect: "follow",
-      headers,
-      dispatcher,
-      signal,
-    }) as unknown as Promise<Response>
-  }
-  return fetch(url, {
+  return undiciFetch(url, {
     cache: "no-store",
     redirect: "follow",
     headers,
+    ...(dispatcher ? { dispatcher } : {}),
     signal,
-  })
+  }) as unknown as Promise<Response>
+}
+
+function mergeSetCookieIntoJar(response: Response, jar: Map<string, string>): void {
+  const raw = response.headers as Headers & { getSetCookie?: () => string[] }
+  if (typeof raw.getSetCookie !== "function") return
+  for (const line of raw.getSetCookie()) {
+    const pair = line.split(";")[0]?.trim()
+    if (!pair?.includes("=")) continue
+    const eq = pair.indexOf("=")
+    const name = pair.slice(0, eq).trim()
+    const value = pair.slice(eq + 1).trim()
+    if (name) jar.set(name, value)
+  }
+}
+
+function cookieJarToHeader(jar: Map<string, string>): string | undefined {
+  if (jar.size === 0) return undefined
+  return [...jar.entries()].map(([k, v]) => `${k}=${v}`).join("; ")
+}
+
+function getApiHeaders(): Record<string, string> {
+  const refererPage = `${SOFASCORE_WEB_ORIGIN}${SOFASCORE_TOURNAMENT_PATH}`
+  const envCookie = process.env.SOFASCORE_COOKIE?.trim()
+  const cookie = envCookie || sessionCookieHeader
+
+  const h: Record<string, string> = {
+    "User-Agent": SOFASCORE_CHROME_UA,
+    Accept: "application/json",
+    "Accept-Language": "it-IT,it;q=0.9,en;q=0.8",
+    Referer: refererPage,
+    Origin: SOFASCORE_WEB_ORIGIN,
+    "X-Requested-With": "XMLHttpRequest",
+    "Sec-Fetch-Site": "same-origin",
+    "Sec-Fetch-Mode": "cors",
+    "Sec-Fetch-Dest": "empty",
+    "sec-ch-ua": '"Google Chrome";v="131", "Chromium";v="131", "Not_A Brand";v="24"',
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": '"Windows"',
+  }
+  if (cookie) h.Cookie = cookie
+  return h
 }
 
 async function primeSofascoreSessionOnce(): Promise<void> {
   if (sofascoreSessionPrimed) return
   sofascoreSessionPrimed = true
+  const jar = new Map<string, string>()
+  const htmlHeaders: Record<string, string> = {
+    "User-Agent": SOFASCORE_CHROME_UA,
+    Accept: "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+    "Accept-Language": "it-IT,it;q=0.9,en;q=0.8",
+    Referer: `${SOFASCORE_WEB_ORIGIN}/`,
+    "Upgrade-Insecure-Requests": "1",
+    "Sec-Fetch-Site": "none",
+    "Sec-Fetch-Mode": "navigate",
+    "Sec-Fetch-Dest": "document",
+  }
+  const pages = [`${SOFASCORE_WEB_ORIGIN}/`, `${SOFASCORE_WEB_ORIGIN}${SOFASCORE_TOURNAMENT_PATH}`]
   try {
-    await sofascoreRequest(`${SOFASCORE_WEB_ORIGIN}/`, {
-      "User-Agent": SOFASCORE_CHROME_UA,
-      Accept: "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-      "Accept-Language": "it-IT,it;q=0.9,en;q=0.8",
-    })
+    for (const pageUrl of pages) {
+      const res = await sofascoreRequest(pageUrl, {
+        ...htmlHeaders,
+        Referer: pageUrl === pages[0] ? `${SOFASCORE_WEB_ORIGIN}/` : `${SOFASCORE_WEB_ORIGIN}/`,
+      })
+      mergeSetCookieIntoJar(res, jar)
+      await res.arrayBuffer().catch(() => {})
+    }
+    sessionCookieHeader = cookieJarToHeader(jar)
   } catch {
-    /* cookie/WAF opzionali: le API possono funzionare comunque */
+    /* pagina opzionale: può restare solo SOFASCORE_COOKIE / proxy */
   }
 }
 
@@ -134,7 +179,7 @@ async function fetchJson<T>(endpoint: string): Promise<T> {
       const controller = new AbortController()
       const timer = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS)
       try {
-        const response = await sofascoreRequest(url, SOFASCORE_JSON_HEADERS, controller.signal)
+        const response = await sofascoreRequest(url, getApiHeaders(), controller.signal)
 
         if (!response.ok) {
           const body = await response.text().catch(() => "")
@@ -160,12 +205,104 @@ async function fetchJson<T>(endpoint: string): Promise<T> {
     }
   }
 
-  throw new Error(lastError)
+  const hint403 =
+    lastError.includes("403") || lastError.includes("Forbidden")
+      ? " Suggerimenti: esporta SOFASCORE_COOKIE con il valore dell’header Cookie preso da DevTools (Network, richiesta verso api/v1), oppure usa HTTPS_PROXY (IP residenziale / servizio anti-bot)."
+      : ""
+  throw new Error(`${lastError}${hint403}`)
 }
 
 function extractGroupKey(groupName?: string): GroupKey | null {
   if (!groupName) return null
   return GROUP_LABEL_TO_KEY[groupName] ?? null
+}
+
+/**
+ * Fasi playoff / playout incrociate A–B (stesso unique tournament 27700 della pagina SofaScore).
+ * Va valutata prima del girone: spesso `groupName` resta "Division A/B" anche in seconda fase.
+ */
+function classifyCrossGroupBucket(meta: {
+  tournament?: { name?: string; slug?: string; groupName?: string }
+  tournamentStage?: { name?: string; slug?: string }
+  seasonStage?: { name?: string; slug?: string }
+  roundInfo?: { name?: string; slug?: string; type?: string }
+}): "playoffAB" | "playoutAB" | null {
+  const parts = [
+    meta.tournamentStage?.slug,
+    meta.tournamentStage?.name,
+    meta.seasonStage?.slug,
+    meta.seasonStage?.name,
+    meta.roundInfo?.slug,
+    meta.roundInfo?.name,
+    meta.roundInfo?.type,
+    meta.tournament?.name,
+    meta.tournament?.slug,
+    meta.tournament?.groupName,
+  ]
+  const haystack = parts
+    .filter((p): p is string => typeof p === "string" && p.length > 0)
+    .join(" ")
+    .toLowerCase()
+
+  if (!haystack.trim()) return null
+
+  if (
+    /\bplayout\b/.test(haystack) ||
+    /\brelegation\b/.test(haystack) ||
+    haystack.includes("retrocess") ||
+    haystack.includes("retroced") ||
+    haystack.includes("salvezza") ||
+    haystack.includes("mantenimento") ||
+    haystack.includes("spareggi salvezza") ||
+    /\btabellone\s*[cd]\b/.test(haystack) ||
+    haystack.includes("tabellone-c") ||
+    haystack.includes("tabellone-d")
+  ) {
+    return "playoutAB"
+  }
+
+  if (
+    /\bplayoff\b/.test(haystack) ||
+    /\bplay-offs\b/.test(haystack) ||
+    haystack.includes("play off") ||
+    haystack.includes("post season") ||
+    haystack.includes("postseason") ||
+    haystack.includes("qualificat") ||
+    /\btabellone\s*[ab]\b/.test(haystack) ||
+    haystack.includes("tabellone-a") ||
+    haystack.includes("tabellone-b") ||
+    /\bknockout\b/.test(haystack) ||
+    /\b(elimination|eliminazione)\b/.test(haystack) ||
+    /\b(quarter|semi)-?final/.test(haystack) ||
+    haystack.includes("quarti di finale") ||
+    haystack.includes("semifinali") ||
+    (/\bfinale\b/.test(haystack) &&
+      (/\b(conference|conf\.|playoff|tabellone)\b/.test(haystack) || haystack.includes("finale di")))
+  ) {
+    return "playoffAB"
+  }
+
+  return null
+}
+
+function resolveEventsBucket(event: {
+  tournament?: { name?: string; slug?: string; groupName?: string }
+  tournamentStage?: { name?: string; slug?: string }
+  seasonStage?: { name?: string; slug?: string }
+  /** Variante API: stessa semantica di `seasonStage` */
+  stage?: { name?: string; slug?: string }
+  roundInfo?: { round?: number; name?: string; slug?: string; type?: string }
+}): EventsBucketKey | null {
+  const phaseBucket = classifyCrossGroupBucket({
+    tournament: event.tournament,
+    tournamentStage: event.tournamentStage,
+    seasonStage: event.seasonStage ?? event.stage,
+    roundInfo: event.roundInfo,
+  })
+  if (phaseBucket) return phaseBucket
+  const division = extractGroupKey(event.tournament?.groupName)
+  if (division) return division
+  return null
 }
 
 function normalizeScore(
@@ -269,7 +406,12 @@ async function fetchRoundEvents(round: number): Promise<{ events: unknown[] }> {
 }
 
 async function fetchEventsByRound(rounds: number[]): Promise<GroupedEvents> {
-  const grouped: GroupedEvents = { gironeA: {}, gironeB: {} }
+  const grouped: GroupedEvents = {
+    gironeA: {},
+    gironeB: {},
+    playoffAB: {},
+    playoutAB: {},
+  }
   for (let i = 0; i < rounds.length; i += ROUND_CONCURRENCY) {
     const chunk = rounds.slice(i, i + ROUND_CONCURRENCY)
     const roundPayloads = await Promise.all(
@@ -284,8 +426,11 @@ async function fetchEventsByRound(rounds: number[]): Promise<GroupedEvents> {
         id: number
         startTimestamp: number
         status: { description: string; type: string }
-        tournament?: { groupName?: string }
-        roundInfo?: { round: number }
+        tournament?: { name?: string; slug?: string; groupName?: string }
+        tournamentStage?: { name?: string; slug?: string }
+        seasonStage?: { name?: string; slug?: string }
+        stage?: { name?: string; slug?: string }
+        roundInfo?: { round: number; name?: string; slug?: string; type?: string }
         homeTeam: { id: number; name: string; slug: string; shortName?: string }
         awayTeam: { id: number; name: string; slug: string; shortName?: string }
         homeScore?: {
@@ -299,16 +444,35 @@ async function fetchEventsByRound(rounds: number[]): Promise<GroupedEvents> {
       }>
 
       for (const event of roundEvents) {
-        const groupKey = extractGroupKey(event.tournament?.groupName)
-        if (!groupKey) continue
+        const bucket = resolveEventsBucket(event)
+        if (!bucket) continue
+
+        const groupLabel =
+          event.tournament?.groupName?.trim() ||
+          [
+            event.seasonStage?.name,
+            event.stage?.name,
+            event.tournamentStage?.name,
+            event.roundInfo?.name,
+            event.tournament?.name,
+          ]
+            .filter(Boolean)
+            .join(" — ") ||
+          bucket
+
+        const roundLabelRaw = event.roundInfo?.name?.trim()
+        const roundSlugRaw = event.roundInfo?.slug?.trim()
+        const roundNum = event.roundInfo?.round ?? round
 
         const normalized: MatchEvent = {
           id: event.id,
-          round: event.roundInfo?.round ?? round,
+          round: roundNum,
           startTimestamp: event.startTimestamp,
           status: event.status.description,
           statusType: event.status.type,
-          groupName: event.tournament?.groupName as "Division A" | "Division B",
+          groupName: groupLabel,
+          roundLabel: roundLabelRaw || undefined,
+          roundSlug: roundSlugRaw || undefined,
           homeTeam: {
             id: event.homeTeam.id,
             name: event.homeTeam.name,
@@ -325,10 +489,18 @@ async function fetchEventsByRound(rounds: number[]): Promise<GroupedEvents> {
           awayScore: normalizeScore(event.awayScore),
         }
 
-        if (!grouped[groupKey][String(round)]) {
-          grouped[groupKey][String(round)] = []
+        const storageKey = resolveEventStorageKey(
+          bucket,
+          roundLabelRaw,
+          roundSlugRaw,
+          roundNum,
+          round,
+        )
+
+        if (!grouped[bucket][storageKey]) {
+          grouped[bucket][storageKey] = []
         }
-        grouped[groupKey][String(round)].push(normalized)
+        grouped[bucket][storageKey].push(normalized)
       }
     }
 
@@ -343,7 +515,7 @@ async function fetchEventsByRound(rounds: number[]): Promise<GroupedEvents> {
 export async function fetchLiveDashboardData(): Promise<DashboardData> {
   const standings = await fetchStandings()
   const rounds = await fetchRounds()
-  const events = await fetchEventsByRound(rounds)
+  const events = normalizeGroupedEvents(await fetchEventsByRound(rounds))
   const updatedAt = new Date().toISOString()
 
   return {
@@ -358,7 +530,7 @@ export async function fetchLiveDashboardData(): Promise<DashboardData> {
 export async function fetchAndSaveSofascoreData() {
   const standings = await fetchStandings()
   const rounds = await fetchRounds()
-  const events = await fetchEventsByRound(rounds)
+  const events = normalizeGroupedEvents(await fetchEventsByRound(rounds))
   const updatedAt = new Date().toISOString()
 
   const standingsPayload: StandingsFileData = {

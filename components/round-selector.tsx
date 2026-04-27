@@ -8,22 +8,29 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 
-interface RoundSelectorProps {
-  rounds: number[]
-  value: number
-  onChange: (value: number) => void
+export interface RoundOption {
+  value: string
+  label: string
 }
 
-export function RoundSelector({ rounds, value, onChange }: RoundSelectorProps) {
+interface RoundSelectorProps {
+  options: RoundOption[]
+  value: string
+  onChange: (value: string) => void
+  placeholder?: string
+}
+
+export function RoundSelector({ options, value, onChange, placeholder }: RoundSelectorProps) {
+  const validValue = options.some((o) => o.value === value) ? value : undefined
   return (
-    <Select value={String(value)} onValueChange={(nextValue) => onChange(Number(nextValue))}>
-      <SelectTrigger className="w-full sm:w-44">
-        <SelectValue placeholder="Seleziona giornata" />
+    <Select value={validValue} onValueChange={onChange}>
+      <SelectTrigger className="w-full min-w-0 sm:max-w-[min(100%,20rem)]">
+        <SelectValue placeholder={placeholder ?? "Seleziona"} />
       </SelectTrigger>
       <SelectContent>
-        {rounds.map((round) => (
-          <SelectItem key={round} value={String(round)}>
-            Giornata {round}
+        {options.map((opt) => (
+          <SelectItem key={opt.value} value={opt.value}>
+            {opt.label}
           </SelectItem>
         ))}
       </SelectContent>
